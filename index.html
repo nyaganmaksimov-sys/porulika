@@ -295,7 +295,7 @@
 
         nav {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
@@ -303,7 +303,7 @@
             position: relative;
         }
 
-        /* Центрированный логотип в белом круге */
+        /* Центрированный логотип без обводки */
         .logo-center {
             position: absolute;
             left: 50%;
@@ -321,7 +321,7 @@
             background: var(--color-light);
             border-radius: 50%;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border: 3px solid var(--color-primary);
+            /* Убрана обводка */
             transition: all 0.3s ease;
         }
 
@@ -336,11 +336,20 @@
             display: block;
         }
 
+        /* Навигация по бокам с отступами от логотипа */
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
-            margin: 0 auto;
+            flex: 1;
+        }
+
+        .nav-links.left {
+            justify-content: flex-start;
+        }
+
+        .nav-links.right {
+            justify-content: flex-end;
         }
 
         .nav-links a {
@@ -1198,22 +1207,28 @@
     <header id="header">
         <nav>
             <button class="mobile-menu-btn">☰</button>
-            <ul class="nav-links">
+            <!-- Левая часть меню -->
+            <ul class="nav-links left">
                 <li><a href="#about">О квесте</a></li>
                 <li><a href="#steps">Этапы</a></li>
                 <li><a href="#features">Почему мы</a></li>
                 <li><a href="#events">Расписание</a></li>
-                <li><a href="#merch">Мерч</a></li>
-                <li><a href="#reviews">Отзывы</a></li>
-                <li><a href="#form">Запись</a></li>
-                <li><a href="#partners">Партнёрам</a></li>
             </ul>
+            
             <!-- Центрированный логотип -->
             <div class="logo-center">
                 <a href="#home" class="logo-circle">
                     <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" class="logo-img">
                 </a>
             </div>
+            
+            <!-- Правая часть меню -->
+            <ul class="nav-links right">
+                <li><a href="#merch">Мерч</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="#form">Запись</a></li>
+                <li><a href="#partners">Партнёрам</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -1548,7 +1563,9 @@
 
         // Mobile Menu Toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
+            document.querySelectorAll('.nav-links').forEach(nav => {
+                nav.classList.toggle('active');
+            });
         });
 
         // Header Scroll Effect
@@ -1574,7 +1591,9 @@
         // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelectorAll('.nav-links').forEach(nav => {
+                    nav.classList.remove('active');
+                });
             });
         });
 
