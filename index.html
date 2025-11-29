@@ -12,24 +12,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --color-primary: #FF3B5C;
-            --color-primary-light: #FF6B8B;
-            --color-primary-dark: #E62E4D;
-            --color-accent: #00D4AA;
-            --color-accent-light: #5CFFE1;
-            --color-secondary: #FF9500;
-            --color-secondary-light: #FFB143;
+            --color-primary: #1a1a2e;
+            --color-primary-light: #16213e;
+            --color-primary-dark: #0f1123;
+            --color-accent: #e94560;
+            --color-accent-light: #ff6b8b;
+            --color-secondary: #0d7377;
+            --color-secondary-light: #14b8b0;
             --color-light: #FFFFFF;
-            --color-light-gray: #F8FAFC;
-            --color-gray: #E2E8F0;
-            --color-dark: #1E293B;
-            --color-text: #475569;
-            --font-heading: 'Rubik', sans-serif;
-            --font-body: 'Rubik', sans-serif;
+            --color-light-gray: #f8f9fa;
+            --color-gray: #e9ecef;
+            --color-dark: #121212;
+            --color-text: #333333;
+            --color-text-light: #6c757d;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         * {
@@ -45,37 +49,89 @@
         body {
             font-family: var(--font-body);
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--color-text);
-            background: linear-gradient(135deg, #FF9A9E 0%, #FAD0C4 100%);
+            background-color: var(--color-light);
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
         }
 
-        /* Animated Background - теплая версия */
-        .warm-background {
+        /* Анимированный фон с геометрическими фигурами */
+        .animated-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -2;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 107, 139, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 149, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(0, 212, 170, 0.1) 0%, transparent 50%);
-            animation: softMove 20s ease-in-out infinite;
+            overflow: hidden;
         }
 
-        @keyframes softMove {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(-10px, 10px) scale(1.02); }
-            50% { transform: translate(10px, -10px) scale(1.01); }
-            75% { transform: translate(-5px, -5px) scale(1.03); }
+        .shape {
+            position: absolute;
+            opacity: 0.05;
+            border-radius: 50%;
+            animation: float 25s infinite linear;
         }
 
-        .floating-elements {
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--color-accent);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+            animation-duration: 30s;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--color-secondary);
+            top: 60%;
+            right: 10%;
+            animation-delay: 5s;
+            animation-duration: 25s;
+        }
+
+        .shape-3 {
+            width: 400px;
+            height: 400px;
+            background: var(--color-primary);
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 10s;
+            animation-duration: 35s;
+        }
+
+        .shape-4 {
+            width: 150px;
+            height: 150px;
+            background: var(--color-accent-light);
+            top: 20%;
+            right: 20%;
+            animation-delay: 15s;
+            animation-duration: 20s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(30px, -50px) rotate(120deg);
+            }
+            66% {
+                transform: translate(-20px, 20px) rotate(240deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* Дорожная разметка на фоне */
+        .road-markings {
             position: fixed;
             top: 0;
             left: 0;
@@ -83,114 +139,57 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
+            opacity: 0.03;
         }
 
-        .floating-element {
+        .road-line {
             position: absolute;
-            opacity: 0.15;
-            animation: floatElement 25s infinite linear;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+            width: 100%;
+            height: 2px;
+            background: var(--color-dark);
+            animation: roadMove 20s linear infinite;
         }
 
-        .floating-element img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
+        .road-line:nth-child(2) {
+            top: 25%;
+            animation-delay: 5s;
         }
 
-        .floating-element:nth-child(2n) {
-            animation-duration: 30s;
-            animation-direction: reverse;
+        .road-line:nth-child(3) {
+            top: 50%;
+            animation-delay: 10s;
         }
 
-        .floating-element:nth-child(3n) {
-            animation-duration: 35s;
+        .road-line:nth-child(4) {
+            top: 75%;
+            animation-delay: 15s;
         }
 
-        .floating-element:nth-child(4n) {
-            animation-duration: 40s;
-            animation-direction: reverse;
-        }
-
-        @keyframes floatElement {
-            0% {
-                transform: translate(0, 0) rotate(0deg) scale(1);
-            }
-            25% {
-                transform: translate(100px, 150px) rotate(90deg) scale(1.2);
-            }
-            50% {
-                transform: translate(200px, 0) rotate(180deg) scale(0.8);
-            }
-            75% {
-                transform: translate(100px, -150px) rotate(270deg) scale(1.1);
-            }
-            100% {
-                transform: translate(0, 0) rotate(360deg) scale(1);
-            }
-        }
-
-        /* Creative Shapes */
-        .creative-shape {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--color-primary-light), transparent);
-            opacity: 0.05;
-            animation: pulseShape 8s ease-in-out infinite;
-        }
-
-        .shape-1 {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
-        }
-
-        .shape-2 {
-            width: 200px;
-            height: 200px;
-            top: 60%;
-            right: 10%;
-            animation-delay: 2s;
-            background: radial-gradient(circle, var(--color-accent-light), transparent);
-        }
-
-        .shape-3 {
-            width: 400px;
-            height: 400px;
-            bottom: 10%;
-            left: 20%;
-            animation-delay: 4s;
-            background: radial-gradient(circle, var(--color-secondary-light), transparent);
-        }
-
-        @keyframes pulseShape {
-            0%, 100% { transform: scale(1); opacity: 0.05; }
-            50% { transform: scale(1.2); opacity: 0.08; }
+        @keyframes roadMove {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         h1, h2, h3, h4 {
             font-family: var(--font-heading);
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: var(--color-dark);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
         h2 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             text-align: center;
             margin-bottom: 3rem;
             position: relative;
@@ -202,29 +201,16 @@
         h2::after {
             content: '';
             display: block;
-            width: 60px;
+            width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-            margin: 0.5rem auto;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+            margin: 1rem auto;
             border-radius: 2px;
-            animation: widthPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes widthPulse {
-            0%, 100% { width: 60px; }
-            50% { width: 80px; }
         }
 
         section {
-            padding: 4rem 1rem;
+            padding: 6rem 1rem;
             position: relative;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(10px);
-            margin: 2rem auto;
-            border-radius: 20px;
-            max-width: 1400px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .container {
@@ -234,20 +220,30 @@
             z-index: 1;
         }
 
+        .section-dark {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            color: var(--color-light);
+        }
+
+        .section-dark h2,
+        .section-dark h3 {
+            color: var(--color-light);
+        }
+
         .btn {
             display: inline-block;
             padding: 14px 32px;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
             color: var(--color-light);
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
+            border-radius: var(--border-radius);
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             border: none;
             cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(255, 59, 92, 0.3);
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
             position: relative;
             overflow: hidden;
             font-size: 0.9rem;
@@ -260,55 +256,57 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
             transition: left 0.6s;
         }
 
         .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(255, 59, 92, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(233, 69, 96, 0.3);
         }
 
         .btn:hover::before {
             left: 100%;
         }
 
-        .btn-accent {
-            background: linear-gradient(135deg, var(--color-accent), #00B894);
-            color: var(--color-dark);
-            box-shadow: 0 8px 25px rgba(0, 212, 170, 0.3);
-        }
-
-        /* Новая кнопка для онлайн-экзамена */
-        .btn-exam {
-            background: linear-gradient(135deg, #4A00E0, #8E2DE2);
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-light));
             color: var(--color-light);
-            box-shadow: 0 8px 25px rgba(142, 45, 226, 0.3);
-            animation: pulseExam 2s infinite;
         }
 
-        @keyframes pulseExam {
-            0%, 100% { box-shadow: 0 8px 25px rgba(142, 45, 226, 0.3); }
-            50% { box-shadow: 0 8px 30px rgba(142, 45, 226, 0.6); }
+        .btn-secondary:hover {
+            box-shadow: 0 15px 25px rgba(13, 115, 119, 0.3);
         }
 
-        /* Стильное меню */
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: var(--color-light);
+        }
+
+        /* Строгое меню */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.4s ease;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.2rem 0;
+            transition: var(--transition);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         header.scrolled {
-            padding: 0.7rem 0;
+            padding: 0.8rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
         nav {
@@ -318,27 +316,26 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
-            position: relative;
         }
 
-        /* Логотип */
+        /* Анимированный логотип */
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
             text-decoration: none;
             font-family: var(--font-heading);
-            font-weight: 900;
+            font-weight: 800;
             font-size: 1.8rem;
-            color: var(--color-dark);
-            transition: all 0.3s ease;
+            color: var(--color-primary);
+            transition: var(--transition);
         }
 
         .logo:hover {
             transform: scale(1.05);
         }
 
-        .logo-circle {
+        .logo-animated {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -347,41 +344,64 @@
             background: var(--color-light);
             border-radius: 50%;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-animated::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(var(--color-accent), var(--color-secondary), var(--color-primary), var(--color-accent));
+            animation: rotate 3s linear infinite;
+        }
+
+        .logo-animated::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: var(--color-light);
+            border-radius: 50%;
         }
 
         .logo-img {
-            height: 40px;
+            height: 30px;
             width: auto;
             display: block;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Стильное меню навигации */
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .nav-links a {
-            color: var(--color-dark);
+            color: var(--color-primary);
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            transition: var(--transition);
             position: relative;
             padding: 0.5rem 0;
             font-size: 0.95rem;
-            white-space: nowrap;
         }
 
         .nav-links a:hover {
-            color: var(--color-primary);
+            color: var(--color-accent);
         }
 
         .nav-links a::after {
@@ -390,103 +410,74 @@
             bottom: 0;
             left: 0;
             width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            height: 2px;
+            background: var(--color-accent);
             transition: width 0.3s ease;
-            border-radius: 2px;
         }
 
         .nav-links a:hover::after {
             width: 100%;
         }
 
-        /* Кнопка онлайн-экзамена в меню */
-        .nav-exam-btn {
-            background: linear-gradient(135deg, #4A00E0, #8E2DE2);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(142, 45, 226, 0.3);
-            white-space: nowrap;
-        }
-
-        .nav-exam-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(142, 45, 226, 0.4);
-        }
-
-        /* Улучшенное гамбургер-меню */
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
-            color: var(--color-dark);
-            font-size: 1.8rem;
+            color: var(--color-primary);
+            font-size: 1.5rem;
             cursor: pointer;
             padding: 0.5rem;
-            z-index: 1002;
-            transition: all 0.3s ease;
         }
 
-        .mobile-menu-btn:hover {
-            color: var(--color-primary);
-        }
-
-        /* Centered Hero Section */
+        /* Hero Section */
         #home {
             height: 100vh;
-            min-height: 600px;
+            min-height: 700px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--color-dark);
             padding: 0 1rem;
-            background: transparent;
-            margin: 0;
-            box-shadow: none;
-            border: none;
-            backdrop-filter: none;
             position: relative;
+            overflow: hidden;
         }
 
         .hero-content {
             max-width: 900px;
             width: 100%;
-            padding: 2rem;
+            padding: 3rem 2rem;
             background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             animation: heroAppear 1s ease-out;
+            position: relative;
+            z-index: 1;
         }
 
         @keyframes heroAppear {
             0% {
                 opacity: 0;
-                transform: translateY(30px) scale(0.95);
+                transform: translateY(30px);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0);
             }
         }
 
         .hero-title {
-            font-size: 4.5rem;
+            font-size: 4rem;
             margin-bottom: 1.5rem;
             line-height: 1.1;
         }
 
         .hero-subtitle {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             margin-bottom: 2.5rem;
-            color: var(--color-text);
+            color: var(--color-text-light);
             font-weight: 400;
             line-height: 1.4;
         }
@@ -503,25 +494,25 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             background: rgba(255, 255, 255, 0.9);
             padding: 0.8rem 1.5rem;
             border-radius: 50px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .hero-feature:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
         .hero-buttons {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
         }
 
@@ -545,18 +536,21 @@
         }
 
         .about-text li::before {
-            content: '✨';
+            content: '✓';
             position: absolute;
             left: 0;
+            color: var(--color-accent);
+            font-weight: bold;
             font-size: 1.2rem;
         }
 
         .about-image {
-            border-radius: 20px;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            transition: all 0.4s ease;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
             position: relative;
+            transform: perspective(1000px) rotateY(-5deg);
         }
 
         .about-image::before {
@@ -566,13 +560,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, var(--color-primary-light), var(--color-accent-light));
+            background: linear-gradient(45deg, var(--color-accent-light), var(--color-secondary-light));
             opacity: 0.1;
             z-index: 1;
         }
 
         .about-image:hover {
-            transform: translateY(-10px) rotate(2deg);
+            transform: perspective(1000px) rotateY(0deg) translateY(-10px);
         }
 
         .about-image img {
@@ -583,7 +577,7 @@
         }
 
         .about-image:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         /* Steps Section */
@@ -595,15 +589,15 @@
         }
 
         .step-card {
-            background: linear-gradient(135deg, var(--color-light), var(--color-light-gray));
-            border-radius: 20px;
+            background: var(--color-light);
+            border-radius: var(--border-radius);
             padding: 2.5rem 2rem;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
             text-align: center;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .step-card::before {
@@ -613,19 +607,19 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
         }
 
         .step-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .step-number {
             position: absolute;
             top: -15px;
             right: -15px;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
             color: var(--color-light);
             width: 50px;
             height: 50px;
@@ -642,12 +636,6 @@
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
             display: block;
-            animation: iconFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes iconFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
 
         .step-card h3 {
@@ -666,11 +654,11 @@
         .feature-card {
             text-align: center;
             padding: 2.5rem 1.5rem;
-            border-radius: 20px;
-            transition: all 0.4s ease;
-            background: linear-gradient(135deg, var(--color-light), var(--color-light-gray));
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            background: var(--color-light);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             position: relative;
             overflow: hidden;
         }
@@ -692,7 +680,7 @@
 
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .feature-icon {
@@ -707,10 +695,6 @@
         }
 
         /* Events Section */
-        #events {
-            background: linear-gradient(135deg, var(--color-secondary-light), var(--color-light));
-        }
-
         .events-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -719,12 +703,12 @@
 
         .event-card {
             background: var(--color-light);
-            border-radius: 20px;
+            border-radius: var(--border-radius);
             padding: 2.5rem 2rem;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             position: relative;
             overflow: hidden;
         }
@@ -747,28 +731,27 @@
 
         .event-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .event-date {
             font-size: 1.3rem;
             font-weight: 700;
-            color: var(--color-primary);
+            color: var(--color-accent);
             margin-bottom: 0.5rem;
         }
 
         .event-location {
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
-            color: var(--color-text);
+            color: var(--color-text-light);
         }
 
         .event-price {
             font-size: 1.8rem;
             font-weight: 900;
             margin-bottom: 1.5rem;
-            color: var(--color-primary);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            color: var(--color-accent);
         }
 
         /* Merch Section */
@@ -779,23 +762,23 @@
         }
 
         .merch-card {
-            background: linear-gradient(135deg, var(--color-light), var(--color-light-gray));
-            border-radius: 20px;
+            background: var(--color-light);
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             position: relative;
         }
 
         .merch-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .merch-image {
             height: 200px;
-            background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
+            background: linear-gradient(135deg, var(--color-accent-light), var(--color-secondary-light));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -833,7 +816,7 @@
         .merch-price {
             font-size: 1.6rem;
             font-weight: 900;
-            color: var(--color-primary);
+            color: var(--color-accent);
             margin-bottom: 1.5rem;
         }
 
@@ -845,12 +828,12 @@
         }
 
         .review-card {
-            background: linear-gradient(135deg, var(--color-light), var(--color-light-gray));
-            border-radius: 20px;
+            background: var(--color-light);
+            border-radius: var(--border-radius);
             padding: 2.5rem 2rem;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--box-shadow);
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
         }
 
@@ -861,7 +844,7 @@
         .review-card::before {
             content: """;
             font-size: 6rem;
-            color: var(--color-primary-light);
+            color: var(--color-accent-light);
             opacity: 0.2;
             position: absolute;
             top: -10px;
@@ -880,23 +863,19 @@
 
         .review-author {
             font-weight: 700;
-            color: var(--color-primary);
+            color: var(--color-accent);
             font-size: 1rem;
         }
 
         /* Form Section */
-        #form {
-            background: linear-gradient(135deg, var(--color-accent-light), var(--color-light));
-        }
-
         .form-container {
             max-width: 600px;
             margin: 0 auto;
             background: var(--color-light);
             padding: 3rem;
-            border-radius: 25px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             position: relative;
             overflow: hidden;
         }
@@ -908,7 +887,7 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
         }
 
         .form-group {
@@ -919,7 +898,7 @@
             display: block;
             margin-bottom: 0.7rem;
             font-weight: 600;
-            color: var(--color-dark);
+            color: var(--color-primary);
             font-size: 1rem;
         }
 
@@ -927,17 +906,17 @@
             width: 100%;
             padding: 15px 20px;
             border: 2px solid var(--color-gray);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             font-family: var(--font-body);
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             background: var(--color-light-gray);
         }
 
         .form-control:focus {
-            border-color: var(--color-primary);
+            border-color: var(--color-accent);
             outline: none;
-            box-shadow: 0 0 0 4px rgba(255, 59, 92, 0.1);
+            box-shadow: 0 0 0 4px rgba(233, 69, 96, 0.1);
             background: var(--color-light);
         }
 
@@ -945,32 +924,27 @@
             display: none;
             text-align: center;
             padding: 3rem 2rem;
-            background: linear-gradient(135deg, var(--color-accent-light), var(--color-light));
-            border-radius: 20px;
+            background: linear-gradient(135deg, var(--color-secondary-light), var(--color-light));
+            border-radius: var(--border-radius);
             margin-top: 2rem;
-            border: 2px solid var(--color-accent);
-            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.2);
+            border: 2px solid var(--color-secondary);
+            box-shadow: 0 10px 30px rgba(13, 115, 119, 0.2);
         }
 
         /* Partners Section */
-        #partners {
-            background: linear-gradient(135deg, var(--color-primary-light), var(--color-light));
-            text-align: center;
-        }
-
         .partners-content {
             max-width: 800px;
             margin: 0 auto 2rem;
             font-size: 1.1rem;
+            text-align: center;
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--color-dark), #0F172A);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
             color: var(--color-light);
             padding: 4rem 1rem 2rem;
             margin-top: 4rem;
-            border-radius: 0;
         }
 
         .footer-content {
@@ -992,7 +966,7 @@
         }
 
         .footer-logo span {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -1021,13 +995,13 @@
         .footer-links a {
             color: var(--color-light);
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             opacity: 0.8;
             font-size: 1rem;
         }
 
         .footer-links a:hover {
-            color: var(--color-primary);
+            color: var(--color-accent);
             opacity: 1;
             padding-left: 5px;
         }
@@ -1056,14 +1030,14 @@
             border-radius: 50%;
             color: var(--color-light);
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             font-size: 1.2rem;
         }
 
         .social-link:hover {
-            background: var(--color-primary);
+            background: var(--color-accent);
             transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 5px 15px rgba(255, 59, 92, 0.4);
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
         }
 
         .footer-bottom {
@@ -1076,8 +1050,8 @@
             font-size: 0.9rem;
         }
 
-        /* Дополнительные креативные элементы */
-        .road-markings {
+        /* Анимированные элементы страницы */
+        .floating-icons {
             position: fixed;
             top: 0;
             left: 0;
@@ -1085,84 +1059,52 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
-            opacity: 0.05;
         }
 
-        .road-line {
-            position: absolute;
-            width: 100%;
-            height: 10px;
-            background: var(--color-light);
-            animation: roadMove 15s linear infinite;
-        }
-
-        .road-line:nth-child(2) {
-            top: 25%;
-            animation-delay: 2s;
-        }
-
-        .road-line:nth-child(3) {
-            top: 50%;
-            animation-delay: 4s;
-        }
-
-        .road-line:nth-child(4) {
-            top: 75%;
-            animation-delay: 6s;
-        }
-
-        @keyframes roadMove {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Анимированные знаки на странице */
-        .sign-decoration {
+        .floating-icon {
             position: absolute;
             font-size: 2rem;
-            opacity: 0.1;
-            animation: signFloat 8s ease-in-out infinite;
+            opacity: 0.05;
+            animation: floatIcon 15s infinite linear;
         }
 
-        .sign-1 {
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
+        .floating-icon:nth-child(2n) {
+            animation-duration: 20s;
+            animation-direction: reverse;
         }
 
-        .sign-2 {
-            top: 20%;
-            right: 10%;
-            animation-delay: 2s;
+        .floating-icon:nth-child(3n) {
+            animation-duration: 25s;
         }
 
-        .sign-3 {
-            bottom: 15%;
-            left: 15%;
-            animation-delay: 4s;
+        @keyframes floatIcon {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(100px, 150px) rotate(90deg);
+            }
+            50% {
+                transform: translate(200px, 0) rotate(180deg);
+            }
+            75% {
+                transform: translate(100px, -150px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
         }
 
-        .sign-4 {
-            bottom: 25%;
-            right: 5%;
-            animation-delay: 6s;
-        }
-
-        @keyframes signFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-        }
-
-        /* Секция онлайн-экзамена */
+        /* Online Exam Section */
         .exam-section {
             text-align: center;
-            padding: 3rem 2rem;
-            background: linear-gradient(135deg, #8E2DE2, #4A00E0);
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
             color: white;
-            border-radius: 20px;
+            border-radius: var(--border-radius);
             margin: 2rem auto;
             max-width: 800px;
-            box-shadow: 0 20px 40px rgba(142, 45, 226, 0.3);
+            box-shadow: var(--box-shadow);
             position: relative;
             overflow: hidden;
         }
@@ -1195,13 +1137,19 @@
             50% { transform: scale(1.1); }
         }
 
-        /* Улучшенные стили для мобильного меню */
-        @media (max-width: 1200px) {
-            section {
-                margin: 2rem 1rem;
-            }
+        /* Анимации появления элементов при скролле */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Медиа-запросы для адаптивности */
         @media (max-width: 992px) {
             h1 {
                 font-size: 2.5rem;
@@ -1212,11 +1160,11 @@
             }
             
             .hero-title {
-                font-size: 3.5rem;
+                font-size: 3rem;
             }
             
             .hero-subtitle {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
             
             .about-content {
@@ -1227,10 +1175,6 @@
             .about-image {
                 order: -1;
             }
-
-            .nav-links {
-                gap: 1.2rem;
-            }
         }
 
         @media (max-width: 768px) {
@@ -1238,36 +1182,27 @@
                 display: block;
             }
             
-            /* Переработанное мобильное меню */
-            .nav-container {
+            .nav-links {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 85%;
-                max-width: 350px;
+                width: 80%;
+                max-width: 300px;
                 height: 100vh;
                 background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(20px);
+                backdrop-filter: blur(10px);
                 flex-direction: column;
                 align-items: flex-start;
                 justify-content: flex-start;
                 padding: 80px 2rem 2rem;
                 transition: right 0.4s ease;
-                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
                 gap: 0;
                 z-index: 1001;
-                overflow-y: auto;
             }
             
-            .nav-container.active {
+            .nav-links.active {
                 right: 0;
-            }
-            
-            .nav-links {
-                flex-direction: column;
-                width: 100%;
-                gap: 0;
-                margin-bottom: 2rem;
             }
             
             .nav-links li {
@@ -1280,24 +1215,17 @@
                 padding: 1rem 1.5rem;
                 display: block;
                 width: 100%;
-                border-radius: 10px;
+                border-radius: 8px;
                 transition: all 0.3s ease;
             }
             
             .nav-links a:hover {
-                background: rgba(255, 59, 92, 0.1);
-                color: var(--color-primary);
-            }
-
-            .nav-exam-btn {
-                width: 100%;
-                text-align: center;
-                padding: 12px 20px;
-                font-size: 1rem;
+                background: rgba(233, 69, 96, 0.1);
+                color: var(--color-accent);
             }
 
             .hero-title {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
             }
             
             .hero-subtitle {
@@ -1305,8 +1233,7 @@
             }
             
             section {
-                padding: 3rem 1rem;
-                margin: 1rem;
+                padding: 4rem 1rem;
             }
             
             .form-container {
@@ -1314,8 +1241,7 @@
             }
 
             .hero-content {
-                padding: 1.5rem;
-                margin: 1rem;
+                padding: 2rem 1.5rem;
             }
 
             .hero-buttons {
@@ -1372,24 +1298,6 @@
                 font-size: 1rem;
                 padding: 0.6rem 1.2rem;
             }
-
-            .logo-circle {
-                width: 50px;
-                height: 50px;
-            }
-
-            .logo-img {
-                height: 35px;
-            }
-            
-            .mobile-menu-btn {
-                font-size: 1.5rem;
-                padding: 0.3rem;
-            }
-            
-            .logo {
-                font-size: 1.5rem;
-            }
         }
 
         /* Оверлей для мобильного меню */
@@ -1414,24 +1322,20 @@
     </style>
 </head>
 <body>
-    <!-- Animated Background - теплая версия -->
-    <div class="warm-background"></div>
-    <div class="floating-elements" id="floatingElements"></div>
+    <!-- Анимированный фон -->
+    <div class="animated-background">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
     <div class="road-markings">
         <div class="road-line"></div>
         <div class="road-line"></div>
         <div class="road-line"></div>
         <div class="road-line"></div>
     </div>
-    <div class="creative-shape shape-1"></div>
-    <div class="creative-shape shape-2"></div>
-    <div class="creative-shape shape-3"></div>
-
-    <!-- Дополнительные анимированные знаки -->
-    <div class="sign-decoration sign-1">🛑</div>
-    <div class="sign-decoration sign-2">🚸</div>
-    <div class="sign-decoration sign-3">🚧</div>
-    <div class="sign-decoration sign-4">⛔</div>
+    <div class="floating-icons" id="floatingIcons"></div>
 
     <!-- Оверлей для мобильного меню -->
     <div class="menu-overlay" id="menuOverlay"></div>
@@ -1440,31 +1344,28 @@
     <header id="header">
         <nav>
             <a href="#home" class="logo">
-                <div class="logo-circle">
+                <div class="logo-animated">
                     <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" class="logo-img">
                 </div>
                 <span>ПорулиКа</span>
             </a>
             
-            <div class="nav-container" id="navContainer">
-                <ul class="nav-links">
-                    <li><a href="#about">О квесте</a></li>
-                    <li><a href="#steps">Этапы</a></li>
-                    <li><a href="#features">Почему мы</a></li>
-                    <li><a href="#events">Расписание</a></li>
-                    <li><a href="#merch">Мерч</a></li>
-                    <li><a href="#reviews">Отзывы</a></li>
-                    <li><a href="#form">Запись</a></li>
-                    <li><a href="#partners">Партнёрам</a></li>
-                </ul>
-                <a href="exam.html" class="nav-exam-btn">Экзамен онлайн</a>
-            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">О квесте</a></li>
+                <li><a href="#steps">Этапы</a></li>
+                <li><a href="#features">Почему мы</a></li>
+                <li><a href="#events">Расписание</a></li>
+                <li><a href="#merch">Мерч</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="#form">Запись</a></li>
+                <li><a href="#partners">Партнёрам</a></li>
+            </ul>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </nav>
     </header>
 
-    <!-- Centered Hero Section -->
+    <!-- Hero Section -->
     <section id="home">
         <div class="hero-content">
             <h1 class="hero-title">ПОРУЛИКА</h1>
@@ -1477,8 +1378,8 @@
             </div>
             <div class="hero-buttons">
                 <a href="#form" class="btn">ЗАПИСАТЬСЯ НА КВЕСТ</a>
-                <a href="#about" class="btn btn-accent">УЗНАТЬ КАК ЭТО РАБОТАЕТ</a>
-                <a href="exam.html" class="btn btn-exam">ПРОЙТИ ЭКЗАМЕН ОНЛАЙН</a>
+                <a href="#about" class="btn btn-secondary">УЗНАТЬ КАК ЭТО РАБОТАЕТ</a>
+                <a href="exam.html" class="btn btn-outline">ПРОЙТИ ЭКЗАМЕН ОНЛАЙН</a>
             </div>
         </div>
     </section>
@@ -1491,7 +1392,7 @@
                     <div class="exam-icon">📝</div>
                     <h2>Проверь свои знания ПДД онлайн!</h2>
                     <p style="font-size: 1.2rem; margin-bottom: 2rem;">Не можешь приехать на квест? Пройди наш онлайн-экзамен и получи виртуальный диплом!</p>
-                    <a href="exam.html" class="btn btn-exam" style="font-size: 1.1rem; padding: 16px 40px;">НАЧАТЬ ЭКЗАМЕН</a>
+                    <a href="exam.html" class="btn" style="font-size: 1.1rem; padding: 16px 40px;">НАЧАТЬ ЭКЗАМЕН</a>
                     <p style="margin-top: 1.5rem; opacity: 0.9;">20 вопросов по ПДД • Бесплатно • Результат сразу</p>
                 </div>
             </div>
@@ -1521,7 +1422,7 @@
     </section>
 
     <!-- Steps Section -->
-    <section id="steps">
+    <section id="steps" class="section-dark">
         <div class="container">
             <h2>Как проходит квест?</h2>
             <div class="steps-container">
@@ -1599,7 +1500,7 @@
     </section>
 
     <!-- Events Section -->
-    <section id="events">
+    <section id="events" class="section-dark">
         <div class="container">
             <h2>Где и когда можно пройти?</h2>
             <div class="events-container">
@@ -1635,7 +1536,7 @@
                     <div class="merch-content">
                         <h3>Брелок «Я прошёлКа ПорулиКу!»</h3>
                         <div class="merch-price">350 ₽</div>
-                        <button class="btn btn-accent">Купить</button>
+                        <button class="btn btn-secondary">Купить</button>
                     </div>
                 </div>
                 <div class="merch-card">
@@ -1643,7 +1544,7 @@
                     <div class="merch-content">
                         <h3>Майка «Инструктор сказал — паркуйКа!»</h3>
                         <div class="merch-price">800 ₽</div>
-                        <button class="btn btn-accent">Купить</button>
+                        <button class="btn btn-secondary">Купить</button>
                     </div>
                 </div>
                 <div class="merch-card">
@@ -1651,7 +1552,7 @@
                     <div class="merch-content">
                         <h3>Диплом в рамке</h3>
                         <div class="merch-price">1 000 ₽</div>
-                        <button class="btn btn-accent">Купить</button>
+                        <button class="btn btn-secondary">Купить</button>
                     </div>
                 </div>
                 <div class="merch-card">
@@ -1659,7 +1560,7 @@
                     <div class="merch-content">
                         <h3>Кружка «ЗаведиКа меня»</h3>
                         <div class="merch-price">600 ₽</div>
-                        <button class="btn btn-accent">Купить</button>
+                        <button class="btn btn-secondary">Купить</button>
                     </div>
                 </div>
             </div>
@@ -1667,7 +1568,7 @@
     </section>
 
     <!-- Reviews Section -->
-    <section id="reviews">
+    <section id="reviews" class="section-dark">
         <div class="container">
             <h2>Что говорят участники?</h2>
             <div class="reviews-container">
@@ -1719,7 +1620,7 @@
                     <button type="submit" class="btn" style="width: 100%;">Отправить заявку</button>
                 </form>
                 <div class="success-message" id="success-message">
-                    <h3 style="color: var(--color-primary); margin-bottom: 1rem;">Спасибо! Мы скоро свяжемся с вами.</h3>
+                    <h3 style="color: var(--color-accent); margin-bottom: 1rem;">Спасибо! Мы скоро свяжемся с вами.</h3>
                     <p style="font-size: 1.1rem;">Василий Петрович уже точит ручку для штрафов. 😊</p>
                 </div>
             </div>
@@ -1727,14 +1628,14 @@
     </section>
 
     <!-- Partners Section -->
-    <section id="partners">
+    <section id="partners" class="section-dark">
         <div class="container">
             <h2>Станьте партнёром «ПорулиКи»!</h2>
             <div class="partners-content">
                 <p>Разместите логотип на ВАЗ-2107, в дипломе или на мерче. Привлекайте жителей Барнаула с юмором и стилем.</p>
                 <p style="margin-top: 1rem; font-weight: 500;">Уникальная возможность для брендов быть в центре самого весёлого события города!</p>
             </div>
-            <a href="https://wa.me/79635756849" class="btn btn-accent" style="font-size: 1rem;">Написать спонсорам в WhatsApp</a>
+            <a href="https://wa.me/79635756849" class="btn" style="font-size: 1rem; margin-top: 1.5rem;">Написать спонсорам в WhatsApp</a>
         </div>
     </section>
 
@@ -1783,53 +1684,37 @@
 
     <!-- Scripts -->
     <script>
-        // Create floating elements with road signs
-        function createFloatingElements() {
-            const container = document.getElementById('floatingElements');
-            const signs = [
-                '🚗', '🚙', '🚕', '🚌', '🚎', '🏎️', '🚓', '🚑', '🚒', '🚐', 
-                '🚚', '🚛', '🚜', '🛴', '🚲', '🛵', '🏍️', '🚨', '🚔', '🚍',
-                '🚘', '🚖', '🚡', '🚠', '🚟', '🚃', '🚋', '🚞', '🚝', '🚄',
-                '🚅', '🚈', '🚂', '🚆', '🚇', '🚊', '🚉', '🚁', '🛩️', '✈️',
-                '🛫', '🛬', '🚀', '🛰️', '💺', '🛶', '⛵', '🛥️', '🚤', '🛳️',
-                '⛴️', '🚢', '⚓', '🚧', '⛽', '🚏', '🚦', '🚥', '🗺️', '🗿',
-                '🗽', '🗼', '🏰', '🏯', '🏟️', '🎡', '🎢', '🎠', '⛲', '⛱️',
-                '🏖️', '🏝️', '🏜️', '🌋', '⛰️', '🏔️', '🗻', '🏕️', '🏠', '🏡',
-                '🏘️', '🏚️', '🏗️', '🏭', '🏢', '🏬', '🏣', '🏤', '🏥', '🏦',
-                '🏨', '🏪', '🏫', '🏩', '💒', '🏛️', '⛪', '🕌', '🕍', '🛕'
-            ];
+        // Создание плавающих иконок
+        function createFloatingIcons() {
+            const container = document.getElementById('floatingIcons');
+            const icons = ['🚗', '🚙', '🚕', '🚌', '🚎', '🏎️', '🚓', '🚑', '🚒', '🚐', '🚚', '🚛', '🚜'];
             
-            for (let i = 0; i < 25; i++) {
-                const element = document.createElement('div');
-                element.className = 'floating-element';
-                
-                const img = document.createElement('div');
-                img.textContent = signs[Math.floor(Math.random() * signs.length)];
-                img.style.fontSize = '3rem';
-                
-                element.appendChild(img);
-                element.style.left = Math.random() * 100 + '%';
-                element.style.top = Math.random() * 100 + '%';
-                element.style.animationDelay = Math.random() * 20 + 's';
-                container.appendChild(element);
+            for (let i = 0; i < 15; i++) {
+                const icon = document.createElement('div');
+                icon.className = 'floating-icon';
+                icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+                icon.style.left = Math.random() * 100 + '%';
+                icon.style.top = Math.random() * 100 + '%';
+                icon.style.animationDelay = Math.random() * 20 + 's';
+                container.appendChild(icon);
             }
         }
 
-        // Mobile Menu Toggle
+        // Мобильное меню
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navContainer = document.getElementById('navContainer');
+        const navLinks = document.getElementById('navLinks');
         const menuOverlay = document.getElementById('menuOverlay');
         
         function toggleMobileMenu() {
-            navContainer.classList.toggle('active');
+            navLinks.classList.toggle('active');
             menuOverlay.classList.toggle('active');
-            document.body.style.overflow = navContainer.classList.contains('active') ? 'hidden' : '';
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
         }
 
         mobileMenuBtn.addEventListener('click', toggleMobileMenu);
         menuOverlay.addEventListener('click', toggleMobileMenu);
 
-        // Header Scroll Effect
+        // Эффект скролла для хедера
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
             if (window.scrollY > 50) {
@@ -1839,7 +1724,7 @@
             }
         });
 
-        // Form Submission
+        // Отправка формы
         document.getElementById('booking-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1849,40 +1734,33 @@
             document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
         });
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a, .nav-exam-btn').forEach(link => {
+        // Закрытие мобильного меню при клике на ссылку
+        document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                navContainer.classList.remove('active');
+                navLinks.classList.remove('active');
                 menuOverlay.classList.remove('active');
                 document.body.style.overflow = '';
             });
         });
 
-        // Initialize background animation
-        createFloatingElements();
-
-        // Add scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
+        // Анимация появления элементов при скролле
+        const fadeElements = document.querySelectorAll('.step-card, .feature-card, .event-card, .merch-card, .review-card, .about-image, .about-text');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
-
-        // Observe all sections for animation
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(el => {
+            el.classList.add('fade-in');
+            fadeObserver.observe(el);
         });
+
+        // Инициализация
+        createFloatingIcons();
     </script>
 </body>
 </html>
