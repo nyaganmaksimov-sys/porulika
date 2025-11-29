@@ -13,101 +13,126 @@
     <div class="preloader">
         <div class="preloader-content">
             <div class="preloader-car">🚗</div>
-            <div class="preloader-road">
-                <div class="road-line"></div>
-            </div>
-            <p>Заводим мотор...</p>
+            <div class="preloader-text">Заводим мотор...</div>
         </div>
     </div>
 
     <!-- Шапка -->
-    <header id="header">
-        <nav class="container">
+    <header class="header">
+        <div class="header-container">
+            <!-- Логотип -->
             <div class="logo">
                 <div class="logo-icon">🚗</div>
                 <span class="logo-text">ПОРУЛИКА</span>
-                <div class="logo-glow"></div>
             </div>
-            
-            <ul class="nav-links">
-                <li><a href="#home" class="nav-link">
-                    <i class="fas fa-home"></i>
-                    <span>Главная</span>
-                    <div class="link-underline"></div>
-                </a></li>
-                <li><a href="#about" class="nav-link">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Как это?</span>
-                    <div class="link-underline"></div>
-                </a></li>
-                <li><a href="#stages" class="nav-link">
-                    <i class="fas fa-road"></i>
-                    <span>Этапы</span>
-                    <div class="link-underline"></div>
-                </a></li>
-                <li><a href="#characters" class="nav-link">
-                    <i class="fas fa-users"></i>
-                    <span>Персонажи</span>
-                    <div class="link-underline"></div>
-                </a></li>
-                <li><a href="#reviews" class="nav-link">
-                    <i class="fas fa-star"></i>
-                    <span>Отзывы</span>
-                    <div class="link-underline"></div>
-                </a></li>
-                <li><a href="#merch" class="nav-link">
-                    <i class="fas fa-tshirt"></i>
-                    <span>Мерч</span>
-                    <div class="link-underline"></div>
-                </a></li>
-            </ul>
 
-            <div class="nav-actions">
-                <a href="#booking" class="btn-nav">
-                    <span class="btn-pulse"></span>
-                    <i class="fas fa-calendar-alt"></i>
-                    Записаться!
+            <!-- Навигация -->
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">
+                            <i class="fas fa-info-circle"></i>
+                            <span>О квесте</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#stages" class="nav-link">
+                            <i class="fas fa-road"></i>
+                            <span>Этапы</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#characters" class="nav-link">
+                            <i class="fas fa-users"></i>
+                            <span>Персонажи</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#reviews" class="nav-link">
+                            <i class="fas fa-star"></i>
+                            <span>Отзывы</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#merch" class="nav-link">
+                            <i class="fas fa-tshirt"></i>
+                            <span>Мерч</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Действия -->
+            <div class="header-actions">
+                <a href="tel:+79991234567" class="phone-link">
+                    <i class="fas fa-phone"></i>
                 </a>
-                <div class="nav-contacts">
-                    <a href="tel:+79991234567" class="phone-link">
-                        <i class="fas fa-phone"></i>
-                    </a>
-                </div>
+                <a href="#booking" class="btn-book">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Записаться</span>
+                </a>
             </div>
 
-            <div class="hamburger" id="hamburger">
+            <!-- Мобильное меню -->
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
                 <span></span>
                 <span></span>
                 <span></span>
-                <div class="hamburger-glow"></div>
             </div>
-        </nav>
+        </div>
 
-        <!-- Прогресс-бар скролла -->
-        <div class="scroll-progress">
-            <div class="progress-bar"></div>
+        <!-- Мобильное меню -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-content">
+                <a href="#home" class="mobile-nav-link">
+                    <i class="fas fa-home"></i>
+                    Главная
+                </a>
+                <a href="#about" class="mobile-nav-link">
+                    <i class="fas fa-info-circle"></i>
+                    О квесте
+                </a>
+                <a href="#stages" class="mobile-nav-link">
+                    <i class="fas fa-road"></i>
+                    Этапы
+                </a>
+                <a href="#characters" class="mobile-nav-link">
+                    <i class="fas fa-users"></i>
+                    Персонажи
+                </a>
+                <a href="#reviews" class="mobile-nav-link">
+                    <i class="fas fa-star"></i>
+                    Отзывы
+                </a>
+                <a href="#merch" class="mobile-nav-link">
+                    <i class="fas fa-tshirt"></i>
+                    Мерч
+                </a>
+                <a href="#booking" class="mobile-nav-link book">
+                    <i class="fas fa-calendar-alt"></i>
+                    Записаться
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- Главный герой-экран -->
+    <!-- Главная секция -->
     <section id="home" class="hero">
-        <!-- Анимированный фон -->
-        <div class="hero-animation">
-            <div class="floating-road">
-                <div class="road-mark"></div>
-                <div class="road-mark"></div>
-                <div class="road-mark"></div>
-            </div>
-            <div class="floating-car main-car">🚗</div>
+        <div class="hero-background">
+            <div class="floating-car">🚗</div>
             <div class="floating-cone">🔺</div>
             <div class="floating-sign">🚸</div>
-            <div class="floating-light"></div>
         </div>
-
-        <div class="hero-content container">
+        
+        <div class="hero-content">
             <div class="hero-badge">
-                <span class="badge-text">НОВИНКА</span>
-                <div class="badge-sparkle">✨</div>
+                <span>НОВИНКА</span>
             </div>
             
             <h1 class="hero-title">
@@ -115,121 +140,74 @@
                 <span class="title-part accent">КА</span>
             </h1>
             
-            <p class="tagline">Экзамен на ВАЗ-2107, который ты не забудешь!</p>
+            <p class="hero-subtitle">Экзамен на ВАЗ-2107, который ты не забудешь!</p>
             
-            <div class="hero-stats">
-                <div class="stat-bubble">
+            <div class="hero-features">
+                <div class="feature">
                     <i class="fas fa-clock"></i>
-                    <span>30-75 мин смеха</span>
+                    <span>30-75 минут</span>
                 </div>
-                <div class="stat-bubble">
+                <div class="feature">
                     <i class="fas fa-ruble-sign"></i>
                     <span>От 500 ₽</span>
                 </div>
-                <div class="stat-bubble">
+                <div class="feature">
                     <i class="fas fa-car"></i>
                     <span>Настоящая "Семёрка"</span>
                 </div>
             </div>
-
+            
             <div class="hero-buttons">
-                <a href="#booking" class="btn-hero primary">
-                    <span class="btn-glow"></span>
+                <a href="#booking" class="btn btn-primary">
                     <i class="fas fa-flag-checkered"></i>
                     Записаться на квест!
                 </a>
-                <a href="#about" class="btn-hero secondary">
+                <a href="#about" class="btn btn-secondary">
                     <i class="fas fa-play-circle"></i>
-                    Смотреть видео
+                    Узнать больше
                 </a>
             </div>
-
-            <!-- Scroll indicator -->
-            <div class="scroll-indicator">
-                <div class="mouse">
-                    <div class="wheel"></div>
-                </div>
-                <div class="arrow"></div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
             </div>
         </div>
     </section>
 
-    <!-- Остальные секции остаются без изменений -->
-    <!-- ... -->
-
-    <!-- Новый раздел - Галерея -->
-    <section class="gallery">
+    <!-- О квесте -->
+    <section id="about" class="about">
         <div class="container">
-            <h2>Моменты с <span class="highlight">квеста</span></h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <div class="image-placeholder">📸</div>
-                    </div>
-                    <div class="gallery-overlay">
-                        <i class="fas fa-expand"></i>
-                    </div>
+            <h2>Что такое <span class="highlight">ПорулиКа</span>?</h2>
+            <p class="section-description">Это не просто квест — это настоящее приключение за рулем легендарной ВАЗ-2107!</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">😄</div>
+                    <h3>Юмор и эмоции</h3>
+                    <p>Смейся до слез под руководством нашего уникального инструктора</p>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <div class="image-placeholder">😄</div>
-                    </div>
-                    <div class="gallery-overlay">
-                        <i class="fas fa-expand"></i>
-                    </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚗</div>
+                    <h3>Настоящая ВАЗ-2107</h3>
+                    <p>Живая легенда автопрома с характером и душой</p>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <div class="image-placeholder">🚗</div>
-                    </div>
-                    <div class="gallery-overlay">
-                        <i class="fas fa-expand"></i>
-                    </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Повтори ПДД</h3>
+                    <p>В игровой форме вспомнишь правила дорожного движения</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Для компании</h3>
+                    <p>Идеально для друзей, семьи или корпоратива</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Новый раздел - FAQ -->
-    <section class="faq">
-        <div class="container">
-            <h2>Частые <span class="highlight">вопросы</span></h2>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Нужны ли права?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Права не требуются! Все происходит на закрытой территории под руководством инструктора.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>С какого возраста можно участвовать?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>С 16 лет с согласия родителей, с 18 лет - самостоятельно.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Кнопка "Наверх" -->
-    <button class="scroll-to-top" id="scrollToTop">
-        <i class="fas fa-chevron-up"></i>
-        <div class="scroll-glow"></div>
-    </button>
-
-    <!-- Консольные сообщения -->
-    <div class="console-message" id="consoleMessage">
-        <div class="console-content">
-            <span class="console-text">Добро пожаловать в Порулику! 🚗</span>
-            <button class="console-close">&times;</button>
-        </div>
-    </div>
+    <!-- Остальные секции... -->
 
     <script src="script.js"></script>
 </body>
