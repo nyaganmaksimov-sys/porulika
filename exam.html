@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ПДД Онлайн — Экзамен по правилам дорожного движения</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-500: #6b7280;
+      --gray-700: #374151;
+      --gray-900: #111827;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      color: var(--gray-900);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+    
+    .logo-icon {
+      background: var(--primary);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--gray-700);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+      margin-bottom: 25px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+    
+    .stat-label {
+      color: var(--gray-500);
+      font-size: 0.9rem;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    
+    .btn-success {
+      background: var(--success);
+    }
+    
+    .btn-danger {
+      background: var(--danger);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-full {
+      width: 100%;
+    }
+    
+    .actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    
+    .exam-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .info-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .question-container {
+      position: relative;
+    }
+    
+    .question-image {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      border-radius: 12px;
+      margin: 20px 0;
+      border: 1px solid var(--gray-200);
+    }
+    
+    .question-text {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+    
+    .option {
+      padding: 16px 20px;
+      border: 2px solid var(--gray-200);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .option:hover {
+      border-color: var(--primary);
+      background: #f0f9ff;
+    }
+    
+    .option.selected {
+      border-color: var(--primary);
+      background: #f0f9ff;
+    }
+    
+    .option.correct {
+      border-color: var(--success);
+      background: #ecfdf5;
+    }
+    
+    .option.incorrect {
+      border-color: var(--danger);
+      background: #fef2f2;
+    }
+    
+    .option-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    
+    .option.selected .option-number {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .progress-container {
+      margin: 30px 0;
+    }
+    
+    .progress-bar {
+      height: 8px;
+      background: var(--gray-200);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 10px;
+      transition: width 0.5s;
+    }
+    
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--gray-500);
+    }
+    
+    .timer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      padding: 15px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+    }
+    
+    .timer.warning {
+      color: var(--warning);
+    }
+    
+    .timer.danger {
+      color: var(--danger);
+    }
+    
+    .result-container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    
+    .result-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 3rem;
+    }
+    
+    .success .result-icon {
+      background: #ecfdf5;
+      color: var(--success);
+    }
+    
+    .fail .result-icon {
+      background: #fef2f2;
+      color: var(--danger);
+    }
+    
+    .result-title {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+    
+    .result-score {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 20px 0;
+    }
+    
+    .success .result-score {
+      color: var(--success);
+    }
+    
+    .fail .result-score {
+      color: var(--danger);
+    }
+    
+    .result-details {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      text-align: left;
+    }
+    
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: var(--gray-500);
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .stats-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .exam-info {
+        grid-template-columns: 1fr;
+      }
+      
+      .actions {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-car"></i>
+        </div>
+        <h1>ПДД Онлайн</h1>
+      </div>
+      <p class="subtitle">Подготовка и сдача экзамена по правилам дорожного движения в современном формате</p>
+    </header>
+    
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-value">40</div>
+        <div class="stat-label">Билетов</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">800</div>
+        <div class="stat-label">Вопросов</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">20</div>
+        <div class="stat-label">Минут на экзамен</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">2</div>
+        <div class="stat-label">Допустимые ошибки</div>
+      </div>
+    </div>
+    
+    <!-- Экран приветствия -->
+    <div id="welcome-screen" class="card">
+      <h2>Готовы проверить свои знания?</h2>
+      <p>Экзамен состоит из 20 случайных вопросов из разных билетов. На выполнение дается 20 минут. Допускается не более 2 ошибок.</p>
+      
+      <div class="exam-info">
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div>
+            <h3>20 минут</h3>
+            <p>На выполнение экзамена</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-question-circle"></i>
+          </div>
+          <div>
+            <h3>20 вопросов</h3>
+            <p>Из различных билетов</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div>
+            <h3>18 правильных</h3>
+            <p>Для успешной сдачи</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="actions">
+        <button id="start-exam-btn" class="btn btn-success">
+          <i class="fas fa-play"></i> Начать экзамен
+        </button>
+        <button class="btn btn-outline">
+          <i class="fas fa-book"></i> Билеты для изучения
+        </button>
+        <button class="btn btn-outline">
+          <i class="fas fa-chart-bar"></i> Статистика
+        </button>
+      </div>
+    </div>
+    
+    <!-- Экран экзамена -->
+    <div id="exam-screen" class="hidden">
+      <div class="timer" id="timer">
+        <i class="fas fa-clock"></i>
+        <span id="time-left">20:00</span>
+      </div>
+      
+      <div class="card question-container">
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill" style="width: 5%"></div>
+          </div>
+          <div class="progress-text">
+            <span>Вопрос <span id="current-question">1</span> из 20</span>
+            <span>Ошибок: <span id="error-count">0</span> из 2</span>
+          </div>
+        </div>
+        
+        <div class="question-text" id="question-text">
+          В каком случае водитель совершает вынужденную остановку?
+        </div>
+        
+        <img id="question-image" class="question-image hidden" src="" alt="Иллюстрация к вопросу">
+        
+        <div class="options-container" id="options-container">
+          <!-- Опции будут добавляться через JavaScript -->
+        </div>
+        
+        <button id="next-question-btn" class="btn btn-full hidden">
+          <i class="fas fa-arrow-right"></i> Следующий вопрос
+        </button>
+      </div>
+    </div>
+    
+    <!-- Экран результатов -->
+    <div id="result-screen" class="card hidden">
+      <div class="result-container success" id="success-result">
+        <div class="result-icon">
+          <i class="fas fa-check"></i>
+        </div>
+        <h2 class="result-title">Поздравляем!</h2>
+        <p>Вы успешно сдали экзамен ПДД</p>
+        <div class="result-score">95%</div>
+        
+        <div class="result-details">
+          <div class="detail-item">
+            <span>Правильные ответы:</span>
+            <span>19/20</span>
+          </div>
+          <div class="detail-item">
+            <span>Допущено ошибок:</span>
+            <span>1</span>
+          </div>
+          <div class="detail-item">
+            <span>Затрачено времени:</span>
+            <span>14:32</span>
+          </div>
+        </div>
+        
+        <div class="actions">
+          <button class="btn btn-success">
+            <i class="fas fa-redo"></i> Пройти снова
+          </button>
+          <button class="btn btn-outline">
+            <i class="fas fa-share-alt"></i> Поделиться результатом
+          </button>
+        </div>
+      </div>
+      
+      <div class="result-container fail hidden" id="fail-result">
+        <div class="result-icon">
+          <i class="fas fa-times"></i>
+        </div>
+        <h2 class="result-title">Экзамен не сдан</h2>
+        <p>К сожалению, вы допустили слишком много ошибок</p>
+        <div class="result-score">65%</div>
+        
+        <div class="result-details">
+          <div class="detail-item">
+            <span>Правильные ответы:</span>
+            <span>13/20</span>
+          </div>
+          <div class="detail-item">
+            <span>Допущено ошибок:</span>
+            <span>7</span>
+          </div>
+          <div class="detail-item">
+            <span>Затрачено времени:</span>
+            <span>18:15</span>
+          </div>
+        </div>
+        
+        <div class="actions">
+          <button class="btn">
+            <i class="fas fa-redo"></i> Попробовать снова
+          </button>
+          <button class="btn btn-outline">
+            <i class="fas fa-book"></i> Изучить билеты
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      <p>© 2023 ПДД Онлайн. Все права защищены.</p>
+      <p>Тестовый экзамен для подготовки к реальной сдаче ПДД</p>
+    </footer>
+  </div>
+
+  <script>
+    // Пример данных вопросов (в реальном приложении их будет больше)
+    const questions = [
+      {
+        id: 1,
+        text: "В каком случае водитель совершает вынужденную остановку?",
+        image: "",
+        options: [
+          "Остановившись непосредственно перед пешеходным переходом, чтобы уступить дорогу пешеходу",
+          "Остановившись на проезжей части из-за технической неисправности транспортного средства",
+          "В обоих перечисленных случаях"
+        ],
+        correct: 1
+      },
+      {
+        id: 2,
+        text: "Разрешено ли Вам подъехать к месту своей работы, расположенному в зоне действия этих знаков?",
+        image: "https://i.imgur.com/example1.jpg",
+        options: [
+          "Разрешено только в нерабочие дни",
+          "Разрешено только в рабочие дни",
+          "Разрешено в любой день"
+        ],
+        correct: 0
+      },
+      {
+        id: 3,
+        text: "Какие транспортные средства по правилам относятся к маршрутным транспортным средствам?",
+        image: "",
+        options: [
+          "Автобусы, троллейбусы и трамваи, предназначенные для перевозки людей и движущиеся по установленному маршруту с обозначенными местами остановок",
+          "Любые транспортные средства, перевозящие пассажиров",
+          "Все автобусы и троллейбусы"
+        ],
+        correct: 0
+      },
+      {
+        id: 4,
+        text: "Вам можно продолжить движение:",
+        image: "https://i.imgur.com/example2.jpg",
+        options: [
+          "Только прямо",
+          "Только направо",
+          "Прямо или направо"
+        ],
+        correct: 2
+      },
+      {
+        id: 5,
+        text: "Что означает мигание зеленого сигнала светофора?",
+        image: "",
+        options: [
+          "Предупреждает о неисправности светофора",
+          "Разрешает движение и информирует о том, что вскоре будет включен запрещающий сигнал",
+          "Запрещает дальнейшее движение"
+        ],
+        correct: 1
+      }
+    ];
+
+    // Элементы DOM
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const examScreen = document.getElementById('exam-screen');
+    const resultScreen = document.getElementById('result-screen');
+    const startExamBtn = document.getElementById('start-exam-btn');
+    const questionText = document.getElementById('question-text');
+    const questionImage = document.getElementById('question-image');
+    const optionsContainer = document.getElementById('options-container');
+    const nextQuestionBtn = document.getElementById('next-question-btn');
+    const progressFill = document.getElementById('progress-fill');
+    const currentQuestionEl = document.getElementById('current-question');
+    const errorCountEl = document.getElementById('error-count');
+    const timerEl = document.getElementById('time-left');
+    const successResult = document.getElementById('success-result');
+    const failResult = document.getElementById('fail-result');
+
+    // Переменные состояния экзамена
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+    let errorCount = 0;
+    let timeLeft = 1200; // 20 минут в секундах
+    let timerInterval;
+
+    // Запуск экзамена
+    startExamBtn.addEventListener('click', startExam);
+
+    function startExam() {
+      welcomeScreen.classList.add('hidden');
+      examScreen.classList.remove('hidden');
+      
+      // Сброс состояния
+      currentQuestionIndex = 0;
+      userAnswers = [];
+      errorCount = 0;
+      timeLeft = 1200;
+      
+      // Запуск таймера
+      startTimer();
+      
+      // Показать первый вопрос
+      showQuestion(currentQuestionIndex);
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      updateTimerDisplay();
+      
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          finishExam();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      
+      // Изменение цвета при малом остатке времени
+      if (timeLeft <= 300) { // 5 минут
+        timerEl.parentElement.classList.add('warning');
+      }
+      if (timeLeft <= 60) { // 1 минута
+        timerEl.parentElement.classList.add('danger');
+      }
+    }
+
+    function showQuestion(index) {
+      if (index >= questions.length) {
+        finishExam();
+        return;
+      }
+      
+      const question = questions[index];
+      
+      // Обновление текста вопроса
+      questionText.textContent = question.text;
+      
+      // Обновление изображения (если есть)
+      if (question.image) {
+        questionImage.src = question.image;
+        questionImage.classList.remove('hidden');
+      } else {
+        questionImage.classList.add('hidden');
+      }
+      
+      // Обновление прогресса
+      const progress = ((index + 1) / questions.length) * 100;
+      progressFill.style.width = `${progress}%`;
+      currentQuestionEl.textContent = index + 1;
+      errorCountEl.textContent = errorCount;
+      
+      // Очистка и создание вариантов ответов
+      optionsContainer.innerHTML = '';
+      question.options.forEach((option, optionIndex) => {
+        const optionElement = document.createElement('div');
+        optionElement.className = 'option';
+        optionElement.innerHTML = `
+          <div class="option-number">${optionIndex + 1}</div>
+          <div class="option-text">${option}</div>
+        `;
+        
+        optionElement.addEventListener('click', () => selectOption(optionElement, optionIndex, question.correct));
+        optionsContainer.appendChild(optionElement);
+      });
+      
+      // Скрыть кнопку "Следующий вопрос" до выбора ответа
+      nextQuestionBtn.classList.add('hidden');
+    }
+
+    function selectOption(optionElement, selectedIndex, correctIndex) {
+      // Отключить все варианты
+      const allOptions = optionsContainer.querySelectorAll('.option');
+      allOptions.forEach(opt => {
+        opt.style.pointerEvents = 'none';
+      });
+      
+      // Пометить выбранный вариант
+      optionElement.classList.add('selected');
+      
+      // Проверить правильность ответа
+      if (selectedIndex === correctIndex) {
+        optionElement.classList.add('correct');
+        userAnswers.push({ question: currentQuestionIndex, correct: true });
+      } else {
+        optionElement.classList.add('incorrect');
+        userAnswers.push({ question: currentQuestionIndex, correct: false });
+        errorCount++;
+        
+        // Показать правильный ответ
+        allOptions[correctIndex].classList.add('correct');
+      }
+      
+      // Показать кнопку "Следующий вопрос"
+      nextQuestionBtn.classList.remove('hidden');
+    }
+
+    nextQuestionBtn.addEventListener('click', () => {
+      currentQuestionIndex++;
+      showQuestion(currentQuestionIndex);
+    });
+
+    function finishExam() {
+      clearInterval(timerInterval);
+      
+      examScreen.classList.add('hidden');
+      resultScreen.classList.remove('hidden');
+      
+      // Расчет результатов
+      const correctAnswers = userAnswers.filter(answer => answer.correct).length;
+      const totalQuestions = userAnswers.length;
+      const score = Math.round((correctAnswers / totalQuestions) * 100);
+      
+      // Показать соответствующий экран результата
+      if (score >= 90 && errorCount <= 2) {
+        successResult.classList.remove('hidden');
+        failResult.classList.add('hidden');
+        
+        // Обновление данных в успешном результате
+        successResult.querySelector('.result-score').textContent = `${score}%`;
+        successResult.querySelectorAll('.detail-item span')[1].textContent = `${correctAnswers}/${totalQuestions}`;
+        successResult.querySelectorAll('.detail-item span')[3].textContent = errorCount;
+        
+        // Расчет времени
+        const timeSpent = 1200 - timeLeft;
+        const minutes = Math.floor(timeSpent / 60);
+        const seconds = timeSpent % 60;
+        successResult.querySelectorAll('.detail-item span')[5].textContent = 
+          `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      } else {
+        successResult.classList.add('hidden');
+        failResult.classList.remove('hidden');
+        
+        // Обновление данных в неудачном результате
+        failResult.querySelector('.result-score').textContent = `${score}%`;
+        failResult.querySelectorAll('.detail-item span')[1].textContent = `${correctAnswers}/${totalQuestions}`;
+        failResult.querySelectorAll('.detail-item span')[3].textContent = errorCount;
+        
+        // Расчет времени
+        const timeSpent = 1200 - timeLeft;
+        const minutes = Math.floor(timeSpent / 60);
+        const seconds = timeSpent % 60;
+        failResult.querySelectorAll('.detail-item span')[5].textContent = 
+          `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      }
+    }
+
+    // Инициализация при загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => {
+      // Можно добавить дополнительную инициализацию при необходимости
+    });
+  </script>
+</body>
+</html>
