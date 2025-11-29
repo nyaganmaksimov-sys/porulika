@@ -292,7 +292,7 @@
             50% { box-shadow: 0 8px 30px rgba(142, 45, 226, 0.6); }
         }
 
-        /* Header & Navigation */
+        /* Стильное меню */
         header {
             position: fixed;
             top: 0;
@@ -321,52 +321,52 @@
             position: relative;
         }
 
-        /* Центрированный логотип увеличенного размера */
-        .logo-center {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1001;
+        /* Логотип */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--color-dark);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo-circle {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100px;
-            height: 100px;
+            width: 60px;
+            height: 60px;
             background: var(--color-light);
             border-radius: 50%;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
-        .logo-circle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 30px rgba(255, 59, 92, 0.25);
-        }
-
         .logo-img {
-            height: 80px;
+            height: 40px;
             width: auto;
             display: block;
         }
 
-        /* Навигация по бокам с отступами от логотипа */
+        /* Стильное меню навигации */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
-            flex: 1;
-        }
-
-        .nav-links.left {
-            justify-content: flex-start;
-        }
-
-        .nav-links.right {
-            justify-content: flex-end;
+            gap: 1.5rem;
         }
 
         .nav-links a {
@@ -377,6 +377,7 @@
             position: relative;
             padding: 0.5rem 0;
             font-size: 0.95rem;
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
@@ -399,6 +400,25 @@
             width: 100%;
         }
 
+        /* Кнопка онлайн-экзамена в меню */
+        .nav-exam-btn {
+            background: linear-gradient(135deg, #4A00E0, #8E2DE2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(142, 45, 226, 0.3);
+            white-space: nowrap;
+        }
+
+        .nav-exam-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(142, 45, 226, 0.4);
+        }
+
         /* Улучшенное гамбургер-меню */
         .mobile-menu-btn {
             display: none;
@@ -408,10 +428,6 @@
             font-size: 1.8rem;
             cursor: pointer;
             padding: 0.5rem;
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
             z-index: 1002;
             transition: all 0.3s ease;
         }
@@ -1213,7 +1229,7 @@
             }
 
             .nav-links {
-                gap: 1.5rem;
+                gap: 1.2rem;
             }
         }
 
@@ -1223,12 +1239,12 @@
             }
             
             /* Переработанное мобильное меню */
-            .nav-links {
+            .nav-container {
                 position: fixed;
                 top: 0;
-                left: -100%;
-                width: 80%;
-                max-width: 300px;
+                right: -100%;
+                width: 85%;
+                max-width: 350px;
                 height: 100vh;
                 background: rgba(255, 255, 255, 0.98);
                 backdrop-filter: blur(20px);
@@ -1236,15 +1252,22 @@
                 align-items: flex-start;
                 justify-content: flex-start;
                 padding: 80px 2rem 2rem;
-                transition: left 0.4s ease;
-                box-shadow: 5px 0 30px rgba(0, 0, 0, 0.15);
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
                 gap: 0;
                 z-index: 1001;
                 overflow-y: auto;
             }
             
-            .nav-links.active {
-                left: 0;
+            .nav-container.active {
+                right: 0;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+                margin-bottom: 2rem;
             }
             
             .nav-links li {
@@ -1266,18 +1289,13 @@
                 color: var(--color-primary);
             }
 
-            .logo-center {
-                position: static;
-                transform: none;
-                margin: 0 auto;
+            .nav-exam-btn {
+                width: 100%;
+                text-align: center;
+                padding: 12px 20px;
+                font-size: 1rem;
             }
 
-            nav {
-                justify-content: space-between;
-                flex-wrap: wrap;
-                padding: 0 1rem;
-            }
-            
             .hero-title {
                 font-size: 2.8rem;
             }
@@ -1356,17 +1374,21 @@
             }
 
             .logo-circle {
-                width: 70px;
-                height: 70px;
+                width: 50px;
+                height: 50px;
             }
 
             .logo-img {
-                height: 50px;
+                height: 35px;
             }
             
             .mobile-menu-btn {
                 font-size: 1.5rem;
                 padding: 0.3rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
             }
         }
 
@@ -1417,30 +1439,28 @@
     <!-- Header -->
     <header id="header">
         <nav>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
-            <!-- Левая часть меню -->
-            <ul class="nav-links left">
-                <li><a href="#about">О квесте</a></li>
-                <li><a href="#steps">Этапы</a></li>
-                <li><a href="#features">Почему мы</a></li>
-                <li><a href="#events">Расписание</a></li>
-            </ul>
-            
-            <!-- Центрированный логотип увеличенного размера -->
-            <div class="logo-center">
-                <a href="#home" class="logo-circle">
+            <a href="#home" class="logo">
+                <div class="logo-circle">
                     <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" class="logo-img">
-                </a>
+                </div>
+                <span>ПорулиКа</span>
+            </a>
+            
+            <div class="nav-container" id="navContainer">
+                <ul class="nav-links">
+                    <li><a href="#about">О квесте</a></li>
+                    <li><a href="#steps">Этапы</a></li>
+                    <li><a href="#features">Почему мы</a></li>
+                    <li><a href="#events">Расписание</a></li>
+                    <li><a href="#merch">Мерч</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
+                    <li><a href="#form">Запись</a></li>
+                    <li><a href="#partners">Партнёрам</a></li>
+                </ul>
+                <a href="exam.html" class="nav-exam-btn">Экзамен онлайн</a>
             </div>
             
-            <!-- Правая часть меню -->
-            <ul class="nav-links right">
-                <li><a href="#merch">Мерч</a></li>
-                <li><a href="#reviews">Отзывы</a></li>
-                <li><a href="#form">Запись</a></li>
-                <li><a href="#partners">Партнёрам</a></li>
-                <li><a href="#online-exam">Онлайн-экзамен</a></li>
-            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </nav>
     </header>
 
@@ -1797,15 +1817,13 @@
 
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.querySelectorAll('.nav-links');
+        const navContainer = document.getElementById('navContainer');
         const menuOverlay = document.getElementById('menuOverlay');
         
         function toggleMobileMenu() {
-            navLinks.forEach(nav => {
-                nav.classList.toggle('active');
-            });
+            navContainer.classList.toggle('active');
             menuOverlay.classList.toggle('active');
-            document.body.style.overflow = navLinks[0].classList.contains('active') ? 'hidden' : '';
+            document.body.style.overflow = navContainer.classList.contains('active') ? 'hidden' : '';
         }
 
         mobileMenuBtn.addEventListener('click', toggleMobileMenu);
@@ -1832,11 +1850,9 @@
         });
 
         // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        document.querySelectorAll('.nav-links a, .nav-exam-btn').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.forEach(nav => {
-                    nav.classList.remove('active');
-                });
+                navContainer.classList.remove('active');
                 menuOverlay.classList.remove('active');
                 document.body.style.overflow = '';
             });
