@@ -279,6 +279,19 @@
             box-shadow: 0 8px 25px rgba(0, 212, 170, 0.3);
         }
 
+        /* Новая кнопка для онлайн-экзамена */
+        .btn-exam {
+            background: linear-gradient(135deg, #4A00E0, #8E2DE2);
+            color: var(--color-light);
+            box-shadow: 0 8px 25px rgba(142, 45, 226, 0.3);
+            animation: pulseExam 2s infinite;
+        }
+
+        @keyframes pulseExam {
+            0%, 100% { box-shadow: 0 8px 25px rgba(142, 45, 226, 0.3); }
+            50% { box-shadow: 0 8px 30px rgba(142, 45, 226, 0.6); }
+        }
+
         /* Header & Navigation */
         header {
             position: fixed;
@@ -1115,6 +1128,48 @@
             50% { transform: translateY(-20px) rotate(10deg); }
         }
 
+        /* Секция онлайн-экзамена */
+        .exam-section {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #8E2DE2, #4A00E0);
+            color: white;
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 20px 40px rgba(142, 45, 226, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exam-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .exam-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .exam-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            animation: examPulse 2s infinite;
+        }
+
+        @keyframes examPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
         /* Responsive Styles */
         @media (max-width: 1200px) {
             section {
@@ -1219,6 +1274,11 @@
             .hero-content {
                 padding: 1.5rem;
                 margin: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
 
@@ -1339,6 +1399,22 @@
             <div class="hero-buttons">
                 <a href="#form" class="btn">ЗАПИСАТЬСЯ НА КВЕСТ</a>
                 <a href="#about" class="btn btn-accent">УЗНАТЬ КАК ЭТО РАБОТАЕТ</a>
+                <a href="exam.html" class="btn btn-exam">ПРОЙТИ ЭКЗАМЕН ОНЛАЙН</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция онлайн-экзамена -->
+    <section id="online-exam">
+        <div class="container">
+            <div class="exam-section">
+                <div class="exam-content">
+                    <div class="exam-icon">📝</div>
+                    <h2>Проверь свои знания ПДД онлайн!</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">Не можешь приехать на квест? Пройди наш онлайн-экзамен и получи виртуальный диплом!</p>
+                    <a href="exam.html" class="btn btn-exam" style="font-size: 1.1rem; padding: 16px 40px;">НАЧАТЬ ЭКЗАМЕН</a>
+                    <p style="margin-top: 1.5rem; opacity: 0.9;">20 вопросов по ПДД • Бесплатно • Результат сразу</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1604,6 +1680,7 @@
                         <li><a href="#events">Расписание</a></li>
                         <li><a href="#merch">Мерч</a></li>
                         <li><a href="#form">Запись</a></li>
+                        <li><a href="#online-exam">Онлайн-экзамен</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
