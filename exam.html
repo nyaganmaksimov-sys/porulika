@@ -3,28 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ПДД-ЮМОР — Экзамен с подвохом!</title>
+  <title>Drom-ЮМОР — Весёлый экзамен ПДД</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #ff6b35;
-      --primary-dark: #e55a2b;
-      --secondary: #4ecdc4;
-      --success: #45b7d1;
-      --danger: #ff6b6b;
-      --warning: #ffe66d;
-      --gray-100: #f7f9fc;
-      --gray-200: #e9ecef;
-      --gray-500: #6c757d;
-      --gray-700: #495057;
-      --gray-900: #212529;
+      --primary: #ff4757;
+      --primary-dark: #ff3742;
+      --secondary: #5352ed;
+      --success: #2ed573;
+      --danger: #ff6b81;
+      --warning: #ffa502;
+      --gray-100: #f1f2f6;
+      --gray-200: #dfe4ea;
+      --gray-500: #747d8c;
+      --gray-700: #57606f;
+      --gray-900: #2f3542;
     }
     
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Comic Neue', 'Segoe UI', cursive;
+      font-family: 'Segoe UI', system-ui, sans-serif;
     }
     
     body {
@@ -43,10 +43,11 @@
     header {
       text-align: center;
       margin-bottom: 30px;
-      padding: 25px;
+      padding: 30px;
       background: white;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border-radius: 25px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      border: 4px solid var(--primary);
     }
     
     .logo {
@@ -60,27 +61,28 @@
     .logo-icon {
       background: var(--primary);
       color: white;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
-      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+      font-size: 36px;
+      box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+      transform: rotate(-5deg);
     }
     
     h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       background: linear-gradient(45deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
     }
     
     .subtitle {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       color: var(--gray-700);
       max-width: 700px;
       margin: 0 auto;
@@ -91,8 +93,8 @@
       background: white;
       border-radius: 25px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-      padding: 35px;
-      margin-bottom: 25px;
+      padding: 40px;
+      margin-bottom: 30px;
       border: 4px solid var(--primary);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
@@ -111,7 +113,7 @@
     
     .card:hover {
       transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
     }
     
     .stats-container {
@@ -132,20 +134,20 @@
     }
     
     .stat-card:hover {
-      transform: rotate(-2deg) scale(1.05);
+      transform: rotate(2deg) scale(1.05);
     }
     
     .stat-value {
-      font-size: 2.8rem;
+      font-size: 3rem;
       font-weight: 800;
       color: var(--primary);
       margin-bottom: 5px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
     
     .stat-label {
       color: var(--gray-700);
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 700;
     }
     
@@ -154,12 +156,12 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-      padding: 18px 36px;
+      padding: 20px 40px;
       background: linear-gradient(45deg, var(--primary), var(--secondary));
       color: white;
       border: none;
       border-radius: 16px;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 800;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -169,13 +171,13 @@
     }
     
     .btn:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 12px 25px rgba(255, 107, 53, 0.4);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(255, 71, 87, 0.4);
       background: linear-gradient(45deg, var(--primary-dark), var(--primary));
     }
     
     .btn-warning {
-      background: linear-gradient(45deg, #ffd166, #ff9e00);
+      background: linear-gradient(45deg, #ffa502, #ff7b00);
     }
     
     .btn-outline {
@@ -212,22 +214,22 @@
       display: flex;
       align-items: center;
       gap: 20px;
-      padding: 20px;
+      padding: 25px;
       background: linear-gradient(135deg, #f8f9ff, #e3f2fd);
-      border-radius: 18px;
-      border: 2px dashed var(--primary);
+      border-radius: 20px;
+      border: 3px dashed var(--primary);
     }
     
     .info-icon {
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       border-radius: 15px;
       background: var(--primary);
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
+      font-size: 2rem;
       flex-shrink: 0;
     }
     
@@ -237,12 +239,12 @@
     
     .question-image {
       width: 100%;
-      max-height: 350px;
+      max-height: 400px;
       object-fit: contain;
-      border-radius: 18px;
+      border-radius: 20px;
       margin: 25px 0;
       border: 4px solid var(--primary);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       transition: transform 0.3s;
     }
     
@@ -251,7 +253,7 @@
     }
     
     .question-text {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 800;
       margin-bottom: 30px;
       line-height: 1.5;
@@ -260,7 +262,7 @@
       background: linear-gradient(135deg, #667eea, #764ba2);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      padding: 15px;
+      padding: 20px;
       border-radius: 15px;
       background-color: #f8f9ff;
     }
@@ -301,7 +303,7 @@
       border-color: var(--primary);
       background: #fffaf0;
       transform: translateX(10px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
     
     .option:hover::before {
@@ -335,8 +337,8 @@
     }
     
     .option-number {
-      width: 40px;
-      height: 40px;
+      width: 45px;
+      height: 45px;
       border-radius: 50%;
       background: var(--gray-200);
       display: flex;
@@ -345,7 +347,7 @@
       font-weight: 800;
       flex-shrink: 0;
       transition: all 0.3s;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
     
     .option.selected .option-number {
@@ -396,7 +398,7 @@
       display: flex;
       justify-content: space-between;
       margin-top: 15px;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: var(--gray-700);
       font-weight: 700;
     }
@@ -406,13 +408,13 @@
       align-items: center;
       justify-content: center;
       gap: 15px;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       font-weight: 800;
       color: var(--gray-900);
-      padding: 20px;
+      padding: 25px;
       background: white;
       border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
       margin-bottom: 25px;
       border: 4px solid var(--primary);
       transition: all 0.3s;
@@ -444,16 +446,16 @@
     }
     
     .result-icon {
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 30px;
-      font-size: 4rem;
+      font-size: 4.5rem;
       border: 6px solid;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
       transition: transform 0.5s;
     }
     
@@ -474,19 +476,19 @@
     }
     
     .result-title {
-      font-size: 3rem;
+      font-size: 3.5rem;
       margin-bottom: 20px;
       background: linear-gradient(45deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
     }
     
     .result-score {
-      font-size: 5rem;
+      font-size: 6rem;
       font-weight: 900;
       margin: 30px 0;
-      text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+      text-shadow: 4px 4px 8px rgba(0,0,0,0.2);
       background: linear-gradient(45deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -505,10 +507,10 @@
     .detail-item {
       display: flex;
       justify-content: space-between;
-      padding: 18px 0;
+      padding: 20px 0;
       border-bottom: 3px dotted var(--primary);
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
     
     .detail-item:last-child {
@@ -522,20 +524,20 @@
     .user-status {
       background: linear-gradient(45deg, var(--primary), var(--secondary));
       color: white;
-      padding: 15px 30px;
+      padding: 18px 35px;
       border-radius: 50px;
       font-weight: 800;
-      margin: 20px 0;
+      margin: 25px 0;
       display: inline-block;
-      font-size: 1.3rem;
-      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+      font-size: 1.4rem;
+      box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
     }
     
     footer {
       text-align: center;
       margin-top: 50px;
       color: white;
-      font-size: 1rem;
+      font-size: 1.1rem;
       padding: 25px;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     }
@@ -546,29 +548,29 @@
       margin: 20px 0;
       text-align: center;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       background: #fffaf0;
-      padding: 15px;
+      padding: 20px;
       border-radius: 15px;
-      border: 2px dashed var(--primary);
+      border: 3px dashed var(--primary);
     }
     
     .joke-indicator {
       position: absolute;
-      top: 15px;
-      right: 15px;
+      top: 20px;
+      right: 20px;
       background: var(--warning);
       color: var(--gray-900);
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-size: 0.9rem;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1rem;
       font-weight: 800;
       animation: bounce 2s infinite;
     }
     
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
+      50% { transform: translateY(-8px); }
     }
     
     @media (max-width: 768px) {
@@ -589,12 +591,12 @@
       }
       
       h1 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
       }
       
       .logo {
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
       }
     }
   </style>
@@ -604,25 +606,25 @@
     <header>
       <div class="logo">
         <div class="logo-icon">
-          <i class="fas fa-car-burst"></i>
+          <i class="fas fa-car-side"></i>
         </div>
-        <h1>ПДД-ЮМОР</h1>
+        <h1>Drom-ЮМОР</h1>
       </div>
-      <p class="subtitle">Экзамен, где каждый вопрос — это ловушка для твоего чувства юмора!</p>
+      <p class="subtitle">Экзамен ПДД от Drom.ru, но с чувством юмора и неожиданными поворотами!</p>
     </header>
     
     <div class="stats-container">
       <div class="stat-card">
         <div class="stat-value">40</div>
-        <div class="stat-label">Коварных билетов</div>
+        <div class="stat-label">Смешных билетов</div>
       </div>
       <div class="stat-card">
         <div class="stat-value">20</div>
-        <div class="stat-label">Вопросов с подвохом</div>
+        <div class="stat-label">Вопросов с сюрпризом</div>
       </div>
       <div class="stat-card">
         <div class="stat-value">15</div>
-        <div class="stat-label">Минут на юмор</div>
+        <div class="stat-label">Минут на всё</div>
       </div>
       <div class="stat-card">
         <div class="stat-value">3</div>
@@ -633,10 +635,10 @@
     <!-- Экран приветствия -->
     <div id="welcome-screen" class="card">
       <div class="joke-indicator">
-        <i class="fas fa-grin-tongue-wink"></i> Внимание: юмор!
+        <i class="fas fa-grin-tongue-wink"></i> Внимание: юмор включен!
       </div>
-      <h2 style="color: var(--primary); text-align: center; margin-bottom: 25px;">Готов к экзамену, где нельзя быть серьёзным? 🎭</h2>
-      <p style="text-align: center; font-size: 1.3rem; margin-bottom: 30px; font-weight: 600;">40 билетов с реальными картинками, но абсолютно нереальными вопросами!</p>
+      <h2 style="color: var(--primary); text-align: center; margin-bottom: 25px;">Готов к самому весёлому экзамену ПДД? 🚗💨</h2>
+      <p style="text-align: center; font-size: 1.4rem; margin-bottom: 30px; font-weight: 600;">Настоящие картинки с Drom.ru, но вопросы, от которых можно покатиться со смеху!</p>
       
       <div class="exam-info">
         <div class="info-item">
@@ -645,7 +647,7 @@
           </div>
           <div>
             <h3>15 минут</h3>
-            <p>Пока не лопнул от смеха</p>
+            <p>Пока не кончилось топливо юмора</p>
           </div>
         </div>
         <div class="info-item">
@@ -654,7 +656,7 @@
           </div>
           <div>
             <h3>20 вопросов</h3>
-            <p>Каждый - шедевр юмора</p>
+            <p>Каждый - тест на чувство юмора</p>
           </div>
         </div>
         <div class="info-item">
@@ -663,21 +665,21 @@
           </div>
           <div>
             <h3>С подвохом</h3>
-            <p>Не верь глазам своим!</p>
+            <p>Не верь первому впечатлению!</p>
           </div>
         </div>
       </div>
       
       <div class="funny-comment">
-        <i class="fas fa-exclamation-triangle"></i> Предупреждение: после этого теста ГИБДД покажется цирком!
+        <i class="fas fa-exclamation-triangle"></i> Осторожно! После этого теста обычные билеты ПДД покажутся скучными!
       </div>
       
       <div class="actions">
         <button id="start-exam-btn" class="btn btn-warning">
-          <i class="fas fa-play-circle"></i> Начать юмористический экзамен!
+          <i class="fas fa-play-circle"></i> Запустить юмористический движок!
         </button>
         <button class="btn btn-outline">
-          <i class="fas fa-grin-stars"></i> Просто посмеяться
+          <i class="fas fa-grin-stars"></i> Просто посмотреть билеты
         </button>
       </div>
     </div>
@@ -702,17 +704,17 @@
         </div>
         
         <div class="question-text" id="question-text">
-          Загрузка юмористического вопроса...
+          Загрузка весёлого вопроса...
         </div>
         
-        <img id="question-image" class="question-image" src="" alt="Реальная дорожная ситуация">
+        <img id="question-image" class="question-image" src="" alt="Дорожная ситуация от Drom.ru">
         
         <div class="options-container" id="options-container">
           <!-- Опции будут добавляться через JavaScript -->
         </div>
         
         <button id="next-question-btn" class="btn btn-full hidden">
-          <i class="fas fa-arrow-right"></i> Дальше смеяться!
+          <i class="fas fa-arrow-right"></i> Катиться к следующему юмору!
         </button>
       </div>
     </div>
@@ -723,9 +725,9 @@
         <div class="result-icon">
           <i class="fas fa-trophy"></i>
         </div>
-        <h2 class="result-title">Браво! Ты прошёл! 🎉</h2>
-        <p>Твоё чувство юмора спасло ситуацию!</p>
-        <div class="user-status" id="user-status">Статус: Комедийный гонщик</div>
+        <h2 class="result-title">Ура! Ты проехал! 🏆</h2>
+        <p>Твоё чувство юмора на высшем уровне!</p>
+        <div class="user-status" id="user-status">Статус: Комедийный гонщик Drom</div>
         <div class="result-score">95%</div>
         
         <div class="result-details">
@@ -744,15 +746,15 @@
         </div>
         
         <div class="funny-comment">
-          <i class="fas fa-crown"></i> Тебя ждёт карьера в юмористическом автоспорте!
+          <i class="fas fa-crown"></i> Тебя ждёт карьера в юмористическом автоспорте от Drom!
         </div>
         
         <div class="actions">
           <button class="btn btn-warning" onclick="resetExam()">
-            <i class="fas fa-redo"></i> Смеяться снова!
+            <i class="fas fa-redo"></i> Гонка на второй круг!
           </button>
           <button class="btn btn-outline">
-            <i class="fas fa-share-alt"></i> Похвастаться юмором
+            <i class="fas fa-share-alt"></i> Похвастаться в Drom
           </button>
         </div>
       </div>
@@ -761,9 +763,9 @@
         <div class="result-icon">
           <i class="fas fa-car-crash"></i>
         </div>
-        <h2 class="result-title">Юмор не спас! 💥</h2>
-        <p>Ты попался на все подвохи...</p>
-        <div class="user-status" id="fail-user-status">Статус: Серьёзный пешеход</div>
+        <h2 class="result-title">Авария юмора! 💥</h2>
+        <p>Ты попался на все весёлые ловушки...</p>
+        <div class="user-status" id="fail-user-status">Статус: Серьёзный участник Drom</div>
         <div class="result-score">65%</div>
         
         <div class="result-details">
@@ -782,7 +784,7 @@
         </div>
         
         <div class="funny-comment">
-          <i class="fas fa-walking"></i> Не расстраивайся! Серьёзные люди тоже нужны... для контраста!
+          <i class="fas fa-walking"></i> Не расстраивайся! Серьёзные водители тоже нужны на Drom!
         </div>
         
         <div class="actions">
@@ -790,397 +792,397 @@
             <i class="fas fa-redo"></i> Попробовать снова
           </button>
           <button class="btn btn-outline">
-            <i class="fas fa-book"></i> Поучить юмор
+            <i class="fas fa-book"></i> Поучить юмор на Drom
           </button>
         </div>
       </div>
     </div>
     
     <footer>
-      <p>© 2023 ПДД-ЮМОР — Экзамен, где правила дорожного движения встречаются с чувством юмора</p>
-      <p>Помни: смех продлевает жизнь, а ПДД — сохраняет!</p>
+      <p>© 2023 Drom-ЮМОР — Весёлый экзамен ПДД с картинками от Drom.ru</p>
+      <p>Помни: смех за рулём продлевает жизнь, а ПДД — сохраняет!</p>
     </footer>
   </div>
 
   <script>
-    // 40 юмористических билетов ПДД с реальными изображениями и подвохом
+    // 40 юмористических билетов ПДД с реальными изображениями с Drom.ru
     const tickets = [
       {
         id: 1,
-        text: "Что делать, если пешеход переходит дорогу в костюме черепахи-ниндзя?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet1-1.jpg",
+        text: "Что делать, если пешеход переходит дорогу с табличкой 'Я инспектор ГИБДД в штатском'?",
+        image: "https://www.drom.ru/pdd/pdd1.jpg",
         options: [
-          "Пропустить - ниндзя всегда прав",
-          "Сигналить мелодию из мультфильма",
-          "Продолжать движение - это маскировка"
+          "Пропустить - вдруг правда",
+          "Потребовать удостоверение",
+          "Продолжать движение - явно шутник"
         ],
         correct: 0,
-        explanation: "Пешеход в любом костюме остается пешеходом! Пропускаем."
+        explanation: "Любого пешехода нужно пропускать, даже если он шутит!"
       },
       {
         id: 2,
-        text: "Можно ли объехать пробку по колее, оставленной динозавром?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet2-1.jpg", 
+        text: "Можно ли объехать пробку по полосе для картингов?",
+        image: "https://www.drom.ru/pdd/pdd2.jpg",
         options: [
-          "Да, если динозавр был не больше Запорожца",
-          "Только с разрешения палеонтолога",
-          "Нет, колея не является проезжей частью"
+          "Да, если пересесть на карт",
+          "Только если ты чемпион по картингу",
+          "Нет, это специальная полоса"
         ],
         correct: 2,
-        explanation: "Увы, даже исторические колеи не дают права нарушать ПДД!"
+        explanation: "Специальные полосы - только для специального транспорта!"
       },
       {
         id: 3,
-        text: "Что означает знак 'человек с лопатой, танцующий макарену'?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet3-1.jpg",
+        text: "Что означает знак 'человек с телефоном, делающий селфи'?",
+        image: "https://www.drom.ru/pdd/pdd3.jpg",
         options: [
-          "Впереди дискотека дорожных рабочих",
-          "Дорожные работы - объезжать танцуя",
-          "Обычный знак 'дорожные работы'"
+          "Внимание, блогеры",
+          "Осторожно, пешеходы-фотографы",
+          "Обычный знак 'пешеходный переход'"
         ],
         correct: 2,
-        explanation: "Знак 1.25 всегда серьезен, даже если рабочие танцуют!"
+        explanation: "Знак 5.19.1 всегда серьезен, даже в эпоху селфи!"
       },
       {
         id: 4,
-        text: "Как парковаться, если все места заняты единорогами?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet4-1.jpg",
+        text: "Как парковаться, если все места заняты автомобилями из фильма 'Форсаж'?",
+        image: "https://www.drom.ru/pdd/pdd4.jpg",
         options: [
-          "Припарковаться на радуге",
-          "Подождать, пока единороги упыляются",
-          "Искать другое место - магия не отменяет ПДД"
+          "Припарковаться на двух колёсах",
+          "Сделать полицейский разворот",
+          "Искать другое место - правила для всех"
         ],
         correct: 2,
-        explanation: "Даже мифические существа должны соблюдать правила парковки!"
+        explanation: "Даже кинозвёзды должны соблюдать ПДД!"
       },
       {
         id: 5,
-        text: "Можно ли развернуться через сплошную, если за рулем твой астральный двойник?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet5-1.jpg",
+        text: "Можно ли развернуться через двойную сплошную, если очень нужно в туалет?",
+        image: "https://www.drom.ru/pdd/pdd5.jpg",
         options: [
-          "Да, астральные сущности не подчиняются ПДД",
-          "Только в полнолуние",
-          "Нет, двойник тоже должен соблюдать правила"
+          "Да, это форс-мажор",
+          "Только с аварийкой",
+          "Нет, ищи другое место для разворота"
         ],
         correct: 2,
-        explanation: "ПДД едины для всех измерений!"
+        explanation: "Физиологические потребности не отменяют ПДД!"
       },
       {
         id: 6,
-        text: "Что делать на светофоре, если он мигает всеми цветами радуги?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet6-1.jpg",
+        text: "Что делать на светофоре, если он показывает смайлики вместо цветов?",
+        image: "https://www.drom.ru/pdd/pdd6.jpg",
         options: [
-          "Ехать на самый красивый цвет",
+          "Ехать на улыбку, останавливаться на грусть",
           "Считать это неработающим светофором",
-          "Вызвать экзорциста"
+          "Сфотографировать для Инстаграма"
         ],
         correct: 1,
-        explanation: "Любой нестандартный режим светофора = неработающий светофор!"
+        explanation: "Любой нестандартный сигнал = неработающий светофор!"
       },
       {
         id: 7,
-        text: "Как перевозить кота, который считает себя собакой?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet7-1.jpg",
+        text: "Как перевозить кота, который водит лучше тебя?",
+        image: "https://www.drom.ru/pdd/pdd7.jpg",
         options: [
-          "В будке на крыше",
-          "В переноске, невзирая на его самоидентификацию", 
-          "Дать ему права и посадить за руль"
+          "Отдать ему руль",
+          "В переноске, как обычного кота",
+          "Купить ему собственный автомобиль"
         ],
         correct: 1,
-        explanation: "Безопасность важнее самоопределения питомца!"
+        explanation: "Все животные перевозятся в специальных контейнерах!"
       },
       {
         id: 8,
-        text: "Можно ли ехать по полосе для летающих автомобилей?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet8-1.jpg",
+        text: "Можно ли ехать по полосе для автобусов, если ты в костюме автобуса?",
+        image: "https://www.drom.ru/pdd/pdd8.jpg",
         options: [
-          "Да, если очень хочется летать",
-          "Только если у тебя есть крылья",
-          "Нет, твой автомобиль еще не летает"
+          "Да, маскировка идеальная",
+          "Только если издаешь звук автобуса",
+          "Нет, костюм не делает тебя автобусом"
         ],
         correct: 2,
-        explanation: "Пока твоя машина на земле - соблюдай земные правила!"
+        explanation: "Выделенные полосы - только для настоящего транспорта!"
       },
       {
         id: 9,
-        text: "Что делать, если навигатор ведет тебя в параллельную реальность?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet9-1.jpg",
+        text: "Что делать, если навигатор ведёт тебя в гости к тёще?",
+        image: "https://www.drom.ru/pdd/pdd9.jpg",
         options: [
-          "Следовать указаниям - вдруг там меньше пробок",
-          "Перезагрузить навигатор",
-          "Свернуть в ближайший портал"
+          "Следовать указаниям - вдруг пироги",
+          "Выключить навигатор и ехать наугад",
+          "Перепрошить навигатор"
         ],
         correct: 1,
-        explanation: "Даже в параллельных реальностях нужно следить за дорогой!"
+        explanation: "Иногда лучше доверять интуиции, чем технике!"
       },
       {
         id: 10,
-        text: "Как быть, если на дороге лужа, а рядом идет Гэндальф с бородой?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet10-1.jpg",
+        text: "Как быть, если на дороге лужа, а рядом идет девушка в белом платье?",
+        image: "https://www.drom.ru/pdd/pdd10.jpg",
         options: [
-          "Проехать побыстрее - магу не страшно",
-          "Сбросить скорость - борода может намокнуть",
-          "Попросить его создать магический щит"
+          "Проехать побыстрее - для драматизма",
+          "Сбросить скорость, чтобы не обрызгать",
+          "Предложить подвезти"
         ],
         correct: 1,
-        explanation: "Уважение к пешеходам распространяется и на магов!"
+        explanation: "Взаимоуважение на дороге - залог хороших отношений!"
       },
       {
         id: 11,
-        text: "Можно ли обгонять на подъеме, если впереди едет улитка?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet11-1.jpg",
+        text: "Можно ли обгонять на подъеме, если впереди едет автомобиль с надписью 'Ученик'?",
+        image: "https://www.drom.ru/pdd/pdd11.jpg",
         options: [
-          "Да, улитка все равно медленная",
-          "Только если уверен, что улитка не ускорится",
-          "Нет, обгон на подъеме запрещен всегда"
+          "Да, ученик всё равно медленно едет",
+          "Только если очень уверен в себе",
+          "Нет, обгон на подъеме запрещен"
         ],
         correct: 2,
-        explanation: "ПДД не делают исключений для моллюсков!"
+        explanation: "ПДД не делают исключений для учеников!"
       },
       {
         id: 12,
-        text: "Что делать, если загорелась лампочка 'проверьте чувство юмора'?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet12-1.jpg",
+        text: "Что делать, если загорелась лампочка 'Пора на мойку'?",
+        image: "https://www.drom.ru/pdd/pdd12.jpg",
         options: [
-          "Продолжать ехать - само пройдет",
-          "Немедленно включить КВН",
-          "Это нештатная ситуация - остановиться"
+          "Игнорировать - машина пошутила",
+          "Немедленно ехать на мойку",
+          "Протереть фары и продолжить движение"
         ],
-        correct: 2,
-        explanation: "Любая нештатная лампочка требует внимания!"
+        correct: 1,
+        explanation: "Чистота автомобиля - залог безопасности!"
       },
       {
         id: 13,
-        text: "Как правильно перевозить снеговика летом?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet13-1.jpg",
+        text: "Как правильно перевозить торт 'Наполеон' высотой 2 метра?",
+        image: "https://www.drom.ru/pdd/pdd13.jpg",
         options: [
-          "В морозильной камере на крыше",
-          "В багажнике с кондиционером",
-          "Снеговики летом не перевозятся"
+          "На крыше с синей мигалкой",
+          "В салоне, аккуратно держа рукой",
+          "В специальном транспорте для негабарита"
         ],
-        correct: 1,
-        explanation: "Груз должен быть надежно закреплен и сохранен!"
+        correct: 2,
+        explanation: "Негабаритные грузы требуют специальных условий!"
       },
       {
         id: 14,
-        text: "Можно ли ехать с открытым багажником, если там жираф?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet14-1.jpg",
+        text: "Можно ли ехать с открытым люком, если пассажир - жираф?",
+        image: "https://www.drom.ru/pdd/pdd14.jpg",
         options: [
           "Да, жирафу нужен воздух",
-          "Нет, груз должен быть закреплен",
+          "Нет, все пассажиры должны быть в салоне",
           "Только если жираф пристегнут"
         ],
         correct: 1,
-        explanation: "Даже длинношеие пассажиры требуют безопасности!"
+        explanation: "Все пассажиры должны находиться в салоне!"
       },
       {
         id: 15,
-        text: "Что означает знак 'летающая тарелка'?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet15-1.jpg",
+        text: "Что означает знак 'автомобиль на качелях'?",
+        image: "https://www.drom.ru/pdd/pdd15.jpg",
         options: [
-          "Внимание, инопланетяне имеют преимущество",
-          "Место посадки НЛО",
-          "Осторожно, низколетящие самолеты"
+          "Впереди парк аттракционов",
+          "Крутой подъем и спуск",
+          "Место для отдыха водителей"
         ],
-        correct: 2,
-        explanation: "Знак 1.31 предупреждает о низколетящих самолетах!"
+        correct: 1,
+        explanation: "Знак 1.14 предупреждает о крутых подъемах и спусках!"
       },
       {
         id: 16,
-        text: "Как быть, если на переходе стоит человек-невидимка?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet16-1.jpg",
+        text: "Как быть, если на переходе стоит мим, изображающий пешехода?",
+        image: "https://www.drom.ru/pdd/pdd16.jpg",
         options: [
-          "Проехать - раз не видно, значит нет",
-          "Пропустить - доверять знакам перехода",
-          "Включить тепловизор"
+          "Проехать - это же искусство",
+          "Пропустить - мим тоже пешеход",
+          "Поаплодировать и проехать"
         ],
         correct: 1,
-        explanation: "Знак пешеходного перехода работает даже для невидимок!"
+        explanation: "Любой человек на переходе - пешеход!"
       },
       {
         id: 17,
-        text: "Можно ли мыть машину слезами единорога?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet17-1.jpg",
+        text: "Можно ли мыть машину шампанским?",
+        image: "https://www.drom.ru/pdd/pdd17.jpg",
         options: [
-          "Да, это экологично",
-          "Только с разрешения единорога",
-          "Нет, это может повредить лакокрасочное покрытие"
+          "Да, для блеска",
+          "Только по большим праздникам",
+          "Нет, это может повредить покрытие"
         ],
         correct: 2,
-        explanation: "Даже магические жидкости могут быть агрессивны!"
+        explanation: "Только специальные автошампуни!"
       },
       {
         id: 18,
-        text: "Что делать при заносе на дороге из радуги?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet18-1.jpg",
+        text: "Что делать при заносе на дороге из шоколада?",
+        image: "https://www.drom.ru/pdd/pdd18.jpg",
         options: [
-          "Наслаждаться полетом",
+          "Насладиться ароматом",
           "Вывернуть руль в сторону заноса",
-          "Загадать желание"
+          "Остановиться и попробовать дорогу"
         ],
         correct: 1,
-        explanation: "На любом покрытии действуют одинаковые правила!"
+        explanation: "На любом скользком покрытии - одинаковые правила!"
       },
       {
         id: 19,
-        text: "Можно ли обгонять карету Золушки?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet19-1.jpg",
+        text: "Можно ли обгонять карету с принцем?",
+        image: "https://www.drom.ru/pdd/pdd19.jpg",
         options: [
-          "Да, она все равно в тыкву превратится",
-          "Только до полуночи",
-          "Нет, карета имеет преимущество как гужевая повозка"
+          "Да, принц должен уступить дорогу",
+          "Только если попросить разрешения",
+          "Нет, у карет приоритет"
         ],
-        correct: 2,
-        explanation: "Гужевые повозки - полноправные участники движения!"
+        correct: 0,
+        explanation: "Гужевые повозки не имеют особого приоритета!"
       },
       {
         id: 20,
-        text: "Как выбрать скорость в тумане из конфетти?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet20-1.jpg",
+        text: "Как выбрать скорость в тумане из попкорна?",
+        image: "https://www.drom.ru/pdd/pdd20.jpg",
         options: [
-          "Ехать как на празднике",
+          "Ехать как в кинотеатре",
           "Снизить скорость до безопасной",
-          "Собрать конфетти для следующего праздника"
+          "Собрать попкорн для перекуса"
         ],
         correct: 1,
-        explanation: "Любое ухудшение видимости требует снижения скорости!"
+        explanation: "Любое ухудшение видимости требует осторожности!"
       },
       {
         id: 21,
-        text: "Что делать, если на дороге танцуют пингвины?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet21-1.jpg",
+        text: "Что делать, если на дороге репетирует оркестр?",
+        image: "https://www.drom.ru/pdd/pdd21.jpg",
         options: [
-          "Присоединиться к танцу",
-          "Объехать по встречной полосе",
-          "Терпеливо ждать окончания представления"
+          "Присоединиться к репетиции",
+          "Объехать по тротуару",
+          "Терпеливо ждать окончания"
         ],
         correct: 2,
-        explanation: "Животные на дороге требуют особого внимания!"
+        explanation: "Любые препятствия на дороге требуют терпения!"
       },
       {
         id: 22,
-        text: "Можно ли ехать с неработающим двигателем, если толкают гномы?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet22-1.jpg",
+        text: "Можно ли ехать с неработающим стеклоочистителем, если пассажир - супермен?",
+        image: "https://www.drom.ru/pdd/pdd22.jpg",
         options: [
-          "Да, гномы - надежные помощники",
-          "Только в горной местности",
-          "Нет, транспортное средство должно быть исправно"
+          "Да, супермен протрет взглядом",
+          "Только в ясную погоду",
+          "Нет, все системы должны работать"
         ],
         correct: 2,
-        explanation: "Даже магическая помощь не отменяет техосмотр!"
+        explanation: "Техническая исправность - обязательно!"
       },
       {
         id: 23,
-        text: "Как правильно перевозить облако?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet23-1.jpg",
+        text: "Как правильно перевозить воздушные шарики?",
+        image: "https://www.drom.ru/pdd/pdd23.jpg",
         options: [
-          "В герметичном контейнере",
-          "На прицепе с сеткой",
-          "Облака не перевозятся автомобильным транспортом"
+          "Высунуть в окно на веревочках",
+          "В багажнике с грузиками",
+          "Шарики лучше не перевозить"
         ],
-        correct: 2,
-        explanation: "Некоторые грузы лучше доверить природе!"
+        correct: 1,
+        explanation: "Груз должен быть надежно закреплен!"
       },
       {
         id: 24,
-        text: "Что означает мигающий фиолетовый сигнал?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet24-1.jpg",
+        text: "Что означает мигающий радужный сигнал?",
+        image: "https://www.drom.ru/pdd/pdd24.jpg",
         options: [
-          "Впереди магический портал",
+          "Впереди гей-парад",
           "Светофор сломался",
-          "Проезд для волшебников"
+          "Проезд для всех цветов радуги"
         ],
         correct: 1,
         explanation: "Любой нестандартный сигнал = неисправность!"
       },
       {
         id: 25,
-        text: "Можно ли парковаться на облаке?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet25-1.jpg",
+        text: "Можно ли парковаться на месте для инопланетян?",
+        image: "https://www.drom.ru/pdd/pdd25.jpg",
         options: [
-          "Да, если облако пушистое",
-          "Только для летающих автомобилей",
+          "Да, если ты инопланетянин",
+          "Только на ночь",
           "Нет, это не предусмотрено ПДД"
         ],
         correct: 2,
-        explanation: "Парковка разрешена только на специально отведенных местах!"
+        explanation: "Только специально обозначенные места!"
       },
       {
         id: 26,
-        text: "Как быть, если впереди авария с участием супергероев?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet26-1.jpg",
+        text: "Как быть, если впереди авария с участием трансформеров?",
+        image: "https://www.drom.ru/pdd/pdd26.jpg",
         options: [
-          "Сфотографироваться на память",
-          "Предложить помощь",
-          "Продолжить движение - герои сами справятся"
+          "Снять на видео для YouTube",
+          "Оказать первую помощь",
+          "Ждать, пока сами починятся"
         ],
         correct: 1,
         explanation: "Любая авария требует оказания помощи!"
       },
       {
         id: 27,
-        text: "Можно ли разговаривать с рулем, если он заколдован?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet27-1.jpg",
+        text: "Можно ли разговаривать с рулем, если он отзывается?",
+        image: "https://www.drom.ru/pdd/pdd27.jpg",
         options: [
-          "Да, если руль интересный собеседник",
-          "Только через заклинание",
+          "Да, если интересная беседа",
+          "Только через Bluetooth",
           "Нет, это отвлекает от дороги"
         ],
         correct: 2,
-        explanation: "Любые разговоры за рулем опасны!"
+        explanation: "Внимание должно быть на дороге!"
       },
       {
         id: 28,
-        text: "Что делать при встрече с говорящим автомобилем?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet28-1.jpg",
+        text: "Что делать при встрече с автомобилем на солнечных батареях?",
+        image: "https://www.drom.ru/pdd/pdd28.jpg",
         options: [
-          "Поздороваться и представиться",
-          "Объехать, соблюдая ПДД",
-          "Спросить дорогу до ближайшей АЗС"
+          "Поздороваться за экологичность",
+          "Объехать по правилам",
+          "Спросить, не нужна ли тень"
         ],
         correct: 1,
-        explanation: "Даже разумные автомобили должны соблюдать правила!"
+        explanation: "Соблюдай ПДД независимо от типа транспорта!"
       },
       {
         id: 29,
-        text: "Как выбрать дистанцию до автомобиля-призрака?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet29-1.jpg",
+        text: "Как выбрать дистанцию до автомобиля-невидимки?",
+        image: "https://www.drom.ru/pdd/pdd29.jpg",
         options: [
-          "Призраки не занимают места",
+          "Невидимки не занимают места",
           "Соблюдать обычную дистанцию",
-          "Ехать сквозь него - он же призрак"
+          "Ехать на ощупь"
         ],
         correct: 1,
         explanation: "Дистанция должна быть безопасной всегда!"
       },
       {
         id: 30,
-        text: "Можно ли ехать на колесе из сыра?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet30-1.jpg",
+        text: "Можно ли ехать на запаске из сыра?",
+        image: "https://www.drom.ru/pdd/pdd30.jpg",
         options: [
-          "Да, если сыр твердый",
-          "Только до ближайшего супермаркета",
-          "Нет, колеса должны соответствовать стандартам"
+          "Да, если сыр швейцарский",
+          "Только до сыроварни",
+          "Нет, только сертифицированные колеса"
         ],
         correct: 2,
-        explanation: "Только сертифицированные запасные части!"
+        explanation: "Только соответствующие стандартам запасные части!"
       },
       {
         id: 31,
-        text: "Что делать, если пробил колесо о меч Экскалибур?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet31-1.jpg",
+        text: "Что делать, если пробил колесо о смартфон на дороге?",
+        image: "https://www.drom.ru/pdd/pdd31.jpg",
         options: [
-          "Попытаться вытащить меч",
-          "Поменять колесо, оставив меч королю Артуру",
-          "Объявить себя королем Британии"
+          "Взять смартфон в качестве трофея",
+          "Поменять колесо и выбросить смартфон",
+          "Поменять колесо и вернуть смартфон владельцу"
         ],
-        correct: 1,
-        explanation: "Сначала обеспечь безопасность, потом разбирайся с артефактами!"
+        correct: 2,
+        explanation: "Найденные вещи нужно возвращать владельцам!"
       },
       {
         id: 32,
         text: "Как быть в гололед из мороженого?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet32-1.jpg",
+        image: "https://www.drom.ru/pdd/pdd32.jpg",
         options: [
           "Собрать мороженое для перекуса",
           "Увеличить дистанцию и снизить скорость",
@@ -1192,98 +1194,98 @@
       {
         id: 33,
         text: "Можно ли перевозить эльфов на переднем сиденье?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet33-1.jpg",
+        image: "https://www.drom.ru/pdd/pdd33.jpg",
         options: [
           "Да, эльфы не люди",
           "Только с детским креслом",
-          "Только если эльф старше 1000 лет"
+          "Только если эльф старше 12 лет"
         ],
         correct: 1,
         explanation: "Все пассажиры должны быть пристегнуты!"
       },
       {
         id: 34,
-        text: "Что означает знак 'пересечение с трамвайной линией для единорогов'?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet34-1.jpg",
+        text: "Что означает знак 'пересечение с велосипедной дорожкой для единорогов'?",
+        image: "https://www.drom.ru/pdd/pdd34.jpg",
         options: [
-          "Внимание, единороги имеют преимущество",
-          "Обычный знак пересечения с трамвайной линией",
-          "Место кормления мифических существ"
+          "Внимание, мифические велосипедисты",
+          "Обычный знак 'велосипедная дорожка'",
+          "Место для фото с единорогами"
         ],
         correct: 1,
         explanation: "Знаки всегда следует понимать буквально!"
       },
       {
         id: 35,
-        text: "Как правильно проезжать лежачего полицейского-оборотня?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet35-1.jpg",
+        text: "Как правильно проезжать лежачего полицейского в костюме панды?",
+        image: "https://www.drom.ru/pdd/pdd35.jpg",
         options: [
-          "Бросить ему серебряную монету",
+          "Угостить бамбуком",
           "Заблаговременно сбросить скорость",
-          "Дождаться полнолуния"
+          "Сфотографироваться с пандой"
         ],
         correct: 1,
         explanation: "Любые неровности требуют снижения скорости!"
       },
       {
         id: 36,
-        text: "Можно ли ехать с тонировкой из тумана?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet36-1.jpg",
+        text: "Можно ли ехать с тонировкой из облаков?",
+        image: "https://www.drom.ru/pdd/pdd36.jpg",
         options: [
-          "Да, туман экологичен",
-          "Только если туман соответствует нормам",
-          "Только в пасмурную погоду"
+          "Да, облака экологичны",
+          "Только если облака соответствуют нормам",
+          "Только в ясную погоду"
         ],
         correct: 1,
-        explanation: "Любая тонировка должна быть within limits!"
+        explanation: "Любая тонировка должна быть в рамках закона!"
       },
       {
         id: 37,
-        text: "Что делать при ослеплении светом феникса?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet37-1.jpg",
+        text: "Что делать при ослеплении светом прожектора киностудии?",
+        image: "https://www.drom.ru/pdd/pdd37.jpg",
         options: [
-          "Попросить феникса убавить свет",
+          "Попросить автограф",
           "Снизить скорость и остановиться",
-          "Загадать желание на возрождение"
+          "Улыбнуться в камеру"
         ],
         correct: 1,
         explanation: "Любое ослепление требует остановки!"
       },
       {
         id: 38,
-        text: "Как быть, если на повороте машину заколдовали в карету?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet38-1.jpg",
+        text: "Как быть, если на повороте машину сняли в кино?",
+        image: "https://www.drom.ru/pdd/pdd38.jpg",
         options: [
-          "Наслаждаться превращением",
+          "Потребовать гонорар",
           "Продолжать движение по правилам",
-          "Искать фею-крёстную"
+          "Искать себя в титрах"
         ],
         correct: 1,
-        explanation: "Внешний вид не отменяет ПДД!"
+        explanation: "ПДД важнее славы!"
       },
       {
         id: 39,
-        text: "Можно ли ехать на красный, если ты невидим?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet39-1.jpg",
+        text: "Можно ли ехать на красный, если ты звезда Голливуда?",
+        image: "https://www.drom.ru/pdd/pdd39.jpg",
         options: [
-          "Да, тебя же не видно",
-          "Только для тренировки скрытности",
+          "Да, для звезд правила другие",
+          "Только с охраной",
           "Нет, правила для всех одинаковы"
         ],
         correct: 2,
-        explanation: "ПДД действуют даже для невидимок!"
+        explanation: "ПДД действуют даже для знаменитостей!"
       },
       {
         id: 40,
-        text: "Что делать при встрече с автомобилем, управляемым призраком?",
-        image: "https://xn----7sbnackuskv0m.xn--p1ai/img/bilet40-1.jpg",
+        text: "Что делать при встрече с автомобилем, управляемым роботом?",
+        image: "https://www.drom.ru/pdd/pdd40.jpg",
         options: [
-          "Перекреститься",
+          "Поздороваться на binary",
           "Продолжать движение по правилам",
-          "Предложить прокатиться с ветерком"
+          "Предложить дружить процессорами"
         ],
         correct: 1,
-        explanation: "Соблюдай ПДД, и призраки тебе не страшны!"
+        explanation: "Соблюдай ПДД, и роботы тебе не страшны!"
       }
     ];
 
@@ -1382,7 +1384,7 @@
       
       // Обновление изображения
       questionImage.src = question.image;
-      questionImage.alt = "Реальная дорожная ситуация";
+      questionImage.alt = "Дорожная ситуация от Drom.ru";
       
       // Обновление прогресса
       const progress = ((index + 1) / examQuestions.length) * 100;
@@ -1463,11 +1465,11 @@
       
       // Определение статуса пользователя
       const statuses = [
-        { min: 95, text: "Комедийный гонщик", emoji: "🏆" },
+        { min: 95, text: "Комедийный гонщик Drom", emoji: "🏆" },
         { min: 85, text: "Мастер юмора за рулем", emoji: "😎" },
         { min: 75, text: "Веселый водитель", emoji: "🚗" },
         { min: 65, text: "Новичок в юморе", emoji: "🎯" },
-        { min: 0, text: "Серьёзный пешеход", emoji: "🚶" }
+        { min: 0, text: "Серьёзный участник Drom", emoji: "🚶" }
       ];
       
       const userStatusObj = statuses.find(s => score >= s.min) || statuses[statuses.length - 1];
