@@ -399,16 +399,25 @@
             width: 100%;
         }
 
+        /* Улучшенное гамбургер-меню */
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
             color: var(--color-dark);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             padding: 0.5rem;
             position: absolute;
             right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1002;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--color-primary);
         }
 
         /* Centered Hero Section */
@@ -1170,7 +1179,7 @@
             50% { transform: scale(1.1); }
         }
 
-        /* Responsive Styles */
+        /* Улучшенные стили для мобильного меню */
         @media (max-width: 1200px) {
             section {
                 margin: 2rem 1rem;
@@ -1213,21 +1222,25 @@
                 display: block;
             }
             
+            /* Переработанное мобильное меню */
             .nav-links {
                 position: fixed;
-                top: 70px;
+                top: 0;
                 left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
                 background: rgba(255, 255, 255, 0.98);
                 backdrop-filter: blur(20px);
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: flex-start;
-                padding-top: 3rem;
+                padding: 80px 2rem 2rem;
                 transition: left 0.4s ease;
-                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+                box-shadow: 5px 0 30px rgba(0, 0, 0, 0.15);
                 gap: 0;
+                z-index: 1001;
+                overflow-y: auto;
             }
             
             .nav-links.active {
@@ -1235,12 +1248,22 @@
             }
             
             .nav-links li {
-                margin: 1rem 0;
+                margin: 0.5rem 0;
+                width: 100%;
             }
             
             .nav-links a {
                 font-size: 1.1rem;
-                padding: 1rem 2rem;
+                padding: 1rem 1.5rem;
+                display: block;
+                width: 100%;
+                border-radius: 10px;
+                transition: all 0.3s ease;
+            }
+            
+            .nav-links a:hover {
+                background: rgba(255, 59, 92, 0.1);
+                color: var(--color-primary);
             }
 
             .logo-center {
@@ -1252,6 +1275,7 @@
             nav {
                 justify-content: space-between;
                 flex-wrap: wrap;
+                padding: 0 1rem;
             }
             
             .hero-title {
@@ -1279,6 +1303,12 @@
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
             }
         }
 
@@ -1326,13 +1356,38 @@
             }
 
             .logo-circle {
-                width: 80px;
-                height: 80px;
+                width: 70px;
+                height: 70px;
             }
 
             .logo-img {
-                height: 60px;
+                height: 50px;
             }
+            
+            .mobile-menu-btn {
+                font-size: 1.5rem;
+                padding: 0.3rem;
+            }
+        }
+
+        /* Оверлей для мобильного меню */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
@@ -1356,10 +1411,13 @@
     <div class="sign-decoration sign-3">🚧</div>
     <div class="sign-decoration sign-4">⛔</div>
 
+    <!-- Оверлей для мобильного меню -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
     <!-- Header -->
     <header id="header">
         <nav>
-            <button class="mobile-menu-btn">☰</button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
             <!-- Левая часть меню -->
             <ul class="nav-links left">
                 <li><a href="#about">О квесте</a></li>
@@ -1381,6 +1439,7 @@
                 <li><a href="#reviews">Отзывы</a></li>
                 <li><a href="#form">Запись</a></li>
                 <li><a href="#partners">Партнёрам</a></li>
+                <li><a href="#online-exam">Онлайн-экзамен</a></li>
             </ul>
         </nav>
     </header>
@@ -1737,11 +1796,20 @@
         }
 
         // Mobile Menu Toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            document.querySelectorAll('.nav-links').forEach(nav => {
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelectorAll('.nav-links');
+        const menuOverlay = document.getElementById('menuOverlay');
+        
+        function toggleMobileMenu() {
+            navLinks.forEach(nav => {
                 nav.classList.toggle('active');
             });
-        });
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks[0].classList.contains('active') ? 'hidden' : '';
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        menuOverlay.addEventListener('click', toggleMobileMenu);
 
         // Header Scroll Effect
         window.addEventListener('scroll', function() {
@@ -1766,9 +1834,11 @@
         // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                document.querySelectorAll('.nav-links').forEach(nav => {
+                navLinks.forEach(nav => {
                     nav.classList.remove('active');
                 });
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
             });
         });
 
