@@ -21,8 +21,8 @@
             --color-primary-dark: #E62E4D;
             --color-accent: #00D4AA;
             --color-accent-light: #5CFFE1;
-            --color-secondary: #6C63FF;
-            --color-secondary-light: #9D97FF;
+            --color-secondary: #FF9500;
+            --color-secondary-light: #FFB143;
             --color-light: #FFFFFF;
             --color-light-gray: #F8FAFC;
             --color-gray: #E2E8F0;
@@ -47,14 +47,14 @@
             font-size: 16px;
             line-height: 1.6;
             color: var(--color-text);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #FF9A9E 0%, #FAD0C4 100%);
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
         }
 
-        /* Animated Background - мягкая версия */
-        .soft-background {
+        /* Animated Background - теплая версия */
+        .warm-background {
             position: fixed;
             top: 0;
             left: 0;
@@ -62,8 +62,8 @@
             height: 100%;
             z-index: -2;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 107, 139, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(108, 99, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 139, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 149, 0, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(0, 212, 170, 0.1) 0%, transparent 50%);
             animation: softMove 20s ease-in-out infinite;
         }
@@ -87,9 +87,15 @@
 
         .floating-element {
             position: absolute;
-            font-size: 2rem;
             opacity: 0.08;
             animation: floatElement 25s infinite linear;
+        }
+
+        .floating-element img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
         }
 
         .floating-element:nth-child(2n) {
@@ -268,7 +274,7 @@
             box-shadow: 0 8px 25px rgba(0, 212, 170, 0.3);
         }
 
-        /* Header & Navigation - центрированная версия */
+        /* Header & Navigation */
         header {
             position: fixed;
             top: 0;
@@ -289,7 +295,7 @@
 
         nav {
             display: flex;
-            justify-content: center; /* Центрируем навигацию */
+            justify-content: center;
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
@@ -310,14 +316,9 @@
             left: 1rem;
         }
 
-        .logo-icon {
-            font-size: 2rem;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+        .logo-img {
+            height: 40px;
+            width: auto;
         }
 
         .logo span {
@@ -331,7 +332,7 @@
             display: flex;
             list-style: none;
             gap: 2rem;
-            margin: 0 auto; /* Центрируем ссылки */
+            margin: 0 auto;
         }
 
         .nav-links a {
@@ -500,7 +501,7 @@
             transform: scale(1.1);
         }
 
-        /* Steps Section - Creative Layout */
+        /* Steps Section */
         .steps-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1124,8 +1125,8 @@
     </style>
 </head>
 <body>
-    <!-- Animated Background - мягкая версия -->
-    <div class="soft-background"></div>
+    <!-- Animated Background - теплая версия -->
+    <div class="warm-background"></div>
     <div class="floating-elements" id="floatingElements"></div>
     <div class="creative-shape shape-1"></div>
     <div class="creative-shape shape-2"></div>
@@ -1135,8 +1136,8 @@
     <header id="header">
         <nav>
             <a href="#home" class="logo">
-                <span class="logo-icon">🚗</span>
-                Порули<span>Ка</span>
+                <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" class="logo-img">
+                <span>Ка</span>
             </a>
             <button class="mobile-menu-btn">☰</button>
             <ul class="nav-links">
@@ -1186,13 +1187,12 @@
                     </ul>
                 </div>
                 <div class="about-image">
-                    <img src="https://placehold.co/600x400/FFFFFF/FF3B5C?text=ВАЗ-2107+в+действии!" alt="Участники квеста ПорулиКа">
+                    <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/vaz2107.png" alt="ВАЗ-2107 в квесте ПорулиКа">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Остальные секции остаются без изменений -->
     <!-- Steps Section -->
     <section id="steps">
         <div class="container">
@@ -1417,7 +1417,8 @@
             <div class="footer-content">
                 <div class="footer-about">
                     <div class="footer-logo">
-                        <span>🚗</span>Порули<span>Ка</span>
+                        <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" style="height: 40px; margin-right: 10px;">
+                        Порули<span>Ка</span>
                     </div>
                     <p>© 2025 ПорулиКа — квест на ВАЗ-2107<br>Сдай экзамен — не сдай нервы!</p>
                     <p>Лучшее развлечение в Барнауле с 2025 года</p>
@@ -1454,18 +1455,28 @@
 
     <!-- Scripts -->
     <script>
-        // Create floating elements for background animation
+        // Create floating elements with road signs
         function createFloatingElements() {
             const container = document.getElementById('floatingElements');
-            const elements = ['🚗', '🚦', '🛑', '🚸', '🚧', '🅿️', '🚨', '📝', '🎯', '🏁', '🚙', '🚘', '🚔', '🚓', '🔑', '👮', '🎓'];
+            const signs = [
+                'https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/sign1.png',
+                'https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/sign2.png',
+                'https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/sign3.png',
+                'https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/sign4.png',
+                'https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/sign5.png'
+            ];
             
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 15; i++) {
                 const element = document.createElement('div');
                 element.className = 'floating-element';
-                element.textContent = elements[Math.floor(Math.random() * elements.length)];
+                
+                const img = document.createElement('img');
+                img.src = signs[Math.floor(Math.random() * signs.length)];
+                img.alt = 'Дорожный знак';
+                
+                element.appendChild(img);
                 element.style.left = Math.random() * 100 + '%';
                 element.style.top = Math.random() * 100 + '%';
-                element.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
                 element.style.animationDelay = Math.random() * 20 + 's';
                 container.appendChild(element);
             }
@@ -1490,13 +1501,9 @@
         document.getElementById('booking-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Здесь должна быть логика отправки формы (на email, Telegram и т.д.)
-            // Для демонстрации просто покажем сообщение об успехе
-            
             document.getElementById('success-message').style.display = 'block';
             this.reset();
             
-            // Прокрутка к сообщению об успехе
             document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
         });
 
