@@ -11,27 +11,30 @@
     <meta property="og:title" content="ПорулиКа — квест на ВАЗ-2107 в Барнауле">
     <meta property="og:description" content="Пройди экзамен на настоящей ВАЗ-2107 — получи диплом водителя будущего!">
     <meta property="og:type" content="website">
-    <!-- <meta property="og:image" content="img/og-image.jpg"> -->
     
     <!-- Preconnect for Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <!-- Styles -->
     <style>
         :root {
-            --color-primary: #D0021B;
-            --color-primary-dark: #A80016;
-            --color-accent: #FFD300;
-            --color-accent-light: #FFF9D6;
-            --color-dark: #1A1A1A;
+            --color-primary: #FF6B7A;
+            --color-primary-light: #FFB8C0;
+            --color-primary-dark: #E55A68;
+            --color-accent: #FFD166;
+            --color-accent-light: #FFE9B5;
+            --color-secondary: #7EC4CF;
+            --color-secondary-light: #B8E2E9;
             --color-light: #FFFFFF;
-            --color-gray: #F5F5F5;
-            --color-text: #000000;
-            --font-heading: 'Roboto', Impact, sans-serif;
+            --color-light-gray: #F8F9FA;
+            --color-gray: #E9ECEF;
+            --color-dark: #2D3748;
+            --color-text: #4A5568;
+            --font-heading: 'Roboto', sans-serif;
             --font-body: 'Roboto', sans-serif;
         }
 
@@ -52,6 +55,58 @@
             color: var(--color-text);
             background-color: var(--color-light);
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+            font-size: 2rem;
+        }
+
+        .floating-element:nth-child(2n) {
+            animation-duration: 25s;
+            animation-direction: reverse;
+        }
+
+        .floating-element:nth-child(3n) {
+            animation-duration: 30s;
+        }
+
+        .floating-element:nth-child(5n) {
+            animation-duration: 35s;
+            animation-direction: reverse;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(100px, 100px) rotate(90deg);
+            }
+            50% {
+                transform: translate(200px, 0) rotate(180deg);
+            }
+            75% {
+                transform: translate(100px, -100px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
         }
 
         h1, h2, h3, h4 {
@@ -59,6 +114,7 @@
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1rem;
+            color: var(--color-dark);
         }
 
         h1 {
@@ -86,17 +142,20 @@
 
         section {
             padding: 5rem 1rem;
+            position: relative;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .btn {
             display: inline-block;
             padding: 12px 30px;
-            background-color: var(--color-primary);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
             color: var(--color-light);
             text-decoration: none;
             border-radius: 50px;
@@ -106,24 +165,39 @@
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(208, 2, 27, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 107, 122, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
         }
 
         .btn:hover {
-            background-color: var(--color-primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(208, 2, 27, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 107, 122, 0.4);
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-accent {
-            background-color: var(--color-accent);
+            background: linear-gradient(135deg, var(--color-accent), #FFC043);
             color: var(--color-dark);
-            box-shadow: 0 4px 10px rgba(255, 211, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 209, 102, 0.3);
         }
 
         .btn-accent:hover {
-            background-color: #E6BE00;
-            box-shadow: 0 6px 15px rgba(255, 211, 0, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 209, 102, 0.4);
         }
 
         /* Header & Navigation */
@@ -132,15 +206,16 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(26, 26, 26, 0.95);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
         header.scrolled {
             padding: 0.5rem 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         nav {
@@ -156,7 +231,7 @@
             font-family: var(--font-heading);
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--color-light);
+            color: var(--color-dark);
             text-decoration: none;
         }
 
@@ -174,10 +249,10 @@
         }
 
         .nav-links a {
-            color: var(--color-light);
+            color: var(--color-dark);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
             position: relative;
         }
 
@@ -204,7 +279,7 @@
             display: none;
             background: none;
             border: none;
-            color: var(--color-light);
+            color: var(--color-dark);
             font-size: 1.5rem;
             cursor: pointer;
         }
@@ -212,12 +287,13 @@
         /* Hero Section */
         #home {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://placehold.co/1920x1080/1A1A1A/D0021B?text=ВАЗ-2107+в+действии!') no-repeat center center/cover;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), 
+                        url('https://placehold.co/1920x1080/FFFFFF/FF6B7A?text=ВАЗ-2107+в+действии!') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: var(--color-light);
+            color: var(--color-dark);
             padding-top: 80px;
         }
 
@@ -229,12 +305,16 @@
         .hero-content h1 {
             font-size: 4rem;
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-content p {
             font-size: 1.5rem;
             margin-bottom: 2rem;
+            color: var(--color-text);
         }
 
         .hero-features {
@@ -249,6 +329,10 @@
             display: flex;
             align-items: center;
             font-size: 1.2rem;
+            background: var(--color-light);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .hero-buttons {
@@ -260,7 +344,7 @@
 
         /* About Section */
         #about {
-            background-color: var(--color-light);
+            background-color: var(--color-light-gray);
         }
 
         .about-content {
@@ -287,9 +371,14 @@
         }
 
         .about-image {
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover {
+            transform: translateY(-10px);
         }
 
         .about-image img {
@@ -305,7 +394,7 @@
 
         /* Steps Section */
         #steps {
-            background-color: var(--color-gray);
+            background-color: var(--color-light);
         }
 
         .steps-container {
@@ -316,25 +405,26 @@
 
         .step-card {
             background-color: var(--color-light);
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--color-gray);
         }
 
         .step-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
         .step-number {
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: var(--color-primary);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
             color: var(--color-light);
             width: 40px;
             height: 40px;
@@ -358,7 +448,7 @@
 
         /* Features Section */
         #features {
-            background-color: var(--color-light);
+            background-color: var(--color-light-gray);
         }
 
         .features-container {
@@ -370,13 +460,16 @@
         .feature-card {
             text-align: center;
             padding: 2rem 1rem;
-            border-radius: 10px;
+            border-radius: 15px;
             transition: all 0.3s ease;
+            background: var(--color-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--color-gray);
         }
 
         .feature-card:hover {
-            background-color: var(--color-accent-light);
             transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
         .feature-icon {
@@ -390,16 +483,12 @@
 
         /* Events Section */
         #events {
-            background-color: var(--color-dark);
-            color: var(--color-light);
+            background: linear-gradient(135deg, var(--color-secondary-light), var(--color-light));
+            color: var(--color-dark);
         }
 
         #events h2 {
-            color: var(--color-light);
-        }
-
-        #events h2::after {
-            background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+            color: var(--color-dark);
         }
 
         .events-container {
@@ -409,24 +498,24 @@
         }
 
         .event-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            background-color: var(--color-light);
+            border-radius: 15px;
             padding: 2rem;
             text-align: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            border: 1px solid var(--color-gray);
         }
 
         .event-card:hover {
             transform: translateY(-5px);
-            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
         .event-date {
             font-size: 1.2rem;
             font-weight: bold;
-            color: var(--color-accent);
+            color: var(--color-primary);
             margin-bottom: 0.5rem;
         }
 
@@ -455,20 +544,21 @@
 
         .merch-card {
             background-color: var(--color-light);
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
+            border: 1px solid var(--color-gray);
         }
 
         .merch-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
         .merch-image {
             height: 200px;
-            background-color: #f0f0f0;
+            background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -492,7 +582,7 @@
 
         /* Reviews Section */
         #reviews {
-            background-color: var(--color-gray);
+            background-color: var(--color-light-gray);
         }
 
         .reviews-container {
@@ -503,17 +593,18 @@
 
         .review-card {
             background-color: var(--color-light);
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             position: relative;
+            border: 1px solid var(--color-gray);
         }
 
         .review-card::before {
             content: """;
             font-size: 5rem;
-            color: var(--color-primary);
-            opacity: 0.2;
+            color: var(--color-primary-light);
+            opacity: 0.3;
             position: absolute;
             top: -10px;
             left: 10px;
@@ -534,16 +625,17 @@
 
         /* Form Section */
         #form {
-            background-color: var(--color-light);
+            background: linear-gradient(135deg, var(--color-accent-light), var(--color-light));
         }
 
         .form-container {
             max-width: 600px;
             margin: 0 auto;
-            background-color: var(--color-gray);
+            background-color: var(--color-light);
             padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--color-gray);
         }
 
         .form-group {
@@ -554,45 +646,45 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            color: var(--color-dark);
         }
 
         .form-control {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 1px solid var(--color-gray);
+            border-radius: 8px;
             font-family: var(--font-body);
             font-size: 1rem;
-            transition: border 0.3s ease;
+            transition: all 0.3s ease;
+            background-color: var(--color-light-gray);
         }
 
         .form-control:focus {
             border-color: var(--color-primary);
             outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 107, 122, 0.1);
         }
 
         .success-message {
             display: none;
             text-align: center;
             padding: 2rem;
-            background-color: var(--color-accent-light);
-            border-radius: 10px;
+            background: linear-gradient(135deg, var(--color-accent-light), var(--color-light));
+            border-radius: 15px;
             margin-top: 2rem;
+            border: 1px solid var(--color-accent);
         }
 
         /* Partners Section */
         #partners {
-            background-color: var(--color-dark);
-            color: var(--color-light);
+            background: linear-gradient(135deg, var(--color-primary-light), var(--color-light));
+            color: var(--color-dark);
             text-align: center;
         }
 
         #partners h2 {
-            color: var(--color-light);
-        }
-
-        #partners h2::after {
-            background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+            color: var(--color-dark);
         }
 
         .partners-content {
@@ -602,7 +694,7 @@
 
         /* Footer */
         footer {
-            background-color: var(--color-dark);
+            background: linear-gradient(135deg, var(--color-dark), #1A202C);
             color: var(--color-light);
             padding: 3rem 1rem;
         }
@@ -628,6 +720,7 @@
 
         .footer-about p {
             margin-bottom: 1.5rem;
+            opacity: 0.8;
         }
 
         .footer-links h3, .footer-contact h3 {
@@ -648,21 +741,19 @@
             color: var(--color-light);
             text-decoration: none;
             transition: color 0.3s ease;
+            opacity: 0.8;
         }
 
         .footer-links a:hover {
             color: var(--color-primary);
+            opacity: 1;
         }
 
         .footer-contact p {
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
-        }
-
-        .footer-contact i {
-            margin-right: 10px;
-            color: var(--color-primary);
+            opacity: 0.8;
         }
 
         .social-links {
@@ -695,6 +786,7 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
+            opacity: 0.7;
         }
 
         /* Responsive Styles */
@@ -723,12 +815,13 @@
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 70px);
-                background-color: var(--color-dark);
+                background-color: var(--color-light);
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
                 padding-top: 2rem;
                 transition: left 0.3s ease;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             }
             
             .nav-links.active {
@@ -778,6 +871,11 @@
     </style>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="background-animation" id="backgroundAnimation">
+        <!-- Floating elements will be added by JavaScript -->
+    </div>
+
     <!-- Header -->
     <header id="header">
         <nav>
@@ -830,8 +928,7 @@
                     </ul>
                 </div>
                 <div class="about-image">
-                    <!-- Замените на реальное изображение -->
-                    <img src="https://placehold.co/600x400/1A1A1A/D0021B?text=ВАЗ-2107+и+участники" alt="Участники квеста ПорулиКа">
+                    <img src="https://placehold.co/600x400/FFFFFF/FF6B7A?text=ВАЗ-2107+и+участники" alt="Участники квеста ПорулиКа">
                 </div>
             </div>
         </div>
@@ -1091,6 +1188,23 @@
 
     <!-- Scripts -->
     <script>
+        // Create floating elements for background animation
+        function createFloatingElements() {
+            const background = document.getElementById('backgroundAnimation');
+            const elements = ['🚗', '🚦', '🛑', '🚸', '🚧', '🅿️', '🚨', '📝', '🎯', '🏁', '🚙', '🚘', '🚔', '🚓'];
+            
+            for (let i = 0; i < 25; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.textContent = elements[Math.floor(Math.random() * elements.length)];
+                element.style.left = Math.random() * 100 + '%';
+                element.style.top = Math.random() * 100 + '%';
+                element.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
+                element.style.animationDelay = Math.random() * 20 + 's';
+                background.appendChild(element);
+            }
+        }
+
         // Mobile Menu Toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
             document.querySelector('.nav-links').classList.toggle('active');
@@ -1126,6 +1240,9 @@
                 document.querySelector('.nav-links').classList.remove('active');
             });
         });
+
+        // Initialize background animation
+        createFloatingElements();
     </script>
 </body>
 </html>
