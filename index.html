@@ -303,29 +303,37 @@
             position: relative;
         }
 
-        .logo {
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--color-dark);
-            text-decoration: none;
+        /* Центрированный логотип в белом круге */
+        .logo-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+        }
+
+        .logo-circle {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            position: absolute;
-            left: 1rem;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: var(--color-light);
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 3px solid var(--color-primary);
+            transition: all 0.3s ease;
+        }
+
+        .logo-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(255, 59, 92, 0.25);
         }
 
         .logo-img {
-            height: 40px;
+            height: 50px;
             width: auto;
-        }
-
-        .logo span {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            display: block;
         }
 
         .nav-links {
@@ -377,39 +385,59 @@
             right: 1rem;
         }
 
-        /* Compact Hero Section */
+        /* Centered Hero Section */
         #home {
-            height: 70vh;
-            min-height: 500px;
+            height: 100vh;
+            min-height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--color-dark);
-            padding-top: 80px;
+            padding: 0 1rem;
             background: transparent;
             margin: 0;
             box-shadow: none;
             border: none;
             backdrop-filter: none;
+            position: relative;
         }
 
         .hero-content {
-            max-width: 800px;
-            padding: 0 1rem;
+            max-width: 900px;
+            width: 100%;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: heroAppear 1s ease-out;
+        }
+
+        @keyframes heroAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .hero-title {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
             line-height: 1.1;
         }
 
         .hero-subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 2rem;
+            font-size: 1.6rem;
+            margin-bottom: 2.5rem;
             color: var(--color-text);
             font-weight: 400;
+            line-height: 1.4;
         }
 
         .hero-features {
@@ -417,26 +445,32 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 1rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
         }
 
         .hero-feature {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 1.1rem;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 0.7rem 1.2rem;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.8rem 1.5rem;
             border-radius: 50px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hero-feature:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
         }
 
         .hero-buttons {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
             flex-wrap: wrap;
         }
 
@@ -1008,7 +1042,11 @@
             }
             
             .hero-title {
-                font-size: 3rem;
+                font-size: 3.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.4rem;
             }
             
             .about-content {
@@ -1060,17 +1098,19 @@
                 padding: 1rem 2rem;
             }
 
-            .logo {
+            .logo-center {
                 position: static;
+                transform: none;
                 margin: 0 auto;
             }
 
             nav {
                 justify-content: space-between;
+                flex-wrap: wrap;
             }
             
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .hero-subtitle {
@@ -1085,6 +1125,11 @@
             .form-container {
                 padding: 2rem 1.5rem;
             }
+
+            .hero-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1097,7 +1142,11 @@
             }
             
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
             }
             
             .hero-buttons {
@@ -1109,6 +1158,8 @@
             .btn {
                 width: 100%;
                 max-width: 280px;
+                font-size: 0.85rem;
+                padding: 12px 24px;
             }
             
             .hero-features {
@@ -1120,6 +1171,17 @@
                 width: 100%;
                 max-width: 250px;
                 justify-content: center;
+                font-size: 1rem;
+                padding: 0.6rem 1.2rem;
+            }
+
+            .logo-circle {
+                width: 60px;
+                height: 60px;
+            }
+
+            .logo-img {
+                height: 35px;
             }
         }
     </style>
@@ -1135,10 +1197,6 @@
     <!-- Header -->
     <header id="header">
         <nav>
-            <a href="#home" class="logo">
-                <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" class="logo-img">
-                <span>Ка</span>
-            </a>
             <button class="mobile-menu-btn">☰</button>
             <ul class="nav-links">
                 <li><a href="#about">О квесте</a></li>
@@ -1150,10 +1208,16 @@
                 <li><a href="#form">Запись</a></li>
                 <li><a href="#partners">Партнёрам</a></li>
             </ul>
+            <!-- Центрированный логотип -->
+            <div class="logo-center">
+                <a href="#home" class="logo-circle">
+                    <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" class="logo-img">
+                </a>
+            </div>
         </nav>
     </header>
 
-    <!-- Compact Hero Section -->
+    <!-- Centered Hero Section -->
     <section id="home">
         <div class="hero-content">
             <h1 class="hero-title">ПОРУЛИКА</h1>
