@@ -3,211 +3,445 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ПорулиКа | Квест на ВАЗ-2107</title>
+    <title>Экзамен ПДД | Квест "ПорулиКа"</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Pangolin&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <!-- Preloader -->
     <div class="preloader">
         <div class="preloader-content">
-            <div class="preloader-car">🚗</div>
-            <div class="preloader-text">Заводим мотор...</div>
+            <div class="preloader-logo">
+                <div class="exam-stamp">ПДД</div>
+                <h1>ПОРУЛИКА</h1>
+                <p>Экзаменационный квест</p>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p>Загрузка экзаменационных материалов...</p>
+            </div>
         </div>
     </div>
 
-    <!-- Шапка -->
+    <!-- Шапка в стиле ГИБДД -->
     <header class="header">
-        <div class="header-container">
-            <!-- Логотип -->
-            <div class="logo">
-                <div class="logo-icon">🚗</div>
-                <span class="logo-text">ПОРУЛИКА</span>
+        <div class="header-top">
+            <div class="container">
+                <div class="header-official">
+                    <div class="russia-flag">
+                        <div class="flag-stripe white"></div>
+                        <div class="flag-stripe blue"></div>
+                        <div class="flag-stripe red"></div>
+                    </div>
+                    <span>Официальный экзаменационный квест</span>
+                </div>
+                <div class="header-contacts">
+                    <span><i class="fas fa-phone"></i> +7 (999) 123-45-67</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Москва</span>
+                </div>
             </div>
+        </div>
 
-            <!-- Навигация -->
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link">
-                            <i class="fas fa-home"></i>
-                            <span>Главная</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link">
-                            <i class="fas fa-info-circle"></i>
-                            <span>О квесте</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#stages" class="nav-link">
-                            <i class="fas fa-road"></i>
-                            <span>Этапы</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#characters" class="nav-link">
-                            <i class="fas fa-users"></i>
-                            <span>Персонажи</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#reviews" class="nav-link">
-                            <i class="fas fa-star"></i>
-                            <span>Отзывы</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#merch" class="nav-link">
-                            <i class="fas fa-tshirt"></i>
-                            <span>Мерч</span>
-                        </a>
-                    </li>
+        <nav class="header-main">
+            <div class="container">
+                <div class="nav-brand">
+                    <div class="brand-icon">
+                        <i class="fas fa-car"></i>
+                        <div class="icon-badge">ПДД</div>
+                    </div>
+                    <div class="brand-text">
+                        <h2>ПОРУЛИКА</h2>
+                        <p>Экзаменационный квест</p>
+                    </div>
+                </div>
+
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Главная</a></li>
+                    <li><a href="#about" class="nav-link">Об экзамене</a></li>
+                    <li><a href="#stages" class="nav-link">Этапы</a></li>
+                    <li><a href="#requirements" class="nav-link">Требования</a></li>
+                    <li><a href="#reviews" class="nav-link">Протоколы</a></li>
+                    <li><a href="#booking" class="nav-link btn-exam">Запись</a></li>
                 </ul>
-            </nav>
 
-            <!-- Действия -->
-            <div class="header-actions">
-                <a href="tel:+79991234567" class="phone-link">
-                    <i class="fas fa-phone"></i>
-                </a>
-                <a href="#booking" class="btn-book">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span>Записаться</span>
-                </a>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-
-            <!-- Мобильное меню -->
-            <div class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-
-        <!-- Мобильное меню -->
-        <div class="mobile-menu" id="mobileMenu">
-            <div class="mobile-menu-content">
-                <a href="#home" class="mobile-nav-link">
-                    <i class="fas fa-home"></i>
-                    Главная
-                </a>
-                <a href="#about" class="mobile-nav-link">
-                    <i class="fas fa-info-circle"></i>
-                    О квесте
-                </a>
-                <a href="#stages" class="mobile-nav-link">
-                    <i class="fas fa-road"></i>
-                    Этапы
-                </a>
-                <a href="#characters" class="mobile-nav-link">
-                    <i class="fas fa-users"></i>
-                    Персонажи
-                </a>
-                <a href="#reviews" class="mobile-nav-link">
-                    <i class="fas fa-star"></i>
-                    Отзывы
-                </a>
-                <a href="#merch" class="mobile-nav-link">
-                    <i class="fas fa-tshirt"></i>
-                    Мерч
-                </a>
-                <a href="#booking" class="mobile-nav-link book">
-                    <i class="fas fa-calendar-alt"></i>
-                    Записаться
-                </a>
-            </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- Главная секция -->
-    <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="floating-car">🚗</div>
-            <div class="floating-cone">🔺</div>
-            <div class="floating-sign">🚸</div>
-        </div>
-        
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span>НОВИНКА</span>
-            </div>
-            
-            <h1 class="hero-title">
-                <span class="title-part">ПОРУЛИ</span>
-                <span class="title-part accent">КА</span>
-            </h1>
-            
-            <p class="hero-subtitle">Экзамен на ВАЗ-2107, который ты не забудешь!</p>
-            
-            <div class="hero-features">
-                <div class="feature">
-                    <i class="fas fa-clock"></i>
-                    <span>30-75 минут</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-ruble-sign"></i>
-                    <span>От 500 ₽</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-car"></i>
-                    <span>Настоящая "Семёрка"</span>
-                </div>
-            </div>
-            
-            <div class="hero-buttons">
-                <a href="#booking" class="btn btn-primary">
-                    <i class="fas fa-flag-checkered"></i>
-                    Записаться на квест!
-                </a>
-                <a href="#about" class="btn btn-secondary">
-                    <i class="fas fa-play-circle"></i>
-                    Узнать больше
-                </a>
-            </div>
-        </div>
-        
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- О квесте -->
-    <section id="about" class="about">
+    <!-- Главная секция - Экзаменационный билет -->
+    <section id="home" class="exam-hero">
         <div class="container">
-            <h2>Что такое <span class="highlight">ПорулиКа</span>?</h2>
-            <p class="section-description">Это не просто квест — это настоящее приключение за рулем легендарной ВАЗ-2107!</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">😄</div>
-                    <h3>Юмор и эмоции</h3>
-                    <p>Смейся до слез под руководством нашего уникального инструктора</p>
+            <div class="exam-ticket">
+                <div class="ticket-header">
+                    <div class="ticket-number">Билет № 2107</div>
+                    <div class="ticket-stamp">ДЕЙСТВИТЕЛЕН</div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚗</div>
-                    <h3>Настоящая ВАЗ-2107</h3>
-                    <p>Живая легенда автопрома с характером и душой</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Повтори ПДД</h3>
-                    <p>В игровой форме вспомнишь правила дорожного движения</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>Для компании</h3>
-                    <p>Идеально для друзей, семьи или корпоратива</p>
+                
+                <div class="ticket-content">
+                    <h1>ЭКЗАМЕНАЦИОННЫЙ КВЕСТ<br><span class="accent">"ПОРУЛИКА"</span></h1>
+                    
+                    <div class="ticket-info">
+                        <div class="info-item">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <span class="label">Кандидат в водители</span>
+                                <span class="value">Требуется ваше участие</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-car"></i>
+                            <div>
+                                <span class="label">Транспортное средство</span>
+                                <span class="value">ВАЗ-2107 (учебное)</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <span class="label">Продолжительность</span>
+                                <span class="value">30-75 минут</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exam-rules">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Внимание!</h3>
+                        <ul>
+                            <li>Экзамен проходит на закрытой территории</li>
+                            <li>Соблюдайте указания экзаменатора</li>
+                            <li>За нарушения начисляются штрафные баллы</li>
+                            <li>Минимальный возраст - 16 лет</li>
+                        </ul>
+                    </div>
+
+                    <div class="ticket-actions">
+                        <a href="#booking" class="btn btn-primary">
+                            <i class="fas fa-file-signature"></i>
+                            Записаться на экзамен
+                        </a>
+                        <a href="#about" class="btn btn-secondary">
+                            <i class="fas fa-book"></i>
+                            Правила экзамена
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Остальные секции... -->
+    <!-- Секция об экзамене -->
+    <section id="about" class="exam-about">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">§ 1</div>
+                <h2>Об экзаменационном квесте</h2>
+                <p>Официальная процедура проверки навыков вождения в условиях, приближенных к реальным</p>
+            </div>
+
+            <div class="exam-features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Официальный формат</h3>
+                    <p>Экзамен проводится по стандартам ГИБДД с элементами интерактивного квеста</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h3>Легендарный автомобиль</h3>
+                    <p>ВАЗ-2107 - эталон учебного транспортного средства с характером</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Профессиональный экзаменатор</h3>
+                    <p>Инструктор с 37-летним стажем проведения экзаменов</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-certificate"></i>
+                    </div>
+                    <h3>Экзаменационный протокол</h3>
+                    <p>Каждый участник получает официальное свидетельство о прохождении</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Этапы экзамена -->
+    <section id="stages" class="exam-stages">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">§ 2</div>
+                <h2>Этапы экзамена</h2>
+                <p>Последовательность выполнения экзаменационных заданий</p>
+            </div>
+
+            <div class="stages-timeline">
+                <div class="stage-item">
+                    <div class="stage-number">01</div>
+                    <div class="stage-content">
+                        <h3>Теоретическая подготовка</h3>
+                        <p>Инструктаж и проверка знаний ПДД. Получение экзаменационного листа</p>
+                        <ul class="stage-details">
+                            <li>Проверка документов</li>
+                            <li>Инструктаж по технике безопасности</li>
+                            <li>Начальный балл: 100 очков</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="stage-item">
+                    <div class="stage-number">02</div>
+                    <div class="stage-content">
+                        <h3>Площадка "Автодром"</h3>
+                        <p>Выполнение базовых маневров на учебной площадке</p>
+                        <ul class="stage-details">
+                            <li>Змейка между конусами</li>
+                            <li>Парковка задним ходом</li>
+                            <li>Маневрирование в ограниченном пространстве</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="stage-item">
+                    <div class="stage-number">03</div>
+                    <div class="stage-content">
+                        <h3>Городской маршрут</h3>
+                        <p>Движение по имитации городских условий с соблюдением ПДД</p>
+                        <ul class="stage-details">
+                            <li>Светофоры и дорожные знаки</li>
+                            <li>Пешеходные переходы</li>
+                            <li>Сложные перекрестки</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="stage-item">
+                    <div class="stage-number">04</div>
+                    <div class="stage-content">
+                        <h3>Финальное испытание</h3>
+                        <p>Комплексная проверка навыков вождения в стрессовых условиях</p>
+                        <ul class="stage-details">
+                            <li>Внезапные препятствия</li>
+                            <li>Проверка сотрудником ГИБДД</li>
+                            <li>Экстренные ситуации</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Требования к кандидатам -->
+    <section id="requirements" class="requirements">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">§ 3</div>
+                <h2>Требования к кандидатам</h2>
+                <p>Условия допуска к экзаменационному квесту</p>
+            </div>
+
+            <div class="requirements-grid">
+                <div class="requirement-card">
+                    <div class="req-icon">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <h3>Возраст</h3>
+                    <p>От 16 лет (с согласия родителей)<br>От 18 лет - самостоятельно</p>
+                </div>
+                <div class="requirement-card">
+                    <div class="req-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3>Документы</h3>
+                    <p>Паспорт или иное удостоверение личности</p>
+                </div>
+                <div class="requirement-card">
+                    <div class="req-icon">
+                        <i class="fas fa-shoe-prints"></i>
+                    </div>
+                    <h3>Одежда</h3>
+                    <p>Удобная одежда и обувь, не стесняющая движения</p>
+                </div>
+                <div class="requirement-card">
+                    <div class="req-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3>Ограничения</h3>
+                    <p>Не допускаются лица в состоянии алкогольного опьянения</p>
+                </div>
+            </div>
+
+            <div class="requirements-notice">
+                <div class="notice-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="notice-content">
+                    <h4>Важная информация</h4>
+                    <p>Все участники страхуются. Экзамен проходит на полностью безопасной территории под постоянным контролем профессионального инструктора.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Протоколы (Отзывы) -->
+    <section id="reviews" class="protocols">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">§ 4</div>
+                <h2>Экзаменационные протоколы</h2>
+                <p>Результаты предыдущих кандидатов</p>
+            </div>
+
+            <div class="protocols-grid">
+                <div class="protocol-card">
+                    <div class="protocol-header">
+                        <div class="protocol-id">Протокол № 2107-001</div>
+                        <div class="protocol-result success">СДАЛ</div>
+                    </div>
+                    <div class="protocol-content">
+                        <p>"Думал, будет страшно, но инструктор вселил уверенность. Парковался впервые - получилось с первого раза!"</p>
+                        <div class="protocol-meta">
+                            <span class="candidate">Артём, 19 лет</span>
+                            <span class="score">Баллы: 85/100</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="protocol-card">
+                    <div class="protocol-header">
+                        <div class="protocol-id">Протокол № 2107-002</div>
+                        <div class="protocol-result success">СДАЛ</div>
+                    </div>
+                    <div class="protocol-content">
+                        <p>"Лучший тимбилдинг! Коллеги до сих пор вспоминают, как я сдавал задом. Василий Петрович - легенда!"</p>
+                        <div class="protocol-meta">
+                            <span class="candidate">Анна, HR-менеджер</span>
+                            <span class="score">Баллы: 78/100</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="protocol-card">
+                    <div class="protocol-header">
+                        <div class="protocol-id">Протокол № 2107-003</div>
+                        <div class="protocol-result warning">ПЕРЕСДАЧА</div>
+                    </div>
+                    <div class="protocol-content">
+                        <p>"Забыл включить поворотник при парковке. Инструктор отчитал по полной! На пересдаче буду внимательнее."</p>
+                        <div class="protocol-meta">
+                            <span class="candidate">Сергей, 25 лет</span>
+                            <span class="score">Баллы: 45/100</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Запись на экзамен -->
+    <section id="booking" class="exam-booking">
+        <div class="container">
+            <div class="booking-form-wrapper">
+                <div class="form-header">
+                    <div class="form-badge">ЗАЯВКА</div>
+                    <h2>Запись на экзаменационный квест</h2>
+                    <p>Заполните форму для бронирования времени</p>
+                </div>
+
+                <form class="exam-form" id="examForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">ФИО кандидата *</label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="Иванов Иван Иванович">
+                        </div>
+                        <div class="form-group">
+                            <label for="birthDate">Дата рождения *</label>
+                            <input type="date" id="birthDate" name="birthDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Контактный телефон *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
+                        </div>
+                        <div class="form-group">
+                            <label for="examDate">Предпочтительная дата *</label>
+                            <input type="date" id="examDate" name="examDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Опыт вождения</label>
+                        <select id="experience" name="experience">
+                            <option value="none">Нет опыта</option>
+                            <option value="beginner">Начинающий</option>
+                            <option value="experienced">Опытный водитель</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Дополнительные пожелания</label>
+                        <textarea id="notes" name="notes" rows="3" placeholder="Особые условия, предпочтения по времени..."></textarea>
+                    </div>
+
+                    <div class="form-agreement">
+                        <label class="checkbox">
+                            <input type="checkbox" required>
+                            <span class="checkmark"></span>
+                            Я согласен с условиями проведения экзамена и обработкой персональных данных
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit">
+                        <i class="fas fa-paper-plane"></i>
+                        Отправить заявку
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-car"></i>
+                        <span>ПОРУЛИКА</span>
+                    </div>
+                    <p>Официальный экзаменационный квест<br>по стандартам ГИБДД</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва</p>
+                    <p><i class="fas fa-clock"></i> Ежедневно 10:00-22:00</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Документы</h4>
+                    <a href="#">Правила экзамена</a>
+                    <a href="#">Требования безопасности</a>
+                    <a href="#">Политика конфиденциальности</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Экзаменационный квест "ПорулиКа". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
