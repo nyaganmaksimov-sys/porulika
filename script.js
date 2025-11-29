@@ -1,204 +1,134 @@
-// Добавляем в существующий script.js
+// Preloader
+window.addEventListener('load', function() {
+    const preloader = document.querySelector('.preloader');
+    setTimeout(function() {
+        preloader.style.opacity = '0';
+        setTimeout(function() {
+            preloader.style.display = 'none';
+        }, 500);
+    }, 1000);
+});
 
-// Партиклы
-function createParticles() {
-    const particlesContainer = document.createElement('div');
-    particlesContainer.className = 'particles';
-    document.querySelector('.hero').appendChild(particlesContainer);
+// Мобильное меню
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-    for (let i = 0; i < 15; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        const size = Math.random() * 10 + 5;
-        const left = Math.random() * 100;
-        const animationDuration = Math.random() * 20 + 10;
-        const animationDelay = Math.random() * 5;
-        
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${left}vw`;
-        particle.style.animationDuration = `${animationDuration}s`;
-        particle.style.animationDelay = `${animationDelay}s`;
-        
-        particlesContainer.appendChild(particle);
-    }
-}
+mobileMenuBtn.addEventListener('click', function() {
+    this.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+});
 
-// Прогресс-бар скролла
-function initScrollProgress() {
-    const progressBar = document.querySelector('.progress-bar');
-    
-    window.addEventListener('scroll', () => {
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight - windowHeight;
-        const scrollPosition = window.scrollY;
-        const progress = (scrollPosition / documentHeight) * 100;
-        
-        progressBar.style.width = `${progress}%`;
-    });
-}
-
-// Активное меню при скролле
-function initActiveMenu() {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    window.addEventListener('scroll', () => {
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            const sectionHeight = section.clientHeight;
-            if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    });
-}
-
-// Кнопка "Наверх"
-function initScrollToTop() {
-    const scrollBtn = document.getElementById('scrollToTop');
-    
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            scrollBtn.classList.add('visible');
-        } else {
-            scrollBtn.classList.remove('visible');
-        }
-    });
-    
-    scrollBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-// FAQ аккордеон
-function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
-        question.addEventListener('click', () => {
-            // Закрываем все остальные
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                }
-            });
-            
-            // Переключаем текущий
-            item.classList.toggle('active');
-        });
-    });
-}
-
-// Консольные сообщения
-function initConsoleMessages() {
-    const consoleMessage = document.getElementById('consoleMessage');
-    
-    // Показываем сообщение через 2 секунды
-    setTimeout(() => {
-        consoleMessage.classList.add('show');
-    }, 2000);
-    
-    // Закрытие сообщения
-    consoleMessage.querySelector('.console-close').addEventListener('click', () => {
-        consoleMessage.classList.remove('show');
-    });
-    
-    // Автоматическое скрытие через 8 секунд
-    setTimeout(() => {
-        consoleMessage.classList.remove('show');
-    }, 8000);
-}
-
-// Анимация шапки при скролле
-function initHeaderAnimation() {
-    const header = document.getElementById('header');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-}
-
-// Интерактивные элементы галереи
-function initGallery() {
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    
-    galleryItems.forEach(item => {
-        item.addEventListener('click', () => {
-            // Здесь можно добавить модальное окно с увеличенным изображением
-            item.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                item.style.transform = '';
-            }, 150);
-        });
-    });
-}
-
-// Инициализация всех функций
-document.addEventListener('DOMContentLoaded', () => {
-    // Существующие функции
-    initScrollProgress();
-    initActiveMenu();
-    initScrollToTop();
-    initFAQ();
-    initConsoleMessages();
-    initHeaderAnimation();
-    initGallery();
-    createParticles();
-    
-    // Добавляем анимацию для логотипа при клике
-    const logo = document.querySelector('.logo');
-    logo.addEventListener('click', () => {
-        logo.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            logo.style.transform = '';
-        }, 150);
+// Закрытие мобильного меню при клике на ссылку
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        mobileMenuBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
     });
 });
 
-// Дополняем существующую функцию анимации чисел
-const animatedNumbers = new Set();
-
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !animatedNumbers.has(entry.target)) {
-            animateNumber(entry.target);
-            animatedNumbers.add(entry.target);
+// Плавная прокрутка
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            // Закрываем мобильное меню если открыто
+            mobileMenuBtn.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            
+            // Плавная прокрутка
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+            });
         }
     });
-}, { threshold: 0.5 });
+});
 
-function animateNumber(element) {
-    const target = parseInt(element.getAttribute('data-target'));
-    const duration = 2000;
-    const step = target / (duration / 16);
-    let current = 0;
+// Изменение шапки при скролле
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+// Активное меню при скролле
+window.addEventListener('scroll', function() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
     
-    const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-            current = target;
-            clearInterval(timer);
+    let current = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
         }
-        element.textContent = Math.floor(current);
-    }, 16);
-}
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
+    });
+});
+
+// Анимация появления элементов при скролле
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Наблюдаем за карточками
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.feature-card');
+    
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+});
+
+// Простая анимация для логотипа
+const logo = document.querySelector('.logo');
+logo.addEventListener('mouseenter', function() {
+    this.style.transform = 'scale(1.05)';
+});
+
+logo.addEventListener('mouseleave', function() {
+    this.style.transform = 'scale(1)';
+});
+
+// Анимация для кнопок
+const buttons = document.querySelectorAll('.btn, .btn-book');
+buttons.forEach(button => {
+    button.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+    });
+    
+    button.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+    });
+});
+
+console.log('🚗 ПорулиКа загружен! Добро пожаловать!');
