@@ -1,85 +1,102 @@
-// Preloader
-window.addEventListener('load', function() {
-    const preloader = document.querySelector('.preloader');
-    const progressFill = document.querySelector('.progress-fill');
-    
-    // Анимация прогресс-бара
-    let progress = 0;
-    const interval = setInterval(() => {
-        progress += 2;
-        progressFill.style.width = progress + '%';
-        
-        if (progress >= 100) {
-            clearInterval(interval);
-            setTimeout(() => {
-                preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 500);
-            }, 500);
-        }
-    }, 40);
-});
+// Добавляем в существующий script.js
 
-// Плавная прокрутка для якорных ссылок
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Анимация появления элементов при скролле
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Наблюдаем за карточками и элементами
+// Анимация элементов при загрузке
 document.addEventListener('DOMContentLoaded', function() {
-    const animateElements = document.querySelectorAll('.feature-card, .stage-item, .requirement-card, .protocol-card');
-    
-    animateElements.forEach(element => {
+    // Добавляем анимацию для шутливых элементов
+    const humorElements = document.querySelectorAll('.ticket-subtitle, .character-stats, .quote');
+    humorElements.forEach(element => {
         element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(element);
+        element.style.transform = 'translateX(-20px)';
+        element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     });
+
+    // Запускаем анимацию с задержкой
+    setTimeout(() => {
+        humorElements.forEach((element, index) => {
+            setTimeout(() => {
+                element.style.opacity = '1';
+                element.style.transform = 'translateX(0)';
+            }, index * 200);
+        });
+    }, 1000);
+
+    // Случайные анимации для конусов
+    const cones = document.querySelectorAll('.cone');
+    cones.forEach(cone => {
+        cone.addEventListener('mouseenter', function() {
+            this.style.animation = 'bounceCone 0.5s ease-in-out';
+            setTimeout(() => {
+                this.style.animation = 'bounceCone 8s ease-in-out infinite';
+            }, 500);
+        });
+    });
+
+    // Анимация для протоколов при наведении
+    const protocols = document.querySelectorAll('.protocol-card');
+    protocols.forEach(protocol => {
+        protocol.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) rotate(1deg)';
+        });
+        
+        protocol.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) rotate(0deg)';
+        });
+    });
+
+    // Шутливое сообщение в консоли
+    console.log(`%c
+    🚗 Добро пожаловать в Порулику! 🚗
+    
+    Важные инструкции:
+    1. Не забывайте дышать
+    2. Педаль сцепления - ваша лучшая подруга
+    3. Василий Петрович всегда прав (даже когда не прав)
+    4. Конусы - не враги, они просто проверяют ваши навыки
+    
+    Удачи на экзамене! 🎯
+    `, 'color: #1E3A8A; font-size: 14px; font-weight: bold;');
 });
 
-// Обработка формы
+// Дополняем обработку формы
 document.getElementById('examForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const submitBtn = this.querySelector('.btn-submit');
     const originalText = submitBtn.innerHTML;
     
-    // Показываем состояние отправки
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+    // Шутливое состояние отправки
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправляем Василию Петровичу на одобрение...';
     submitBtn.disabled = true;
+    
+    // Случайная шутливая фраза
+    const funnyPhrases = [
+        "Проверяем, не занят ли автодром...",
+        "Уточняем расписание ГАИшника Лёни...", 
+        "Заказываем шаурму для инструктора...",
+        "Накачиваем шины у ВАЗика...",
+        "Предупреждаем конусы о вашем визите..."
+    ];
+    
+    let currentPhrase = 0;
+    const phraseInterval = setInterval(() => {
+        submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${funnyPhrases[currentPhrase]}`;
+        currentPhrase = (currentPhrase + 1) % funnyPhrases.length;
+    }, 1000);
     
     // Имитация отправки
     setTimeout(() => {
-        // В реальном проекте здесь будет отправка на сервер
-        alert('Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время для подтверждения записи.');
+        clearInterval(phraseInterval);
+        
+        // Случайный результат
+        const results = [
+            "Василий Петрович одобрил! Ждем вас на экзамен!",
+            "ГАИшник Лёня проверил - все чисто! Записали!",
+            "ВАЗ-2107 завелся от радости! Вы записаны!",
+            "Конусы в ожидании! Запись подтверждена!"
+        ];
+        const randomResult = results[Math.floor(Math.random() * results.length)];
+        
+        alert(`🎉 ${randomResult}\n\nМы свяжемся с вами для подтверждения времени. И да, готовьте нервы!`);
         
         // Восстанавливаем кнопку
         submitBtn.innerHTML = originalText;
@@ -87,25 +104,39 @@ document.getElementById('examForm').addEventListener('submit', function(e) {
         
         // Очищаем форму
         this.reset();
-    }, 2000);
+    }, 4000);
 });
 
-// Изменение шапки при скролле
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('.header');
-    if (window.scrollY > 100) {
-        header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-    } else {
-        header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-    }
+// Анимация для элементов при скролле с задержкой
+const staggeredObserver = new IntersectionObserver(function(entries) {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }, index * 200);
+        }
+    });
+}, { threshold: 0.1 });
+
+// Применяем к элементам с шутливым текстом
+document.querySelectorAll('.humor-text, .character-quotes .quote').forEach(element => {
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(20px)';
+    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    staggeredObserver.observe(element);
 });
 
-// Анимация для экзаменационного билета
-const examTicket = document.querySelector('.exam-ticket');
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const rate = scrolled * -0.5;
-    examTicket.style.transform = `translateY(${rate}px)`;
-});
+// Случайные подмигивания для элементов
+function addRandomBlinks() {
+    const elements = document.querySelectorAll('.protocol-result, .section-badge');
+    setInterval(() => {
+        const randomElement = elements[Math.floor(Math.random() * elements.length)];
+        randomElement.classList.add('blink');
+        setTimeout(() => {
+            randomElement.classList.remove('blink');
+        }, 1000);
+    }, 5000);
+}
 
-console.log('Экзаменационный квест "ПорулиКа" инициализирован. Удачи на экзамене! 🚗');
+addRandomBlinks();
