@@ -87,15 +87,15 @@
 
         .floating-element {
             position: absolute;
-            opacity: 0.08;
+            opacity: 0.15;
             animation: floatElement 25s infinite linear;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
         }
 
         .floating-element img {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             object-fit: contain;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
         }
 
         .floating-element:nth-child(2n) {
@@ -105,6 +105,11 @@
 
         .floating-element:nth-child(3n) {
             animation-duration: 35s;
+        }
+
+        .floating-element:nth-child(4n) {
+            animation-duration: 40s;
+            animation-direction: reverse;
         }
 
         @keyframes floatElement {
@@ -303,7 +308,7 @@
             position: relative;
         }
 
-        /* Центрированный логотип без обводки */
+        /* Центрированный логотип увеличенного размера */
         .logo-center {
             position: absolute;
             left: 50%;
@@ -316,12 +321,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             background: var(--color-light);
             border-radius: 50%;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            /* Убрана обводка */
             transition: all 0.3s ease;
         }
 
@@ -331,7 +335,7 @@
         }
 
         .logo-img {
-            height: 50px;
+            height: 80px;
             width: auto;
             display: block;
         }
@@ -1034,6 +1038,83 @@
             font-size: 0.9rem;
         }
 
+        /* Дополнительные креативные элементы */
+        .road-markings {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.05;
+        }
+
+        .road-line {
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background: var(--color-light);
+            animation: roadMove 15s linear infinite;
+        }
+
+        .road-line:nth-child(2) {
+            top: 25%;
+            animation-delay: 2s;
+        }
+
+        .road-line:nth-child(3) {
+            top: 50%;
+            animation-delay: 4s;
+        }
+
+        .road-line:nth-child(4) {
+            top: 75%;
+            animation-delay: 6s;
+        }
+
+        @keyframes roadMove {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Анимированные знаки на странице */
+        .sign-decoration {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: signFloat 8s ease-in-out infinite;
+        }
+
+        .sign-1 {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .sign-2 {
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .sign-3 {
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        .sign-4 {
+            bottom: 25%;
+            right: 5%;
+            animation-delay: 6s;
+        }
+
+        @keyframes signFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
         /* Responsive Styles */
         @media (max-width: 1200px) {
             section {
@@ -1185,12 +1266,12 @@
             }
 
             .logo-circle {
-                width: 60px;
-                height: 60px;
+                width: 80px;
+                height: 80px;
             }
 
             .logo-img {
-                height: 35px;
+                height: 60px;
             }
         }
     </style>
@@ -1199,9 +1280,21 @@
     <!-- Animated Background - теплая версия -->
     <div class="warm-background"></div>
     <div class="floating-elements" id="floatingElements"></div>
+    <div class="road-markings">
+        <div class="road-line"></div>
+        <div class="road-line"></div>
+        <div class="road-line"></div>
+        <div class="road-line"></div>
+    </div>
     <div class="creative-shape shape-1"></div>
     <div class="creative-shape shape-2"></div>
     <div class="creative-shape shape-3"></div>
+
+    <!-- Дополнительные анимированные знаки -->
+    <div class="sign-decoration sign-1">🛑</div>
+    <div class="sign-decoration sign-2">🚸</div>
+    <div class="sign-decoration sign-3">🚧</div>
+    <div class="sign-decoration sign-4">⛔</div>
 
     <!-- Header -->
     <header id="header">
@@ -1215,7 +1308,7 @@
                 <li><a href="#events">Расписание</a></li>
             </ul>
             
-            <!-- Центрированный логотип -->
+            <!-- Центрированный логотип увеличенного размера -->
             <div class="logo-center">
                 <a href="#home" class="logo-circle">
                     <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" class="logo-img">
@@ -1538,20 +1631,25 @@
         function createFloatingElements() {
             const container = document.getElementById('floatingElements');
             const signs = [
-                'https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/sign1.png',
-                'https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/sign2.png',
-                'https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/sign3.png',
-                'https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/sign4.png',
-                'https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/sign5.png'
+                '🚗', '🚙', '🚕', '🚌', '🚎', '🏎️', '🚓', '🚑', '🚒', '🚐', 
+                '🚚', '🚛', '🚜', '🛴', '🚲', '🛵', '🏍️', '🚨', '🚔', '🚍',
+                '🚘', '🚖', '🚡', '🚠', '🚟', '🚃', '🚋', '🚞', '🚝', '🚄',
+                '🚅', '🚈', '🚂', '🚆', '🚇', '🚊', '🚉', '🚁', '🛩️', '✈️',
+                '🛫', '🛬', '🚀', '🛰️', '💺', '🛶', '⛵', '🛥️', '🚤', '🛳️',
+                '⛴️', '🚢', '⚓', '🚧', '⛽', '🚏', '🚦', '🚥', '🗺️', '🗿',
+                '🗽', '🗼', '🏰', '🏯', '🏟️', '🎡', '🎢', '🎠', '⛲', '⛱️',
+                '🏖️', '🏝️', '🏜️', '🌋', '⛰️', '🏔️', '🗻', '🏕️', '🏠', '🏡',
+                '🏘️', '🏚️', '🏗️', '🏭', '🏢', '🏬', '🏣', '🏤', '🏥', '🏦',
+                '🏨', '🏪', '🏫', '🏩', '💒', '🏛️', '⛪', '🕌', '🕍', '🛕'
             ];
             
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 25; i++) {
                 const element = document.createElement('div');
                 element.className = 'floating-element';
                 
-                const img = document.createElement('img');
-                img.src = signs[Math.floor(Math.random() * signs.length)];
-                img.alt = 'Дорожный знак';
+                const img = document.createElement('div');
+                img.textContent = signs[Math.floor(Math.random() * signs.length)];
+                img.style.fontSize = '3rem';
                 
                 element.appendChild(img);
                 element.style.left = Math.random() * 100 + '%';
