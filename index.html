@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&family=Lilita+One&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -31,6 +31,7 @@
             --color-text-light: #6c757d;
             --font-heading: 'Montserrat', sans-serif;
             --font-body: 'Roboto', sans-serif;
+            --font-fun: 'Lilita One', cursive;
             --border-radius: 12px;
             --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -57,7 +58,7 @@
             min-height: 100vh;
         }
 
-        /* Анимированный фон с геометрическими фигурами */
+        /* Анимированный фон с дорожными знаками */
         .animated-background {
             position: fixed;
             top: 0;
@@ -68,54 +69,56 @@
             overflow: hidden;
         }
 
-        .shape {
+        .road-sign {
             position: absolute;
-            opacity: 0.05;
-            border-radius: 50%;
-            animation: float 25s infinite linear;
+            font-size: 2.5rem;
+            opacity: 0.1;
+            animation: floatSign 25s infinite linear;
         }
 
-        .shape-1 {
-            width: 300px;
-            height: 300px;
-            background: var(--color-accent);
+        .sign-1 {
             top: 10%;
             left: 5%;
             animation-delay: 0s;
             animation-duration: 30s;
         }
 
-        .shape-2 {
-            width: 200px;
-            height: 200px;
-            background: var(--color-secondary);
+        .sign-2 {
             top: 60%;
             right: 10%;
             animation-delay: 5s;
             animation-duration: 25s;
         }
 
-        .shape-3 {
-            width: 400px;
-            height: 400px;
-            background: var(--color-primary);
+        .sign-3 {
             bottom: 10%;
             left: 20%;
             animation-delay: 10s;
             animation-duration: 35s;
         }
 
-        .shape-4 {
-            width: 150px;
-            height: 150px;
-            background: var(--color-accent-light);
+        .sign-4 {
             top: 20%;
             right: 20%;
             animation-delay: 15s;
             animation-duration: 20s;
         }
 
-        @keyframes float {
+        .sign-5 {
+            top: 40%;
+            left: 15%;
+            animation-delay: 7s;
+            animation-duration: 28s;
+        }
+
+        .sign-6 {
+            bottom: 30%;
+            right: 25%;
+            animation-delay: 12s;
+            animation-duration: 32s;
+        }
+
+        @keyframes floatSign {
             0% {
                 transform: translate(0, 0) rotate(0deg);
             }
@@ -182,10 +185,6 @@
             font-size: 3.5rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         h2 {
@@ -220,14 +219,14 @@
             z-index: 1;
         }
 
-        .section-dark {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-            color: var(--color-light);
+        .section-light {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: var(--color-text);
         }
 
-        .section-dark h2,
-        .section-dark h3 {
-            color: var(--color-light);
+        .section-light h2,
+        .section-light h3 {
+            color: var(--color-primary);
         }
 
         .btn {
@@ -427,6 +426,34 @@
             font-size: 1.5rem;
             cursor: pointer;
             padding: 0.5rem;
+        }
+
+        /* Анимированный заголовок */
+        .animated-title {
+            font-family: var(--font-fun);
+            font-size: 4.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite, bounce 2s ease infinite;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         /* Hero Section */
@@ -941,8 +968,8 @@
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-            color: var(--color-light);
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: var(--color-text);
             padding: 4rem 1rem 2rem;
             margin-top: 4rem;
         }
@@ -993,7 +1020,7 @@
         }
 
         .footer-links a {
-            color: var(--color-light);
+            color: var(--color-text);
             text-decoration: none;
             transition: var(--transition);
             opacity: 0.8;
@@ -1026,9 +1053,9 @@
             justify-content: center;
             width: 45px;
             height: 45px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.1);
             border-radius: 50%;
-            color: var(--color-light);
+            color: var(--color-text);
             text-decoration: none;
             transition: var(--transition);
             font-size: 1.2rem;
@@ -1036,6 +1063,7 @@
 
         .social-link:hover {
             background: var(--color-accent);
+            color: var(--color-light);
             transform: translateY(-3px) scale(1.1);
             box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
         }
@@ -1044,7 +1072,7 @@
             max-width: 1200px;
             margin: 3rem auto 0;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
             text-align: center;
             opacity: 0.7;
             font-size: 0.9rem;
@@ -1099,8 +1127,8 @@
         .exam-section {
             text-align: center;
             padding: 4rem 2rem;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-            color: white;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: var(--color-text);
             border-radius: var(--border-radius);
             margin: 2rem auto;
             max-width: 800px;
@@ -1174,6 +1202,10 @@
             
             .about-image {
                 order: -1;
+            }
+            
+            .animated-title {
+                font-size: 3.5rem;
             }
         }
 
@@ -1254,6 +1286,10 @@
                 width: 100%;
                 max-width: 280px;
             }
+            
+            .animated-title {
+                font-size: 2.8rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1298,6 +1334,10 @@
                 font-size: 1rem;
                 padding: 0.6rem 1.2rem;
             }
+            
+            .animated-title {
+                font-size: 2.2rem;
+            }
         }
 
         /* Оверлей для мобильного меню */
@@ -1322,12 +1362,14 @@
     </style>
 </head>
 <body>
-    <!-- Анимированный фон -->
+    <!-- Анимированный фон с дорожными знаками -->
     <div class="animated-background">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
+        <div class="road-sign sign-1">🚦</div>
+        <div class="road-sign sign-2">🛑</div>
+        <div class="road-sign sign-3">🚸</div>
+        <div class="road-sign sign-4">🚧</div>
+        <div class="road-sign sign-5">⚠️</div>
+        <div class="road-sign sign-6">🔄</div>
     </div>
     <div class="road-markings">
         <div class="road-line"></div>
@@ -1368,7 +1410,7 @@
     <!-- Hero Section -->
     <section id="home">
         <div class="hero-content">
-            <h1 class="hero-title">ПОРУЛИКА</h1>
+            <h1 class="animated-title">ПОРУЛИКА</h1>
             <p class="hero-subtitle">Пройди экзамен на настоящей ВАЗ-2107 – получи диплом водителя будущего!</p>
             <div class="hero-features">
                 <div class="hero-feature">30 минут драйва</div>
@@ -1422,7 +1464,7 @@
     </section>
 
     <!-- Steps Section -->
-    <section id="steps" class="section-dark">
+    <section id="steps" class="section-light">
         <div class="container">
             <h2>Как проходит квест?</h2>
             <div class="steps-container">
@@ -1500,7 +1542,7 @@
     </section>
 
     <!-- Events Section -->
-    <section id="events" class="section-dark">
+    <section id="events" class="section-light">
         <div class="container">
             <h2>Где и когда можно пройти?</h2>
             <div class="events-container">
@@ -1568,7 +1610,7 @@
     </section>
 
     <!-- Reviews Section -->
-    <section id="reviews" class="section-dark">
+    <section id="reviews" class="section-light">
         <div class="container">
             <h2>Что говорят участники?</h2>
             <div class="reviews-container">
@@ -1628,7 +1670,7 @@
     </section>
 
     <!-- Partners Section -->
-    <section id="partners" class="section-dark">
+    <section id="partners" class="section-light">
         <div class="container">
             <h2>Станьте партнёром «ПорулиКи»!</h2>
             <div class="partners-content">
