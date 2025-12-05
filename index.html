@@ -16,24 +16,24 @@
     
     <style>
         :root {
-            --color-primary: #1a237e;
-            --color-primary-light: #534bae;
-            --color-primary-dark: #000051;
-            --color-accent: #ff4081;
-            --color-accent-light: #ff79b0;
-            --color-secondary: #00b0ff;
-            --color-secondary-light: #69e2ff;
+            --color-primary: #1a1a2e;
+            --color-primary-light: #16213e;
+            --color-primary-dark: #0f1123;
+            --color-accent: #e94560;
+            --color-accent-light: #ff6b8b;
+            --color-secondary: #0d7377;
+            --color-secondary-light: #14b8b0;
             --color-light: #FFFFFF;
-            --color-light-gray: #f5f7ff;
-            --color-gray: #e8eaf6;
+            --color-light-gray: #f8f9fa;
+            --color-gray: #e9ecef;
             --color-dark: #121212;
             --color-text: #333333;
-            --color-text-light: #666;
+            --color-text-light: #6c757d;
             --font-heading: 'Montserrat', sans-serif;
             --font-body: 'Roboto', sans-serif;
             --font-fun: 'Lilita One', cursive;
-            --border-radius: 20px;
-            --box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -52,14 +52,14 @@
             font-size: 16px;
             line-height: 1.7;
             color: var(--color-text);
-            background: linear-gradient(135deg, #f5f7ff 0%, #e8eaf6 100%);
+            background-color: var(--color-light);
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
         }
 
-        /* Анимированный фон с летающими дорожными знаками */
-        .animated-background {
+        /* Стильный анимированный фон */
+        .bg-animation {
             position: fixed;
             top: 0;
             left: 0;
@@ -67,103 +67,140 @@
             height: 100%;
             z-index: -2;
             overflow: hidden;
+            background: linear-gradient(45deg, 
+                rgba(26, 26, 46, 0.03) 0%, 
+                rgba(233, 69, 96, 0.02) 50%, 
+                rgba(13, 115, 119, 0.03) 100%);
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url('https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png') center/contain no-repeat;
+            opacity: 0.08;
+            animation: floatElement 25s infinite linear;
             pointer-events: none;
         }
 
-        .road-sign {
-            position: absolute;
-            font-size: 3rem;
-            opacity: 0.15;
-            animation: floatSign 30s infinite linear;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
-            transition: transform 0.5s ease;
+        .floating-element:nth-child(2n) {
+            animation-duration: 20s;
+            animation-direction: reverse;
+            opacity: 0.05;
         }
 
-        .road-sign:hover {
+        .floating-element:nth-child(3n) {
+            animation-duration: 30s;
+            opacity: 0.06;
+        }
+
+        @keyframes floatElement {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translate(100px, 150px) rotate(90deg) scale(0.9);
+            }
+            50% {
+                transform: translate(200px, 50px) rotate(180deg) scale(1.1);
+            }
+            75% {
+                transform: translate(50px, 200px) rotate(270deg) scale(0.95);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg) scale(1);
+            }
+        }
+
+        /* Летающие знаки */
+        .road-sign-float {
+            position: fixed;
+            font-size: 2rem;
+            z-index: -1;
+            opacity: 0.1;
+            animation: signFloat 20s infinite linear;
+            cursor: pointer;
+            transition: var(--transition);
+            user-select: none;
+        }
+
+        .road-sign-float:hover {
             opacity: 0.3;
             transform: scale(1.2);
+            animation-play-state: paused;
         }
 
-        .sign-1 { top: 10%; left: 5%; animation-duration: 25s; }
-        .sign-2 { top: 60%; right: 10%; animation-duration: 30s; }
-        .sign-3 { bottom: 10%; left: 20%; animation-duration: 35s; }
-        .sign-4 { top: 20%; right: 20%; animation-duration: 20s; }
-        .sign-5 { top: 40%; left: 15%; animation-duration: 28s; }
-        .sign-6 { bottom: 30%; right: 25%; animation-duration: 32s; }
-        .sign-7 { top: 70%; left: 70%; animation-duration: 26s; }
-        .sign-8 { top: 15%; left: 85%; animation-duration: 24s; }
-
-        @keyframes floatSign {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(100px, -60px) rotate(120deg); }
-            66% { transform: translate(-80px, 40px) rotate(240deg); }
-            100% { transform: translate(0, 0) rotate(360deg); }
+        @keyframes signFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
         }
 
-        /* Летающие логотипы скидок */
-        .discount-logo {
+        /* Скидка-лого */
+        .discount-flyer {
             position: fixed;
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             background: url('https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png') center/contain no-repeat;
-            z-index: 9999;
+            z-index: 9998;
             cursor: pointer;
             opacity: 0;
             transform: scale(0);
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            filter: drop-shadow(0 10px 20px rgba(255, 64, 129, 0.3));
-            animation: logoFloat 15s linear forwards;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 5px 15px rgba(233, 69, 96, 0.4));
         }
 
-        .discount-logo.active {
+        .discount-flyer.active {
             opacity: 1;
             transform: scale(1);
+            animation: flyUp 8s linear forwards;
         }
 
-        .discount-logo:hover {
+        .discount-flyer:hover {
             opacity: 0;
             transform: scale(1.5) rotate(180deg);
         }
 
-        .discount-logo::after {
-            content: 'ПОЙМАЙ СКИДКУ 20%!';
+        .discount-flyer::after {
+            content: 'СКИДКА 15%';
             position: absolute;
-            top: 50%;
+            top: -30px;
             left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+            transform: translateX(-50%);
+            background: var(--color-accent);
             color: white;
-            padding: 10px 15px;
-            border-radius: 15px;
-            font-size: 0.9rem;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 0.7rem;
             font-weight: bold;
             opacity: 0;
             transition: opacity 0.3s ease;
             white-space: nowrap;
-            z-index: 10000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 9999;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
 
-        .discount-logo:hover::after {
+        .discount-flyer:hover::after {
             opacity: 1;
         }
 
-        @keyframes logoFloat {
+        @keyframes flyUp {
             0% {
-                transform: translateY(100vh) rotate(0deg);
+                transform: translateY(100vh) rotate(0deg) scale(1);
                 opacity: 0;
             }
             10% {
                 opacity: 1;
-                transform: translateY(80vh) rotate(90deg);
             }
             90% {
                 opacity: 1;
-                transform: translateY(-100px) rotate(360deg);
             }
             100% {
+                transform: translateY(-100px) rotate(360deg) scale(0);
                 opacity: 0;
-                transform: translateY(-150px) rotate(450deg);
             }
         }
 
@@ -173,18 +210,18 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1.2rem 0;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
-            border-bottom: 2px solid rgba(255, 64, 129, 0.1);
+            padding: 1rem 0;
             transition: var(--transition);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         header.scrolled {
-            padding: 0.8rem 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 0.7rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
         nav {
@@ -203,64 +240,29 @@
             text-decoration: none;
             font-family: var(--font-heading);
             font-weight: 800;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--color-primary);
             transition: var(--transition);
         }
 
         .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-animated {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: var(--color-light);
-            border-radius: 50%;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo-animated::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: conic-gradient(var(--color-accent), var(--color-secondary), var(--color-primary), var(--color-accent));
-            animation: rotate 3s linear infinite;
-        }
-
-        .logo-animated::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background: var(--color-light);
-            border-radius: 50%;
+            transform: translateY(-2px);
         }
 
         .logo-img {
-            height: 30px;
+            height: 40px;
             width: auto;
-            display: block;
-            position: relative;
-            z-index: 1;
+            transition: var(--transition);
         }
 
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .logo:hover .logo-img {
+            transform: rotate(15deg) scale(1.1);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .nav-links a {
@@ -270,7 +272,7 @@
             transition: var(--transition);
             position: relative;
             padding: 0.5rem 0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .nav-links a:hover {
@@ -305,7 +307,7 @@
         /* Hero Section */
         #home {
             height: 100vh;
-            min-height: 800px;
+            min-height: 700px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -313,18 +315,17 @@
             padding: 0 1rem;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(245, 247, 255, 0.9) 0%, rgba(232, 234, 246, 0.7) 100%);
         }
 
         .hero-content {
             max-width: 900px;
             width: 100%;
             padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             animation: heroAppear 1s ease-out;
             position: relative;
             z-index: 1;
@@ -333,55 +334,46 @@
         @keyframes heroAppear {
             0% {
                 opacity: 0;
-                transform: translateY(30px) scale(0.9);
+                transform: translateY(30px);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0);
             }
         }
 
-        .hero-logo {
-            width: 250px;
-            height: 250px;
+        .hero-logo-large {
+            width: 200px;
+            height: 200px;
             margin: 0 auto 2rem;
             background: url('https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png') center/contain no-repeat;
-            animation: logoPulse 3s ease-in-out infinite;
-            filter: drop-shadow(0 20px 40px rgba(26, 35, 126, 0.3));
+            animation: pulseLogo 3s ease-in-out infinite;
         }
 
-        @keyframes logoPulse {
+        @keyframes pulseLogo {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
 
         .animated-title {
             font-family: var(--font-fun);
-            font-size: 4.5rem;
+            font-size: 4rem;
             text-align: center;
             margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
-            background: linear-gradient(135deg, var(--color-accent), var(--color-secondary), var(--color-primary));
-            background-size: 300% 300%;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradientShift 3s ease infinite;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 2.5rem;
-            color: var(--color-primary);
-            font-weight: 500;
+            color: var(--color-text-light);
+            font-weight: 400;
             line-height: 1.4;
         }
 
@@ -397,20 +389,21 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1rem;
             background: rgba(255, 255, 255, 0.9);
-            padding: 0.8rem 1.5rem;
+            padding: 0.7rem 1.3rem;
             border-radius: 50px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             backdrop-filter: blur(5px);
-            border: 2px solid rgba(255, 64, 129, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             transition: var(--transition);
         }
 
         .hero-feature:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            border-color: var(--color-accent-light);
+            background: var(--color-accent);
+            color: white;
         }
 
         .hero-buttons {
@@ -423,21 +416,21 @@
         /* Кнопки */
         .btn {
             display: inline-block;
-            padding: 16px 36px;
+            padding: 14px 32px;
             background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
             color: var(--color-light);
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
+            border-radius: var(--border-radius);
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
             border: none;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(255, 64, 129, 0.3);
+            box-shadow: var(--box-shadow);
             position: relative;
             overflow: hidden;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .btn::before {
@@ -448,25 +441,25 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.7s;
+            transition: left 0.6s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(233, 69, 96, 0.3);
         }
 
         .btn:hover::before {
             left: 100%;
         }
 
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(255, 64, 129, 0.4);
-        }
-
         .btn-secondary {
             background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-light));
-            box-shadow: 0 10px 30px rgba(0, 176, 255, 0.3);
+            color: var(--color-light);
         }
 
         .btn-secondary:hover {
-            box-shadow: 0 20px 40px rgba(0, 176, 255, 0.4);
+            box-shadow: 0 15px 25px rgba(13, 115, 119, 0.3);
         }
 
         .btn-outline {
@@ -487,12 +480,6 @@
             line-height: 1.3;
             margin-bottom: 1.5rem;
             color: var(--color-primary);
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
         h2 {
@@ -516,7 +503,7 @@
         }
 
         section {
-            padding: 100px 1rem;
+            padding: 6rem 1rem;
             position: relative;
         }
 
@@ -528,139 +515,69 @@
         }
 
         .section-light {
-            background: linear-gradient(135deg, #ffffff 0%, #f5f7ff 100%);
-            border-radius: 40px;
-            margin: 40px 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Анимация появления элементов */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Конфетти эффект */
-        .confetti {
-            position: fixed;
-            width: 15px;
-            height: 15px;
-            background: var(--color-accent);
-            border-radius: 50%;
-            opacity: 0;
-            z-index: 9998;
-            pointer-events: none;
-        }
-
-        /* Остальные секции (About, Steps, Features и т.д.) */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .steps-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .step-card {
-            background: var(--color-light);
-            border-radius: var(--border-radius);
-            padding: 2.5rem 2rem;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid transparent;
-        }
-
-        .step-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            border-color: var(--color-accent-light);
-        }
-
-        .features-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-            background: var(--color-light);
-            box-shadow: var(--box-shadow);
-            border: 2px solid transparent;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            border-color: var(--color-accent-light);
-        }
-
-        .events-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .event-card {
-            background: var(--color-light);
-            border-radius: var(--border-radius);
-            padding: 2.5rem 2rem;
-            text-align: center;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-
-        .event-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            border-color: var(--color-accent-light);
-        }
-
-        /* Online Exam Section */
-        .exam-section {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, var(--color-light-gray), var(--color-gray));
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             color: var(--color-text);
+        }
+
+        /* Карточки */
+        .step-card, .feature-card, .event-card {
+            background: var(--color-light);
             border-radius: var(--border-radius);
-            margin: 2rem auto;
-            max-width: 800px;
+            padding: 2rem;
             box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .step-card:hover, .feature-card:hover, .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Модальное окно скидки */
+        .discount-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .discount-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .discount-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             position: relative;
-            overflow: hidden;
+            animation: modalAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .exam-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            animation: examPulse 2s infinite;
+        @keyframes modalAppear {
+            0% {
+                transform: scale(0.5) rotate(-10deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(0);
+                opacity: 1;
+            }
         }
 
-        @keyframes examPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        /* Мобильное меню */
+        /* Адаптивность */
         @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: block;
@@ -674,7 +591,7 @@
                 max-width: 300px;
                 height: 100vh;
                 background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(20px);
+                backdrop-filter: blur(10px);
                 flex-direction: column;
                 align-items: flex-start;
                 justify-content: flex-start;
@@ -704,13 +621,13 @@
             }
             
             .nav-links a:hover {
-                background: rgba(255, 64, 129, 0.1);
+                background: rgba(233, 69, 96, 0.1);
                 color: var(--color-accent);
             }
 
-            .hero-logo {
-                width: 200px;
-                height: 200px;
+            .hero-logo-large {
+                width: 150px;
+                height: 150px;
             }
             
             .animated-title {
@@ -731,9 +648,19 @@
                 width: 100%;
                 max-width: 280px;
             }
+            
+            .hero-features {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-feature {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
         }
 
-        /* Оверлей для мобильного меню */
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -753,40 +680,47 @@
             visibility: visible;
         }
 
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--color-light-gray), var(--color-gray));
-            color: var(--color-text);
-            padding: 4rem 1rem 2rem;
-            margin-top: 4rem;
+        /* Конфетти */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 9997;
+            pointer-events: none;
         }
-
-        /* Остальные стили... */
     </style>
 </head>
 <body>
     <!-- Анимированный фон -->
-    <div class="animated-background">
-        <div class="road-sign sign-1">🚦</div>
-        <div class="road-sign sign-2">🛑</div>
-        <div class="road-sign sign-3">🚸</div>
-        <div class="road-sign sign-4">🚧</div>
-        <div class="road-sign sign-5">⚠️</div>
-        <div class="road-sign sign-6">🔄</div>
-        <div class="road-sign sign-7">⛔</div>
-        <div class="road-sign sign-8">🅿️</div>
-    </div>
+    <div class="bg-animation" id="bgAnimation"></div>
+
+    <!-- Летающие знаки -->
+    <div class="road-signs-container" id="roadSigns"></div>
 
     <!-- Оверлей для мобильного меню -->
     <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Модальное окно скидки -->
+    <div class="discount-modal" id="discountModal">
+        <div class="discount-content">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
+            <h2 style="color: var(--color-accent);">ПОЗДРАВЛЯЕМ!</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 1rem;">Вы поймали скидку 15%!</p>
+            <p style="font-size: 1.5rem; font-weight: bold; color: var(--color-accent); margin-bottom: 2rem;">
+                Промокод: <span style="background: var(--color-accent); color: white; padding: 5px 10px; border-radius: 5px;">ПОРУЛИ15</span>
+            </p>
+            <button class="btn" onclick="closeDiscountModal()" style="width: 100%;">КРУТО, СПАСИБО!</button>
+        </div>
+    </div>
 
     <!-- Header -->
     <header id="header">
         <nav>
             <a href="#home" class="logo">
-                <div class="logo-animated">
-                    <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" class="logo-img">
-                </div>
+                <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" class="logo-img">
                 <span>ПорулиКа</span>
             </a>
             
@@ -808,27 +742,27 @@
     <!-- Hero Section -->
     <section id="home">
         <div class="hero-content">
-            <div class="hero-logo"></div>
+            <div class="hero-logo-large"></div>
             <h1 class="animated-title">ПОРУЛИКА</h1>
-            <p class="hero-subtitle">Пройди экзамен на легендарной ВАЗ-2107 с юмором и драйвом!</p>
+            <p class="hero-subtitle">Пройди экзамен на настоящей ВАЗ-2107 – получи диплом водителя будущего!</p>
             <div class="hero-features">
-                <div class="hero-feature">🎯 30 минут драйва</div>
-                <div class="hero-feature">😂 Море смеха</div>
-                <div class="hero-feature">🚗 Легендарная «семёрка»</div>
-                <div class="hero-feature">💰 от 500 ₽</div>
+                <div class="hero-feature">30 минут драйва</div>
+                <div class="hero-feature">Море смеха</div>
+                <div class="hero-feature">Легендарная «семёрка»</div>
+                <div class="hero-feature">от 500 ₽</div>
             </div>
             <div class="hero-buttons">
                 <a href="#form" class="btn">ЗАПИСАТЬСЯ НА КВЕСТ</a>
-                <a href="#about" class="btn btn-secondary">УЗНАТЬ ПОДРОБНЕЕ</a>
-                <a href="#online-exam" class="btn btn-outline">ПРОЙТИ ОНЛАЙН-ЭКЗАМЕН</a>
+                <a href="#about" class="btn btn-secondary">УЗНАТЬ КАК ЭТО РАБОТАЕТ</a>
+                <a href="exam.html" class="btn btn-outline">ПРОЙТИ ЭКЗАМЕН ОНЛАЙН</a>
             </div>
         </div>
     </section>
 
-    <!-- Online Exam Section -->
-    <section id="online-exam">
+    <!-- Секция онлайн-экзамена -->
+    <section id="online-exam" class="section-light">
         <div class="container">
-            <div class="exam-section fade-in">
+            <div class="exam-section">
                 <div class="exam-content">
                     <div class="exam-icon">📝</div>
                     <h2>Проверь свои знания ПДД онлайн!</h2>
@@ -841,10 +775,10 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section-light">
+    <section id="about">
         <div class="container">
             <h2>Что такое «ПорулиКа»?</h2>
-            <div class="about-content fade-in">
+            <div class="about-content">
                 <div class="about-text">
                     <p style="font-size: 1.2rem; margin-bottom: 2rem; font-weight: 500;">Это не просто квест – это живой опыт, где ты:</p>
                     <ul>
@@ -855,107 +789,33 @@
                         <li>Получаешь <strong>официальный диплом</strong> и фото на память</li>
                     </ul>
                 </div>
-                <div class="about-image fade-in">
-                    <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/vaz2107.png" alt="ВАЗ-2107 в квесте ПорулиКа">
+                <div class="about-image">
+                    <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/vaz2107.png" alt="ВАЗ-2107 в квесте ПорулиКа" style="width: 100%; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Steps Section -->
-    <section id="steps">
+    <section id="steps" class="section-light">
         <div class="container">
             <h2>Как проходит квест?</h2>
             <div class="steps-container">
-                <div class="step-card fade-in">
-                    <div class="step-number">1</div>
+                <div class="step-card">
                     <div class="step-icon">🔑</div>
                     <h3>ЗаведиКа меня!</h3>
                     <p>Найди документы и заведи машину</p>
                 </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">2</div>
+                <div class="step-card">
                     <div class="step-icon">🚦</div>
                     <h3>Городские будни</h3>
                     <p>Проедь по полосе: светофор, пешеходка, знаки</p>
                 </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">3</div>
+                <div class="step-card">
                     <div class="step-icon">👮</div>
                     <h3>Неожиданность от ГАИ</h3>
                     <p>Степаныч появляется внезапно — готовься!</p>
                 </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">4</div>
-                    <div class="step-icon">🅿️</div>
-                    <h3>ПаркуйКа как бабушка</h3>
-                    <p>Парковка задним ходом без штрафов</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">5</div>
-                    <div class="step-icon">🎓</div>
-                    <h3>Финальный экзамен</h3>
-                    <p>3 вопроса по ПДД — и диплом у тебя!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="section-light">
-        <div class="container">
-            <h2>Почему стоит попробовать?</h2>
-            <div class="features-container">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">😂</div>
-                    <h3>Юмор и эмоции</h3>
-                    <p>Смейся, пока учишься</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🚗</div>
-                    <h3>Настоящая ВАЗ-2107</h3>
-                    <p>Не симулятор, а живая машина</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">📚</div>
-                    <h3>Повтори ПДД</h3>
-                    <p>В игровой форме</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">👥</div>
-                    <h3>Идеально для компании</h3>
-                    <p>Приходите с друзьями!</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🏆</div>
-                    <h3>Фото, диплом, мерч</h3>
-                    <p>Забери память с собой</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">📍</div>
-                    <h3>Работаем в Барнауле</h3>
-                    <p>На фестивалях, в парках и ТЦ</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Form Section -->
-    <section id="form">
-        <div class="container">
-            <h2>Запишись на квест!</h2>
-            <div class="form-container fade-in">
-                <form id="booking-form">
-                    <div class="form-group">
-                        <label for="name">Имя</label>
-                        <input type="text" id="name" class="form-control" required placeholder="Как к вам обращаться?">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Телефон</label>
-                        <input type="tel" id="phone" class="form-control" required placeholder="+7 (XXX) XXX-XX-XX">
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%;">Записаться на квест</button>
-                </form>
             </div>
         </div>
     </section>
@@ -971,52 +831,73 @@
                     </div>
                     <p>© 2025 ПорулиКа — квест на ВАЗ-2107<br>Сдай экзамен — не сдай нервы!</p>
                 </div>
-                <div class="footer-contact">
-                    <h3>Контакты</h3>
-                    <p>📍 Барнаул, Алтайский край</p>
-                    <p>📞 +7 (963) 575-68-49</p>
-                    <p>✉️ seduhinalena@gmail.com</p>
-                </div>
             </div>
         </div>
     </footer>
 
     <script>
+        // Создание анимированного фона с логотипами
+        function createBgAnimation() {
+            const container = document.getElementById('bgAnimation');
+            for (let i = 0; i < 8; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.style.left = Math.random() * 100 + '%';
+                element.style.top = Math.random() * 100 + '%';
+                element.style.animationDelay = Math.random() * 20 + 's';
+                container.appendChild(element);
+            }
+        }
+
+        // Создание летающих дорожных знаков
+        function createFloatingSigns() {
+            const container = document.getElementById('roadSigns');
+            const signs = ['🚦', '🛑', '🚸', '🚧', '⚠️', '🔄', '⛔', '🅿️'];
+            
+            for (let i = 0; i < 6; i++) {
+                const sign = document.createElement('div');
+                sign.className = 'road-sign-float';
+                sign.textContent = signs[Math.floor(Math.random() * signs.length)];
+                sign.style.left = Math.random() * 90 + '%';
+                sign.style.animationDelay = Math.random() * 20 + 's';
+                sign.style.animationDuration = (15 + Math.random() * 15) + 's';
+                container.appendChild(sign);
+            }
+        }
+
         // Генерация летающих логотипов со скидками
-        function createDiscountLogos() {
+        function createDiscountFlyers() {
             setInterval(() => {
-                if (Math.random() > 0.7) {
-                    const logo = document.createElement('div');
-                    logo.className = 'discount-logo';
-                    logo.style.left = Math.random() * 85 + '%';
-                    logo.style.animationDelay = Math.random() * 5 + 's';
+                if (Math.random() > 0.8) { // 20% шанс появления
+                    const flyer = document.createElement('div');
+                    flyer.className = 'discount-flyer';
+                    flyer.style.left = Math.random() * 80 + 10 + '%';
                     
-                    logo.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        createConfetti(e.clientX, e.clientY);
+                    flyer.addEventListener('click', function() {
+                        createConfetti(this.getBoundingClientRect().left + 35, this.getBoundingClientRect().top + 35);
                         showDiscountModal();
                         this.remove();
                     });
                     
-                    document.body.appendChild(logo);
+                    document.body.appendChild(flyer);
                     
                     setTimeout(() => {
-                        logo.classList.add('active');
+                        flyer.classList.add('active');
                         setTimeout(() => {
-                            if (logo.parentNode) {
-                                logo.remove();
+                            if (flyer.parentNode) {
+                                flyer.remove();
                             }
-                        }, 14000);
+                        }, 8000);
                     }, 100);
                 }
-            }, 3000);
+            }, 5000); // Каждые 5 секунд проверяем
         }
 
         // Создание конфетти
         function createConfetti(x, y) {
-            const colors = ['#ff4081', '#00b0ff', '#ffc107', '#4caf50', '#9c27b0'];
+            const colors = ['#e94560', '#0d7377', '#ff6b8b', '#14b8b0', '#1a1a2e'];
             
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 30; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.left = x + 'px';
@@ -1026,7 +907,7 @@
                 document.body.appendChild(confetti);
                 
                 const angle = Math.random() * Math.PI * 2;
-                const velocity = 2 + Math.random() * 3;
+                const velocity = 1 + Math.random() * 2;
                 let vx = Math.cos(angle) * velocity;
                 let vy = Math.sin(angle) * velocity;
                 
@@ -1037,13 +918,12 @@
                 function animate() {
                     posX += vx;
                     posY += vy;
-                    vy += 0.1;
+                    vy += 0.05; // гравитация
                     opacity -= 0.02;
                     
                     confetti.style.left = posX + 'px';
                     confetti.style.top = posY + 'px';
                     confetti.style.opacity = opacity;
-                    confetti.style.transform = `rotate(${posX + posY}deg)`;
                     
                     if (opacity > 0 && posY < window.innerHeight + 100) {
                         requestAnimationFrame(animate);
@@ -1058,54 +938,19 @@
 
         // Показ модального окна со скидкой
         function showDiscountModal() {
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) scale(0);
-                background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-                color: white;
-                padding: 40px;
-                border-radius: 30px;
-                z-index: 10001;
-                text-align: center;
-                box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-                transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            `;
+            document.getElementById('discountModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
             
-            modal.innerHTML = `
-                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">🎉 УРА! 🎉</h2>
-                <p style="font-size: 1.5rem; margin-bottom: 1.5rem;">Вы поймали скидку 20%!</p>
-                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Промокод: <strong>ПОРУЛИ20</strong></p>
-                <button onclick="this.parentElement.remove()" 
-                        style="padding: 15px 40px; background: white; color: var(--color-accent); 
-                               border: none; border-radius: 25px; font-weight: bold; 
-                               cursor: pointer; font-size: 1.1rem;">
-                    КРУТО! СПАСИБО!
-                </button>
-            `;
-            
-            document.body.appendChild(modal);
-            
+            // Автоматическое закрытие через 10 секунд
             setTimeout(() => {
-                modal.style.transform = 'translate(-50%, -50%) scale(1)';
-            }, 10);
-            
-            setTimeout(() => {
-                modal.style.transform = 'translate(-50%, -50%) scale(0)';
-                setTimeout(() => modal.remove(), 500);
-            }, 5000);
+                closeDiscountModal();
+            }, 10000);
         }
 
-        // Анимация появления при скролле
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+        function closeDiscountModal() {
+            document.getElementById('discountModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
         // Мобильное меню
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -1131,13 +976,6 @@
             }
         });
 
-        // Отправка формы
-        document.getElementById('booking-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
-            this.reset();
-        });
-
         // Закрытие мобильного меню при клике на ссылку
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
@@ -1147,22 +985,24 @@
             });
         });
 
+        // Отправка формы
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
-            // Наблюдаем за элементами с анимацией
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-            
-            // Запускаем генерацию летающих логотипов
-            createDiscountLogos();
-            
-            // Анимация главного логотипа
-            const heroLogo = document.querySelector('.hero-logo');
-            if (heroLogo) {
-                setInterval(() => {
-                    heroLogo.style.transform = `scale(${1 + Math.random() * 0.1}) rotate(${Math.random() * 10 - 5}deg)`;
-                }, 3000);
+            createBgAnimation();
+            createFloatingSigns();
+            createDiscountFlyers();
+        });
+
+        // Закрытие модального окна при клике вне его
+        document.getElementById('discountModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDiscountModal();
             }
         });
     </script>
