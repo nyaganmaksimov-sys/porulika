@@ -3,38 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ПорулиКа — квест на ВАЗ-2107 в Барнауле | Запись на квест</title>
-    <meta name="description" content="Пройди интерактивный квест на настоящей ВАЗ-2107 в Барнауле с инструктором и ГАИшником. Получи диплом, смейся и повтори ПДД.">
-    <meta name="keywords" content="квест в Барнауле, ВАЗ-2107 квест, ПорулиКа, квест на машине, автошкола квест, квест для подростков">
-    
-    <!-- Preconnect for Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>ПорулиКа — квест на ВАЗ-2107 в Барнауле</title>
+    <meta name="description" content="Пройди интерактивный квест на настоящей ВАЗ-2107 с инструктором и ГАИшником. Получи диплом, смейся и повтори ПДД.">
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&family=Lilita+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Rubik:wght@300;400;500;600&family=Lilita+One&family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --color-primary: #1a1a2e;
-            --color-primary-light: #16213e;
-            --color-primary-dark: #0f1123;
-            --color-accent: #e94560;
-            --color-accent-light: #ff6b8b;
-            --color-secondary: #0d7377;
-            --color-secondary-light: #14b8b0;
-            --color-light: #FFFFFF;
-            --color-light-gray: #f8f9fa;
-            --color-gray: #e9ecef;
-            --color-dark: #121212;
-            --color-text: #333333;
-            --color-text-light: #6c757d;
+            --color-primary: #0a1128;
+            --color-primary-light: #1a2c5b;
+            --color-accent: #ff4d6d;
+            --color-accent-light: #ff758f;
+            --color-secondary: #00b4d8;
+            --color-secondary-light: #90e0ef;
+            --color-gold: #ffd60a;
+            --color-light: #ffffff;
+            --color-gray: #f8f9fa;
+            --color-gray-dark: #6c757d;
+            --color-retro-red: #e63946;
+            --color-retro-blue: #457b9d;
             --font-heading: 'Montserrat', sans-serif;
-            --font-body: 'Roboto', sans-serif;
+            --font-body: 'Rubik', sans-serif;
             --font-fun: 'Lilita One', cursive;
-            --border-radius: 12px;
-            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --font-tech: 'Orbitron', sans-serif;
+            --border-radius: 16px;
+            --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -49,159 +44,124 @@
 
         body {
             font-family: var(--font-body);
-            font-size: 16px;
-            line-height: 1.7;
-            color: var(--color-text);
-            background-color: var(--color-light);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--color-primary);
+            line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
-            min-height: 100vh;
         }
 
-        /* Стильный анимированный фон */
-        .bg-animation {
+        /* Анимированный фон в стиле дорожной карты */
+        .roadmap-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -2;
-            overflow: hidden;
-            background: linear-gradient(45deg, 
-                rgba(26, 26, 46, 0.03) 0%, 
-                rgba(233, 69, 96, 0.02) 50%, 
-                rgba(13, 115, 119, 0.03) 100%);
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 77, 109, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 180, 216, 0.05) 0%, transparent 50%),
+                linear-gradient(45deg, #f8f9fa 0%, #e9ecef 100%);
         }
 
-        .floating-element {
+        .road-line {
             position: absolute;
-            width: 100px;
-            height: 100px;
-            background: url('https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png') center/contain no-repeat;
-            opacity: 0.08;
-            animation: floatElement 25s infinite linear;
-            pointer-events: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+            opacity: 0.1;
+            animation: roadLine 20s linear infinite;
         }
 
-        .floating-element:nth-child(2n) {
-            animation-duration: 20s;
-            animation-direction: reverse;
-            opacity: 0.05;
+        @keyframes roadLine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
-        .floating-element:nth-child(3n) {
-            animation-duration: 30s;
-            opacity: 0.06;
-        }
-
-        @keyframes floatElement {
-            0% {
-                transform: translate(0, 0) rotate(0deg) scale(1);
-            }
-            25% {
-                transform: translate(100px, 150px) rotate(90deg) scale(0.9);
-            }
-            50% {
-                transform: translate(200px, 50px) rotate(180deg) scale(1.1);
-            }
-            75% {
-                transform: translate(50px, 200px) rotate(270deg) scale(0.95);
-            }
-            100% {
-                transform: translate(0, 0) rotate(360deg) scale(1);
-            }
-        }
-
-        /* Летающие знаки */
-        .road-sign-float {
+        /* Интерактивные знаки на фоне */
+        .floating-sign {
             position: fixed;
             font-size: 2rem;
-            z-index: -1;
             opacity: 0.1;
-            animation: signFloat 20s infinite linear;
-            cursor: pointer;
+            animation: float 25s infinite linear;
+            z-index: -1;
+            cursor: default;
             transition: var(--transition);
-            user-select: none;
         }
 
-        .road-sign-float:hover {
-            opacity: 0.3;
+        .floating-sign:hover {
+            opacity: 0.2;
             transform: scale(1.2);
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -40px) rotate(120deg); }
+            66% { transform: translate(-20px, 30px) rotate(240deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        /* Интерактивная скидка - более сдержанная */
+        .discount-hunt {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .discount-badge {
+            width: 60px;
+            height: 60px;
+            background: url('https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png') center/contain no-repeat;
+            filter: drop-shadow(0 5px 15px rgba(255, 77, 109, 0.3));
+            transition: var(--transition);
+            animation: gentleBounce 3s ease-in-out infinite;
+        }
+
+        .discount-badge:hover {
+            transform: scale(1.2) rotate(15deg);
+            filter: drop-shadow(0 8px 20px rgba(255, 77, 109, 0.5));
             animation-play-state: paused;
         }
 
-        @keyframes signFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-            }
+        @keyframes gentleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        /* Скидка-лого */
-        .discount-flyer {
-            position: fixed;
-            width: 70px;
-            height: 70px;
-            background: url('https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png') center/contain no-repeat;
-            z-index: 9998;
-            cursor: pointer;
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 5px 15px rgba(233, 69, 96, 0.4));
-        }
-
-        .discount-flyer.active {
+        .discount-hunt:hover .discount-tooltip {
             opacity: 1;
-            transform: scale(1);
-            animation: flyUp 8s linear forwards;
+            transform: translateY(-10px);
         }
 
-        .discount-flyer:hover {
-            opacity: 0;
-            transform: scale(1.5) rotate(180deg);
-        }
-
-        .discount-flyer::after {
-            content: 'СКИДКА 15%';
+        .discount-tooltip {
             position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 70px;
+            right: 0;
             background: var(--color-accent);
             color: white;
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
             white-space: nowrap;
-            z-index: 9999;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(0);
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+            pointer-events: none;
         }
 
-        .discount-flyer:hover::after {
-            opacity: 1;
-        }
-
-        @keyframes flyUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg) scale(1);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg) scale(0);
-                opacity: 0;
-            }
+        .discount-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 20px;
+            width: 10px;
+            height: 10px;
+            background: var(--color-accent);
+            transform: rotate(45deg);
         }
 
         /* Header */
@@ -210,27 +170,21 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
-            transition: var(--transition);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        header.scrolled {
-            padding: 0.7rem 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
         }
 
         nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
         }
 
         .logo {
@@ -240,7 +194,7 @@
             text-decoration: none;
             font-family: var(--font-heading);
             font-weight: 800;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: var(--color-primary);
             transition: var(--transition);
         }
@@ -256,181 +210,198 @@
         }
 
         .logo:hover .logo-img {
-            transform: rotate(15deg) scale(1.1);
+            transform: rotate(-10deg) scale(1.1);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .nav-links a {
             color: var(--color-primary);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.95rem;
             transition: var(--transition);
+            padding: 0.5rem;
             position: relative;
-            padding: 0.5rem 0;
-            font-size: 0.9rem;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
         }
 
         .nav-links a:hover {
             color: var(--color-accent);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--color-accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--color-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        /* Hero Section */
+        /* Hero Section с ретро-стилем */
         #home {
-            height: 100vh;
-            min-height: 700px;
+            min-height: 100vh;
+            padding: 100px 2rem 2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 0 1rem;
             position: relative;
             overflow: hidden;
         }
 
-        .hero-content {
-            max-width: 900px;
+        .hero-container {
+            max-width: 1200px;
             width: 100%;
-            padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: heroAppear 1s ease-out;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
             position: relative;
-            z-index: 1;
         }
 
-        @keyframes heroAppear {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-logo-large {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 2rem;
-            background: url('https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png') center/contain no-repeat;
-            animation: pulseLogo 3s ease-in-out infinite;
-        }
-
-        @keyframes pulseLogo {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .animated-title {
+        .hero-title {
             font-family: var(--font-fun);
-            font-size: 4rem;
-            text-align: center;
+            font-size: 4.5rem;
+            line-height: 1;
             margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
             background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: var(--color-gold);
+            border-radius: 2px;
         }
 
         .hero-subtitle {
             font-size: 1.3rem;
+            color: var(--color-gray-dark);
             margin-bottom: 2.5rem;
-            color: var(--color-text-light);
-            font-weight: 400;
-            line-height: 1.4;
+            line-height: 1.6;
         }
 
         .hero-features {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
             gap: 1rem;
             margin-bottom: 3rem;
         }
 
         .hero-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 0.7rem 1.3rem;
+            background: white;
+            padding: 0.8rem 1.5rem;
             border-radius: 50px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: var(--box-shadow);
             transition: var(--transition);
+            border: 2px solid transparent;
         }
 
         .hero-feature:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            background: var(--color-accent);
-            color: white;
+            border-color: var(--color-accent);
+            box-shadow: 0 15px 30px rgba(255, 77, 109, 0.15);
         }
 
         .hero-buttons {
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
+            gap: 1rem;
             flex-wrap: wrap;
+        }
+
+        /* Машинка в ретро-стиле */
+        .hero-car {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .car-container {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 2px solid var(--color-gray);
+            overflow: hidden;
+        }
+
+        .car-container:hover {
+            transform: translateY(-10px) rotate(-2deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border-color: var(--color-accent);
+        }
+
+        .car-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+        }
+
+        .car-image {
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/vaz2107.png') center/contain no-repeat;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+            transition: var(--transition);
+        }
+
+        .car-container:hover .car-image {
+            transform: scale(1.05);
         }
 
         /* Кнопки */
         .btn {
-            display: inline-block;
-            padding: 14px 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
             background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
-            color: var(--color-light);
+            color: white;
             text-decoration: none;
             border-radius: var(--border-radius);
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 0.95rem;
             border: none;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: var(--box-shadow);
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.2);
             position: relative;
             overflow: hidden;
-            font-size: 0.9rem;
         }
 
         .btn::before {
@@ -440,49 +411,40 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.6s;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(233, 69, 96, 0.3);
         }
 
         .btn:hover::before {
             left: 100%;
         }
 
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 77, 109, 0.3);
+        }
+
         .btn-secondary {
             background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-light));
-            color: var(--color-light);
+            box-shadow: 0 10px 20px rgba(0, 180, 216, 0.2);
         }
 
         .btn-secondary:hover {
-            box-shadow: 0 15px 25px rgba(13, 115, 119, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 180, 216, 0.3);
         }
 
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--color-accent);
-            color: var(--color-accent);
+        /* Секции */
+        section {
+            padding: 6rem 2rem;
         }
 
-        .btn-outline:hover {
-            background: var(--color-accent);
-            color: var(--color-light);
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        /* Основные стили */
-        h1, h2, h3, h4 {
+        .section-title {
             font-family: var(--font-heading);
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 1.5rem;
-            color: var(--color-primary);
-        }
-
-        h2 {
             font-size: 2.5rem;
             text-align: center;
             margin-bottom: 3rem;
@@ -492,7 +454,7 @@
             transform: translateX(-50%);
         }
 
-        h2::after {
+        .section-title::after {
             content: '';
             display: block;
             width: 80px;
@@ -502,36 +464,51 @@
             border-radius: 2px;
         }
 
-        section {
-            padding: 6rem 1rem;
-            position: relative;
+        /* Карточки в неоморфном стиле */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-light {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            color: var(--color-text);
-        }
-
-        /* Карточки */
-        .step-card, .feature-card, .event-card {
-            background: var(--color-light);
+        .feature-card {
+            background: white;
+            padding: 2.5rem 2rem;
             border-radius: var(--border-radius);
-            padding: 2rem;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
         }
 
-        .step-card:hover, .feature-card:hover, .event-card:hover {
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .feature-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--color-accent-light);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
         }
 
         /* Модальное окно скидки */
@@ -547,404 +524,402 @@
             z-index: 10000;
             align-items: center;
             justify-content: center;
+            animation: fadeIn 0.3s ease;
         }
 
         .discount-modal.active {
             display: flex;
-            animation: fadeIn 0.3s ease;
         }
 
-        .discount-content {
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
             background: white;
             padding: 3rem;
             border-radius: 20px;
-            text-align: center;
             max-width: 400px;
             width: 90%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
             position: relative;
-            animation: modalAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--color-accent);
         }
 
-        @keyframes modalAppear {
-            0% {
-                transform: scale(0.5) rotate(-10deg);
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px) scale(0.9);
                 opacity: 0;
             }
-            100% {
-                transform: scale(1) rotate(0);
+            to {
+                transform: translateY(0) scale(1);
                 opacity: 1;
             }
         }
 
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+            border-radius: 20px 20px 0 0;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-gray-dark);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-modal:hover {
+            background: var(--color-gray);
+            color: var(--color-accent);
+        }
+
         /* Адаптивность */
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero-car {
+                order: -1;
+            }
+            
+            .car-container {
+                width: 250px;
+                height: 250px;
+                margin: 0 auto;
+            }
+        }
+
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
             .mobile-menu-btn {
                 display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: var(--color-primary);
+                cursor: pointer;
             }
             
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: 100vh;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: flex-start;
-                padding: 80px 2rem 2rem;
-                transition: right 0.4s ease;
-                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
-                gap: 0;
-                z-index: 1001;
-            }
-            
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .nav-links li {
-                margin: 0.5rem 0;
-                width: 100%;
-            }
-            
-            .nav-links a {
-                font-size: 1.1rem;
-                padding: 1rem 1.5rem;
-                display: block;
-                width: 100%;
-                border-radius: 8px;
-                transition: all 0.3s ease;
-            }
-            
-            .nav-links a:hover {
-                background: rgba(233, 69, 96, 0.1);
-                color: var(--color-accent);
-            }
-
-            .hero-logo-large {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .animated-title {
+            .hero-title {
                 font-size: 3rem;
             }
             
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
             
             .hero-buttons {
                 flex-direction: column;
-                align-items: center;
-                gap: 1rem;
             }
             
             .btn {
                 width: 100%;
-                max-width: 280px;
-            }
-            
-            .hero-features {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-feature {
-                width: 100%;
-                max-width: 250px;
-                justify-content: center;
+                max-width: 300px;
             }
         }
 
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
+        /* Анимация появления элементов */
+        .fade-in {
             opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        
-        .menu-overlay.active {
+
+        .fade-in.visible {
             opacity: 1;
-            visibility: visible;
-        }
-
-        /* Конфетти */
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: var(--color-accent);
-            border-radius: 50%;
-            opacity: 0;
-            z-index: 9997;
-            pointer-events: none;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <!-- Анимированный фон -->
-    <div class="bg-animation" id="bgAnimation"></div>
+    <div class="roadmap-bg">
+        <div class="road-line" style="top: 20%; animation-delay: 0s;"></div>
+        <div class="road-line" style="top: 40%; animation-delay: 5s;"></div>
+        <div class="road-line" style="top: 60%; animation-delay: 10s;"></div>
+        <div class="road-line" style="top: 80%; animation-delay: 15s;"></div>
+        
+        <div class="floating-sign" style="top: 15%; left: 10%; animation-duration: 30s;">🚦</div>
+        <div class="floating-sign" style="top: 70%; right: 15%; animation-duration: 25s;">🛑</div>
+        <div class="floating-sign" style="top: 30%; left: 85%; animation-duration: 35s;">🚗</div>
+        <div class="floating-sign" style="top: 85%; left: 20%; animation-duration: 20s;">⚠️</div>
+    </div>
 
-    <!-- Летающие знаки -->
-    <div class="road-signs-container" id="roadSigns"></div>
-
-    <!-- Оверлей для мобильного меню -->
-    <div class="menu-overlay" id="menuOverlay"></div>
+    <!-- Интерактивная скидка (в углу, не вылетает) -->
+    <div class="discount-hunt" id="discountHunt">
+        <div class="discount-tooltip">Поймай скидку 10%!</div>
+        <div class="discount-badge"></div>
+    </div>
 
     <!-- Модальное окно скидки -->
     <div class="discount-modal" id="discountModal">
-        <div class="discount-content">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeDiscountModal()">×</button>
             <div style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
-            <h2 style="color: var(--color-accent);">ПОЗДРАВЛЯЕМ!</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 1rem;">Вы поймали скидку 15%!</p>
-            <p style="font-size: 1.5rem; font-weight: bold; color: var(--color-accent); margin-bottom: 2rem;">
-                Промокод: <span style="background: var(--color-accent); color: white; padding: 5px 10px; border-radius: 5px;">ПОРУЛИ15</span>
+            <h2 style="color: var(--color-accent); margin-bottom: 1rem;">УРА! ВЫ ПОЛУЧИЛИ СКИДКУ!</h2>
+            <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Промокод для скидки 10% на участие в квесте:</p>
+            <div style="background: linear-gradient(135deg, var(--color-accent), var(--color-secondary)); 
+                       color: white; padding: 1rem; border-radius: 10px; margin-bottom: 2rem; font-size: 1.5rem; font-weight: bold;">
+                ПОРУЛИ10
+            </div>
+            <p style="font-size: 0.9rem; color: var(--color-gray-dark); margin-bottom: 2rem;">
+                Просто назовите этот промокод при записи на квест!
             </p>
-            <button class="btn" onclick="closeDiscountModal()" style="width: 100%;">КРУТО, СПАСИБО!</button>
+            <button class="btn" onclick="closeDiscountModal()" style="width: 100%;">ПОНЯТНО, СПАСИБО!</button>
         </div>
     </div>
 
     <!-- Header -->
-    <header id="header">
+    <header>
         <nav>
             <a href="#home" class="logo">
                 <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" class="logo-img">
                 <span>ПорулиКа</span>
             </a>
             
-            <ul class="nav-links" id="navLinks">
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
                 <li><a href="#about">О квесте</a></li>
-                <li><a href="#steps">Этапы</a></li>
                 <li><a href="#features">Почему мы</a></li>
-                <li><a href="#events">Расписание</a></li>
-                <li><a href="#merch">Мерч</a></li>
-                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="#steps">Как это работает</a></li>
                 <li><a href="#form">Запись</a></li>
-                <li><a href="#partners">Партнёрам</a></li>
+                <li><a href="#contact">Контакты</a></li>
             </ul>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section id="home">
-        <div class="hero-content">
-            <div class="hero-logo-large"></div>
-            <h1 class="animated-title">ПОРУЛИКА</h1>
-            <p class="hero-subtitle">Пройди экзамен на настоящей ВАЗ-2107 – получи диплом водителя будущего!</p>
-            <div class="hero-features">
-                <div class="hero-feature">30 минут драйва</div>
-                <div class="hero-feature">Море смеха</div>
-                <div class="hero-feature">Легендарная «семёрка»</div>
-                <div class="hero-feature">от 500 ₽</div>
+        <div class="hero-container">
+            <div class="hero-content fade-in">
+                <h1 class="hero-title">ПОРУЛИКА</h1>
+                <p class="hero-subtitle">
+                    Интерактивный квест на легендарной ВАЗ-2107 в Барнауле. 
+                    Пройди экзамен по-настоящему, получи диплом и море эмоций!
+                </p>
+                
+                <div class="hero-features">
+                    <div class="hero-feature">🚗 Настоящая ВАЗ-2107</div>
+                    <div class="hero-feature">😂 30 минут смеха</div>
+                    <div class="hero-feature">👮 Инструктор и ГАИшник</div>
+                    <div class="hero-feature">🎓 Официальный диплом</div>
+                    <div class="hero-feature">💰 от 500 ₽</div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="#form" class="btn">ЗАПИСАТЬСЯ СЕЙЧАС</a>
+                    <a href="#about" class="btn btn-secondary">УЗНАТЬ ПОДРОБНЕЕ</a>
+                </div>
             </div>
-            <div class="hero-buttons">
-                <a href="#form" class="btn">ЗАПИСАТЬСЯ НА КВЕСТ</a>
-                <a href="#about" class="btn btn-secondary">УЗНАТЬ КАК ЭТО РАБОТАЕТ</a>
-                <a href="exam.html" class="btn btn-outline">ПРОЙТИ ЭКЗАМЕН ОНЛАЙН</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Секция онлайн-экзамена -->
-    <section id="online-exam" class="section-light">
-        <div class="container">
-            <div class="exam-section">
-                <div class="exam-content">
-                    <div class="exam-icon">📝</div>
-                    <h2>Проверь свои знания ПДД онлайн!</h2>
-                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">Не можешь приехать на квест? Пройди наш онлайн-экзамен и получи виртуальный диплом!</p>
-                    <a href="exam.html" class="btn" style="font-size: 1.1rem; padding: 16px 40px;">НАЧАТЬ ЭКЗАМЕН</a>
-                    <p style="margin-top: 1.5rem; opacity: 0.9;">20 вопросов по ПДД • Бесплатно • Результат сразу</p>
+            
+            <div class="hero-car fade-in">
+                <div class="car-container">
+                    <div class="car-image"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about">
+    <section id="about" style="background: white;">
         <div class="container">
-            <h2>Что такое «ПорулиКа»?</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p style="font-size: 1.2rem; margin-bottom: 2rem; font-weight: 500;">Это не просто квест – это живой опыт, где ты:</p>
-                    <ul>
-                        <li>Садишься за руль настоящей <strong>ВАЗ-2107</strong>, как в автошколе 90-х</li>
-                        <li>Проходишь испытания под присмотром <strong>инструктора Василия Петровича</strong></li>
-                        <li>Сталкиваешься с внезапной проверкой от <strong>ГАИшника Степаныча</strong></li>
-                        <li>Паркуешься, тормозишь, включаешь поворот — и не сбиваешь конус (ну или почти)</li>
-                        <li>Получаешь <strong>официальный диплом</strong> и фото на память</li>
-                    </ul>
+            <h2 class="section-title">Что такое ПорулиКа?</h2>
+            
+            <div class="card-grid">
+                <div class="feature-card fade-in">
+                    <div class="card-icon">🚗</div>
+                    <h3>Настоящая машина</h3>
+                    <p>Не симулятор, а реальная ВАЗ-2107 — легенда советского автопрома</p>
                 </div>
-                <div class="about-image">
-                    <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/vaz2107.png" alt="ВАЗ-2107 в квесте ПорулиКа" style="width: 100%; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                
+                <div class="feature-card fade-in">
+                    <div class="card-icon">🎭</div>
+                    <h3>Интерактивный сюжет</h3>
+                    <p>Инструктор Василий и ГАИшник Степан создают неповторимую атмосферу</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="card-icon">📚</div>
+                    <h3>ПДД с юмором</h3>
+                    <p>Повтори правила дорожного движения в весёлой игровой форме</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Steps Section -->
-    <section id="steps" class="section-light">
+    <section id="steps" style="background: var(--color-gray);">
         <div class="container">
-            <h2>Как проходит квест?</h2>
-            <div class="steps-container">
-                <div class="step-card">
-                    <div class="step-icon">🔑</div>
-                    <h3>ЗаведиКа меня!</h3>
-                    <p>Найди документы и заведи машину</p>
+            <h2 class="section-title">Как проходит квест?</h2>
+            
+            <div class="card-grid">
+                <div class="feature-card fade-in">
+                    <div class="card-icon">1️⃣</div>
+                    <h3>Знакомство</h3>
+                    <p>Встреча с инструктором, инструктаж и знакомство с ВАЗ-2107</p>
                 </div>
-                <div class="step-card">
-                    <div class="step-icon">🚦</div>
-                    <h3>Городские будни</h3>
-                    <p>Проедь по полосе: светофор, пешеходка, знаки</p>
+                
+                <div class="feature-card fade-in">
+                    <div class="card-icon">2️⃣</div>
+                    <h3>Вождение</h3>
+                    <p>Практика на специально оборудованной площадке с препятствиями</p>
                 </div>
-                <div class="step-card">
-                    <div class="step-icon">👮</div>
-                    <h3>Неожиданность от ГАИ</h3>
-                    <p>Степаныч появляется внезапно — готовься!</p>
+                
+                <div class="feature-card fade-in">
+                    <div class="card-icon">3️⃣</div>
+                    <h3>Сюрприз от ГАИ</h3>
+                    <p>Внезапная проверка документов и знание ПДД</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="card-icon">4️⃣</div>
+                    <h3>Финал</h3>
+                    <p>Вручение диплома и памятного сувенира, фотосессия</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Features Section -->
+    <section id="features" style="background: white;">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">
-                        <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" style="height: 40px; margin-right: 10px;">
-                        Порули<span style="color: var(--color-accent);">Ка</span>
-                    </div>
-                    <p>© 2025 ПорулиКа — квест на ВАЗ-2107<br>Сдай экзамен — не сдай нервы!</p>
+            <h2 class="section-title">Почему выбирают нас?</h2>
+            
+            <div class="card-grid">
+                <div class="feature-card fade-in">
+                    <div class="card-icon">😄</div>
+                    <h3>Море эмоций</h3>
+                    <p>Смех, радость и незабываемые впечатления гарантированы</p>
                 </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="card-icon">👥</div>
+                    <h3>Для компании</h3>
+                    <p>Идеально для друзей, пар, семей и корпоративов</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="card-icon">📸</div>
+                    <h3>Фото и видео</h3>
+                    <p>Профессиональная съёмка процесса и финальные фото</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="card-icon">🏆</div>
+                    <h3>Сувениры</h3>
+                    <p>Диплом, брелоки, наклейки и другие памятные вещи</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section id="form" style="background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light)); color: white;">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Запишись на квест!</h2>
+            
+            <div style="max-width: 500px; margin: 0 auto;">
+                <div class="feature-card" style="background: white; color: var(--color-primary);">
+                    <h3 style="margin-bottom: 2rem; color: var(--color-accent);">Оставь заявку прямо сейчас</h3>
+                    
+                    <form id="bookingForm" style="display: grid; gap: 1.5rem;">
+                        <div>
+                            <input type="text" placeholder="Ваше имя" required 
+                                   style="width: 100%; padding: 1rem; border: 2px solid var(--color-gray); border-radius: var(--border-radius); font-size: 1rem;">
+                        </div>
+                        
+                        <div>
+                            <input type="tel" placeholder="Ваш телефон" required 
+                                   style="width: 100%; padding: 1rem; border: 2px solid var(--color-gray); border-radius: var(--border-radius); font-size: 1rem;">
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">
+                            📞 Позвоните мне
+                        </button>
+                    </form>
+                    
+                    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--color-gray-dark);">
+                        Мы свяжемся с вами в течение 30 минут для уточнения деталей
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <footer id="contact" style="background: var(--color-primary); color: white; padding: 4rem 2rem;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" style="height: 50px;">
+                        <span style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;">ПорулиКа</span>
+                    </div>
+                    <p>Интерактивный квест на ВАЗ-2107 в Барнауле</p>
+                </div>
+                
+                <div>
+                    <h4 style="margin-bottom: 1.5rem; color: var(--color-accent-light);">Контакты</h4>
+                    <p style="margin-bottom: 0.5rem;">📍 Барнаул, Алтайский край</p>
+                    <p style="margin-bottom: 0.5rem;">📞 +7 (963) 575-68-49</p>
+                    <p>✉️ seduhinalena@gmail.com</p>
+                </div>
+                
+                <div>
+                    <h4 style="margin-bottom: 1.5rem; color: var(--color-accent-light);">Мы в соцсетях</h4>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" style="color: white; text-decoration: none; font-size: 1.5rem;">📷</a>
+                        <a href="#" style="color: white; text-decoration: none; font-size: 1.5rem;">📱</a>
+                        <a href="https://wa.me/79635756849" style="color: white; text-decoration: none; font-size: 1.5rem;">💬</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center;">
+                <p style="font-size: 0.9rem; opacity: 0.7;">© 2025 ПорулиКа. Все права защищены.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Создание анимированного фона с логотипами
-        function createBgAnimation() {
-            const container = document.getElementById('bgAnimation');
-            for (let i = 0; i < 8; i++) {
-                const element = document.createElement('div');
-                element.className = 'floating-element';
-                element.style.left = Math.random() * 100 + '%';
-                element.style.top = Math.random() * 100 + '%';
-                element.style.animationDelay = Math.random() * 20 + 's';
-                container.appendChild(element);
-            }
-        }
-
-        // Создание летающих дорожных знаков
-        function createFloatingSigns() {
-            const container = document.getElementById('roadSigns');
-            const signs = ['🚦', '🛑', '🚸', '🚧', '⚠️', '🔄', '⛔', '🅿️'];
-            
-            for (let i = 0; i < 6; i++) {
-                const sign = document.createElement('div');
-                sign.className = 'road-sign-float';
-                sign.textContent = signs[Math.floor(Math.random() * signs.length)];
-                sign.style.left = Math.random() * 90 + '%';
-                sign.style.animationDelay = Math.random() * 20 + 's';
-                sign.style.animationDuration = (15 + Math.random() * 15) + 's';
-                container.appendChild(sign);
-            }
-        }
-
-        // Генерация летающих логотипов со скидками
-        function createDiscountFlyers() {
-            setInterval(() => {
-                if (Math.random() > 0.8) { // 20% шанс появления
-                    const flyer = document.createElement('div');
-                    flyer.className = 'discount-flyer';
-                    flyer.style.left = Math.random() * 80 + 10 + '%';
-                    
-                    flyer.addEventListener('click', function() {
-                        createConfetti(this.getBoundingClientRect().left + 35, this.getBoundingClientRect().top + 35);
-                        showDiscountModal();
-                        this.remove();
-                    });
-                    
-                    document.body.appendChild(flyer);
-                    
-                    setTimeout(() => {
-                        flyer.classList.add('active');
-                        setTimeout(() => {
-                            if (flyer.parentNode) {
-                                flyer.remove();
-                            }
-                        }, 8000);
-                    }, 100);
-                }
-            }, 5000); // Каждые 5 секунд проверяем
-        }
-
-        // Создание конфетти
-        function createConfetti(x, y) {
-            const colors = ['#e94560', '#0d7377', '#ff6b8b', '#14b8b0', '#1a1a2e'];
-            
-            for (let i = 0; i < 30; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = x + 'px';
-                confetti.style.top = y + 'px';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                document.body.appendChild(confetti);
-                
-                const angle = Math.random() * Math.PI * 2;
-                const velocity = 1 + Math.random() * 2;
-                let vx = Math.cos(angle) * velocity;
-                let vy = Math.sin(angle) * velocity;
-                
-                let posX = x;
-                let posY = y;
-                let opacity = 1;
-                
-                function animate() {
-                    posX += vx;
-                    posY += vy;
-                    vy += 0.05; // гравитация
-                    opacity -= 0.02;
-                    
-                    confetti.style.left = posX + 'px';
-                    confetti.style.top = posY + 'px';
-                    confetti.style.opacity = opacity;
-                    
-                    if (opacity > 0 && posY < window.innerHeight + 100) {
-                        requestAnimationFrame(animate);
-                    } else {
-                        confetti.remove();
-                    }
-                }
-                
-                requestAnimationFrame(animate);
-            }
-        }
-
-        // Показ модального окна со скидкой
+        // Показ модального окна скидки
         function showDiscountModal() {
             document.getElementById('discountModal').classList.add('active');
             document.body.style.overflow = 'hidden';
             
-            // Автоматическое закрытие через 10 секунд
+            // Сохраняем в localStorage, что пользователь уже видел скидку
+            localStorage.setItem('porulikaDiscountSeen', 'true');
+            
+            // Автоматическое закрытие через 15 секунд
             setTimeout(() => {
                 closeDiscountModal();
-            }, 10000);
+            }, 15000);
         }
 
         function closeDiscountModal() {
@@ -952,57 +927,99 @@
             document.body.style.overflow = '';
         }
 
-        // Мобильное меню
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        const menuOverlay = document.getElementById('menuOverlay');
-        
-        function toggleMobileMenu() {
-            navLinks.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-        }
-
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-        menuOverlay.addEventListener('click', toggleMobileMenu);
-
-        // Эффект скролла для хедера
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        // Клик по бейджу скидки
+        document.getElementById('discountHunt').addEventListener('click', function() {
+            showDiscountModal();
+            
+            // Анимация бейджа при клике
+            this.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 300);
         });
 
-        // Закрытие мобильного меню при клике на ссылку
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                document.body.style.overflow = '';
+        // Анимация появления элементов при скролле
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Наблюдаем за всеми элементами с fade-in
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Форма записи
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Простая валидация
+            const name = this.querySelector('input[type="text"]').value;
+            const phone = this.querySelector('input[type="tel"]').value;
+            
+            if (name.length < 2) {
+                alert('Пожалуйста, введите корректное имя');
+                return;
+            }
+            
+            if (phone.length < 10) {
+                alert('Пожалуйста, введите корректный номер телефона');
+                return;
+            }
+            
+            // Имитация отправки
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Отправляем...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Спасибо за заявку! Мы свяжемся с вами в течение 30 минут.');
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Плавный скролл для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
-        // Отправка формы
-        document.getElementById('booking-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
-            this.reset();
-        });
-
-        // Инициализация
+        // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
-            createBgAnimation();
-            createFloatingSigns();
-            createDiscountFlyers();
-        });
-
-        // Закрытие модального окна при клике вне его
-        document.getElementById('discountModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeDiscountModal();
+            // Показываем скидку через 10 секунд после загрузки, если пользователь еще не видел
+            setTimeout(() => {
+                if (!localStorage.getItem('porulikaDiscountSeen')) {
+                    showDiscountModal();
+                }
+            }, 10000);
+            
+            // Добавляем hover-эффекты для карточек на мобильных
+            if ('ontouchstart' in window) {
+                document.querySelectorAll('.feature-card, .hero-feature').forEach(card => {
+                    card.style.cursor = 'pointer';
+                });
             }
         });
     </script>
