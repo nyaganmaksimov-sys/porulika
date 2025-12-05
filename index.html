@@ -111,8 +111,8 @@
         }
 
         .discount-badge {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: url('https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png') center/contain no-repeat;
             filter: drop-shadow(0 5px 15px rgba(255, 77, 109, 0.3));
             transition: var(--transition);
@@ -120,7 +120,7 @@
         }
 
         .discount-badge:hover {
-            transform: scale(1.2) rotate(15deg);
+            transform: scale(1.3) rotate(15deg);
             filter: drop-shadow(0 8px 20px rgba(255, 77, 109, 0.5));
             animation-play-state: paused;
         }
@@ -137,7 +137,7 @@
 
         .discount-tooltip {
             position: absolute;
-            bottom: 70px;
+            bottom: 80px;
             right: 0;
             background: var(--color-accent);
             color: white;
@@ -170,7 +170,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
@@ -179,7 +179,7 @@
         }
 
         nav {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
@@ -190,11 +190,11 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 1rem;
             text-decoration: none;
             font-family: var(--font-heading);
             font-weight: 800;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--color-primary);
             transition: var(--transition);
         }
@@ -204,7 +204,7 @@
         }
 
         .logo-img {
-            height: 40px;
+            height: 50px;
             width: auto;
             transition: var(--transition);
         }
@@ -216,14 +216,14 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .nav-links a {
             color: var(--color-primary);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
+            font-weight: 600;
+            font-size: 1rem;
             transition: var(--transition);
             padding: 0.5rem;
             position: relative;
@@ -235,7 +235,7 @@
             bottom: 0;
             left: 50%;
             width: 0;
-            height: 2px;
+            height: 3px;
             background: var(--color-accent);
             transition: all 0.3s ease;
             transform: translateX(-50%);
@@ -249,7 +249,7 @@
             color: var(--color-accent);
         }
 
-        /* Hero Section с ретро-стилем */
+        /* Hero Section - увеличенная машина */
         #home {
             min-height: 100vh;
             padding: 100px 2rem 2rem;
@@ -261,11 +261,11 @@
         }
 
         .hero-container {
-            max-width: 1200px;
+            max-width: 1400px;
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
             align-items: center;
         }
 
@@ -275,7 +275,7 @@
 
         .hero-title {
             font-family: var(--font-fun);
-            font-size: 4.5rem;
+            font-size: 5rem;
             line-height: 1;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
@@ -291,17 +291,18 @@
             position: absolute;
             bottom: -10px;
             left: 0;
-            width: 100px;
-            height: 4px;
+            width: 120px;
+            height: 5px;
             background: var(--color-gold);
             border-radius: 2px;
         }
 
         .hero-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--color-gray-dark);
             margin-bottom: 2.5rem;
             line-height: 1.6;
+            font-weight: 500;
         }
 
         .hero-features {
@@ -313,10 +314,10 @@
 
         .hero-feature {
             background: white;
-            padding: 0.8rem 1.5rem;
+            padding: 1rem 1.8rem;
             border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 600;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
             border: 2px solid transparent;
@@ -330,11 +331,11 @@
 
         .hero-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
         }
 
-        /* Машинка в ретро-стиле */
+        /* БОЛЬШАЯ МАШИНКА - увеличенный размер */
         .hero-car {
             position: relative;
             display: flex;
@@ -343,21 +344,28 @@
         }
 
         .car-container {
-            width: 300px;
-            height: 300px;
+            width: 500px;
+            height: 400px;
             position: relative;
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--box-shadow);
+            background: linear-gradient(135deg, white, #f8f9fa);
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
             transition: var(--transition);
-            border: 2px solid var(--color-gray);
+            border: 3px solid var(--color-accent-light);
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .car-container:hover {
-            transform: translateY(-10px) rotate(-2deg);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px) rotate(-1deg);
+            box-shadow: 
+                0 35px 70px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
             border-color: var(--color-accent);
         }
 
@@ -367,20 +375,58 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+            height: 5px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-secondary), var(--color-gold));
+            z-index: 2;
+        }
+
+        .car-container::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid rgba(255, 77, 109, 0.1);
+            border-radius: 15px;
+            pointer-events: none;
         }
 
         .car-image {
             width: 100%;
             height: 100%;
             background: url('https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/vaz2107.png') center/contain no-repeat;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
-            transition: var(--transition);
+            filter: 
+                drop-shadow(0 15px 25px rgba(0, 0, 0, 0.3))
+                brightness(1.05)
+                contrast(1.1);
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
         }
 
         .car-container:hover .car-image {
-            transform: scale(1.05);
+            transform: scale(1.08);
+            filter: 
+                drop-shadow(0 20px 35px rgba(0, 0, 0, 0.4))
+                brightness(1.1)
+                contrast(1.15);
+        }
+
+        /* Добавляем эффект бликов на машину */
+        .car-shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            z-index: 2;
+            transition: left 1s ease;
+        }
+
+        .car-container:hover .car-shine {
+            left: 100%;
         }
 
         /* Кнопки */
@@ -388,18 +434,18 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
+            gap: 0.8rem;
+            padding: 1.2rem 2.5rem;
             background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
             color: white;
             text-decoration: none;
             border-radius: var(--border-radius);
-            font-weight: 600;
-            font-size: 0.95rem;
+            font-weight: 700;
+            font-size: 1.1rem;
             border: none;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.2);
+            box-shadow: 0 12px 25px rgba(255, 77, 109, 0.25);
             position: relative;
             overflow: hidden;
         }
@@ -411,8 +457,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s;
         }
 
         .btn:hover::before {
@@ -420,34 +466,35 @@
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 77, 109, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.35);
+            letter-spacing: 0.5px;
         }
 
         .btn-secondary {
             background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-light));
-            box-shadow: 0 10px 20px rgba(0, 180, 216, 0.2);
+            box-shadow: 0 12px 25px rgba(0, 180, 216, 0.25);
         }
 
         .btn-secondary:hover {
-            box-shadow: 0 15px 30px rgba(0, 180, 216, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 180, 216, 0.35);
         }
 
         /* Секции */
         section {
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .section-title {
             font-family: var(--font-heading);
-            font-size: 2.5rem;
+            font-size: 3rem;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             position: relative;
             display: inline-block;
             left: 50%;
@@ -457,23 +504,23 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 4px;
+            width: 100px;
+            height: 5px;
             background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
-            margin: 1rem auto;
-            border-radius: 2px;
+            margin: 1.5rem auto;
+            border-radius: 3px;
         }
 
         /* Карточки в неоморфном стиле */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
         }
 
         .feature-card {
             background: white;
-            padding: 2.5rem 2rem;
+            padding: 3rem 2.5rem;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             transition: var(--transition);
@@ -489,7 +536,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
+            height: 5px;
             background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
             transform: translateX(-100%);
             transition: transform 0.6s ease;
@@ -500,15 +547,27 @@
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
             border-color: var(--color-accent-light);
         }
 
         .card-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
             display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--color-gray-dark);
         }
 
         /* Модальное окно скидки */
@@ -519,8 +578,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
             z-index: 10000;
             align-items: center;
             justify-content: center;
@@ -538,20 +597,20 @@
 
         .modal-content {
             background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            max-width: 400px;
+            padding: 4rem;
+            border-radius: 25px;
+            max-width: 450px;
             width: 90%;
             text-align: center;
             position: relative;
             animation: slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            border: 2px solid var(--color-accent);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+            border: 3px solid var(--color-accent);
         }
 
         @keyframes slideUp {
             from {
-                transform: translateY(50px) scale(0.9);
+                transform: translateY(60px) scale(0.9);
                 opacity: 0;
             }
             to {
@@ -566,39 +625,41 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
-            border-radius: 20px 20px 0 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-secondary), var(--color-gold));
+            border-radius: 25px 25px 0 0;
         }
 
         .close-modal {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--color-gray);
             border: none;
             font-size: 1.5rem;
-            color: var(--color-gray-dark);
+            color: var(--color-primary);
             cursor: pointer;
             transition: var(--transition);
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+            font-weight: bold;
         }
 
         .close-modal:hover {
-            background: var(--color-gray);
-            color: var(--color-accent);
+            background: var(--color-accent);
+            color: white;
+            transform: rotate(90deg);
         }
 
         /* Адаптивность */
-        @media (max-width: 992px) {
+        @media (max-width: 1200px) {
             .hero-container {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 4rem;
             }
             
             .hero-car {
@@ -606,9 +667,13 @@
             }
             
             .car-container {
-                width: 250px;
-                height: 250px;
+                width: 450px;
+                height: 350px;
                 margin: 0 auto;
+            }
+            
+            .hero-title {
+                font-size: 4rem;
             }
         }
 
@@ -621,7 +686,7 @@
                 display: block;
                 background: none;
                 border: none;
-                font-size: 1.5rem;
+                font-size: 1.8rem;
                 color: var(--color-primary);
                 cursor: pointer;
             }
@@ -631,7 +696,12 @@
             }
             
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
+            }
+            
+            .car-container {
+                width: 350px;
+                height: 280px;
             }
             
             .hero-buttons {
@@ -640,7 +710,28 @@
             
             .btn {
                 width: 100%;
-                max-width: 300px;
+                max-width: 350px;
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .car-container {
+                width: 300px;
+                height: 240px;
+                padding: 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 6rem 1rem;
             }
         }
 
@@ -648,12 +739,26 @@
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Дополнительная анимация для машины */
+        @keyframes carFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .car-container {
+            animation: carFloat 6s ease-in-out infinite;
         }
     </style>
 </head>
@@ -671,9 +776,9 @@
         <div class="floating-sign" style="top: 85%; left: 20%; animation-duration: 20s;">⚠️</div>
     </div>
 
-    <!-- Интерактивная скидка (в углу, не вылетает) -->
+    <!-- Интерактивная скидка -->
     <div class="discount-hunt" id="discountHunt">
-        <div class="discount-tooltip">Поймай скидку 10%!</div>
+        <div class="discount-tooltip">Поймай скидку 15%!</div>
         <div class="discount-badge"></div>
     </div>
 
@@ -681,17 +786,22 @@
     <div class="discount-modal" id="discountModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeDiscountModal()">×</button>
-            <div style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
-            <h2 style="color: var(--color-accent); margin-bottom: 1rem;">УРА! ВЫ ПОЛУЧИЛИ СКИДКУ!</h2>
-            <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Промокод для скидки 10% на участие в квесте:</p>
-            <div style="background: linear-gradient(135deg, var(--color-accent), var(--color-secondary)); 
-                       color: white; padding: 1rem; border-radius: 10px; margin-bottom: 2rem; font-size: 1.5rem; font-weight: bold;">
-                ПОРУЛИ10
-            </div>
-            <p style="font-size: 0.9rem; color: var(--color-gray-dark); margin-bottom: 2rem;">
-                Просто назовите этот промокод при записи на квест!
+            <div style="font-size: 4rem; margin-bottom: 1.5rem;">🎉</div>
+            <h2 style="color: var(--color-accent); margin-bottom: 1.5rem; font-size: 2rem;">УРА! ВЫ ПОЛУЧИЛИ СКИДКУ!</h2>
+            <p style="margin-bottom: 1.5rem; font-size: 1.2rem; line-height: 1.6;">
+                Промокод для скидки 15% на участие в квесте:
             </p>
-            <button class="btn" onclick="closeDiscountModal()" style="width: 100%;">ПОНЯТНО, СПАСИБО!</button>
+            <div style="background: linear-gradient(135deg, var(--color-accent), var(--color-secondary)); 
+                       color: white; padding: 1.2rem; border-radius: 12px; margin-bottom: 2rem; 
+                       font-size: 1.8rem; font-weight: bold; letter-spacing: 2px;">
+                ПОРУЛИ15
+            </div>
+            <p style="font-size: 1rem; color: var(--color-gray-dark); margin-bottom: 2.5rem; line-height: 1.6;">
+                Просто назовите этот промокод при записи на квест и получите скидку 15%!
+            </p>
+            <button class="btn" onclick="closeDiscountModal()" style="width: 100%; padding: 1.2rem; font-size: 1.2rem;">
+                🚗 ЗАПИСАТЬСЯ СО СКИДКОЙ
+            </button>
         </div>
     </div>
 
@@ -707,40 +817,45 @@
                 <li><a href="#home">Главная</a></li>
                 <li><a href="#about">О квесте</a></li>
                 <li><a href="#features">Почему мы</a></li>
-                <li><a href="#steps">Как это работает</a></li>
+                <li><a href="#steps">Этапы</a></li>
                 <li><a href="#form">Запись</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
+            
+            <!-- Мобильное меню -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" style="display: none;">☰</button>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section С БОЛЬШОЙ МАШИНОЙ -->
     <section id="home">
         <div class="hero-container">
             <div class="hero-content fade-in">
                 <h1 class="hero-title">ПОРУЛИКА</h1>
                 <p class="hero-subtitle">
-                    Интерактивный квест на легендарной ВАЗ-2107 в Барнауле. 
-                    Пройди экзамен по-настоящему, получи диплом и море эмоций!
+                    Уникальный интерактивный квест на легендарной ВАЗ-2107 в Барнауле. 
+                    Настоящий экзамен по вождению с инструктором и ГАИшником. Получи диплом, 
+                    море эмоций и незабываемые впечатления!
                 </p>
                 
                 <div class="hero-features">
-                    <div class="hero-feature">🚗 Настоящая ВАЗ-2107</div>
-                    <div class="hero-feature">😂 30 минут смеха</div>
-                    <div class="hero-feature">👮 Инструктор и ГАИшник</div>
-                    <div class="hero-feature">🎓 Официальный диплом</div>
-                    <div class="hero-feature">💰 от 500 ₽</div>
+                    <div class="hero-feature">🚗 НАСТОЯЩАЯ ВАЗ-2107</div>
+                    <div class="hero-feature">😂 30 МИНУТ СМЕХА</div>
+                    <div class="hero-feature">👮 ИНСТРУКТОР И ГАИ</div>
+                    <div class="hero-feature">🎓 ОФИЦИАЛЬНЫЙ ДИПЛОМ</div>
+                    <div class="hero-feature">💰 ОТ 500 ₽</div>
                 </div>
                 
                 <div class="hero-buttons">
-                    <a href="#form" class="btn">ЗАПИСАТЬСЯ СЕЙЧАС</a>
-                    <a href="#about" class="btn btn-secondary">УЗНАТЬ ПОДРОБНЕЕ</a>
+                    <a href="#form" class="btn">🚗 ЗАПИСАТЬСЯ НА КВЕСТ</a>
+                    <a href="#about" class="btn btn-secondary">📖 УЗНАТЬ ПОДРОБНЕЕ</a>
                 </div>
             </div>
             
             <div class="hero-car fade-in">
                 <div class="car-container">
                     <div class="car-image"></div>
+                    <div class="car-shine"></div>
                 </div>
             </div>
         </div>
@@ -749,25 +864,25 @@
     <!-- About Section -->
     <section id="about" style="background: white;">
         <div class="container">
-            <h2 class="section-title">Что такое ПорулиКа?</h2>
+            <h2 class="section-title">Легендарная ВАЗ-2107</h2>
             
             <div class="card-grid">
                 <div class="feature-card fade-in">
-                    <div class="card-icon">🚗</div>
-                    <h3>Настоящая машина</h3>
-                    <p>Не симулятор, а реальная ВАЗ-2107 — легенда советского автопрома</p>
+                    <div class="card-icon">🏁</div>
+                    <h3>Советская классика</h3>
+                    <p>ВАЗ-2107 «Жигули» — легенда советского автопрома, символ эпохи и самый узнаваемый автомобиль</p>
                 </div>
                 
                 <div class="feature-card fade-in">
-                    <div class="card-icon">🎭</div>
-                    <h3>Интерактивный сюжет</h3>
-                    <p>Инструктор Василий и ГАИшник Степан создают неповторимую атмосферу</p>
+                    <div class="card-icon">🔧</div>
+                    <h3>Полностью исправна</h3>
+                    <p>Машина в идеальном техническом состоянии, регулярное обслуживание и полная безопасность</p>
                 </div>
                 
                 <div class="feature-card fade-in">
-                    <div class="card-icon">📚</div>
-                    <h3>ПДД с юмором</h3>
-                    <p>Повтори правила дорожного движения в весёлой игровой форме</p>
+                    <div class="card-icon">🎯</div>
+                    <h3>Идеально для квеста</h3>
+                    <p>Классическая механика, характерное управление и аутентичная атмосфера 90-х годов</p>
                 </div>
             </div>
         </div>
@@ -776,31 +891,31 @@
     <!-- Steps Section -->
     <section id="steps" style="background: var(--color-gray);">
         <div class="container">
-            <h2 class="section-title">Как проходит квест?</h2>
+            <h2 class="section-title">Этапы квеста</h2>
             
             <div class="card-grid">
                 <div class="feature-card fade-in">
                     <div class="card-icon">1️⃣</div>
-                    <h3>Знакомство</h3>
-                    <p>Встреча с инструктором, инструктаж и знакомство с ВАЗ-2107</p>
+                    <h3>Знакомство с ВАЗ</h3>
+                    <p>Инструктаж, изучение особенностей ВАЗ-2107, знакомство с инструктором Василием</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="card-icon">2️⃣</div>
-                    <h3>Вождение</h3>
-                    <p>Практика на специально оборудованной площадке с препятствиями</p>
+                    <h3>Практика вождения</h3>
+                    <p>Трогание с места, переключение передач, маневрирование на специальной площадке</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="card-icon">3️⃣</div>
                     <h3>Сюрприз от ГАИ</h3>
-                    <p>Внезапная проверка документов и знание ПДД</p>
+                    <p>Внезапная проверка документов, вопросы по ПДД и проверка навыков вождения</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="card-icon">4️⃣</div>
-                    <h3>Финал</h3>
-                    <p>Вручение диплома и памятного сувенира, фотосессия</p>
+                    <h3>Финальный экзамен</h3>
+                    <p>Парковка, змейка и другие испытания. Вручение диплома и памятных сувениров</p>
                 </div>
             </div>
         </div>
@@ -809,31 +924,31 @@
     <!-- Features Section -->
     <section id="features" style="background: white;">
         <div class="container">
-            <h2 class="section-title">Почему выбирают нас?</h2>
+            <h2 class="section-title">Преимущества квеста</h2>
             
             <div class="card-grid">
                 <div class="feature-card fade-in">
                     <div class="card-icon">😄</div>
-                    <h3>Море эмоций</h3>
-                    <p>Смех, радость и незабываемые впечатления гарантированы</p>
+                    <h3>Незабываемые эмоции</h3>
+                    <p>Смех, адреналин и радость от управления легендарной машиной</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="card-icon">👥</div>
-                    <h3>Для компании</h3>
-                    <p>Идеально для друзей, пар, семей и корпоративов</p>
+                    <h3>Для любой компании</h3>
+                    <p>Идеально для друзей, пар, семейных выходных и корпоративных мероприятий</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="card-icon">📸</div>
-                    <h3>Фото и видео</h3>
-                    <p>Профессиональная съёмка процесса и финальные фото</p>
+                    <h3>Фото и видео съёмка</h3>
+                    <p>Профессиональная съёмка процесса и красивые финальные фотографии</p>
                 </div>
                 
                 <div class="feature-card fade-in">
-                    <div class="card-icon">🏆</div>
-                    <h3>Сувениры</h3>
-                    <p>Диплом, брелоки, наклейки и другие памятные вещи</p>
+                    <div class="card-icon">🎁</div>
+                    <h3>Памятные сувениры</h3>
+                    <p>Диплом водителя, фирменные брелоки, наклейки и другие приятные бонусы</p>
                 </div>
             </div>
         </div>
@@ -842,30 +957,52 @@
     <!-- Form Section -->
     <section id="form" style="background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light)); color: white;">
         <div class="container">
-            <h2 class="section-title" style="color: white;">Запишись на квест!</h2>
+            <h2 class="section-title" style="color: white;">Забронируй участие!</h2>
             
-            <div style="max-width: 500px; margin: 0 auto;">
-                <div class="feature-card" style="background: white; color: var(--color-primary);">
-                    <h3 style="margin-bottom: 2rem; color: var(--color-accent);">Оставь заявку прямо сейчас</h3>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div class="feature-card fade-in" style="background: white; color: var(--color-primary); padding: 3rem;">
+                    <h3 style="margin-bottom: 2rem; color: var(--color-accent); font-size: 1.8rem; text-align: center;">
+                        🚗 Запишись на квест прямо сейчас
+                    </h3>
                     
-                    <form id="bookingForm" style="display: grid; gap: 1.5rem;">
+                    <form id="bookingForm" style="display: grid; gap: 1.8rem;">
                         <div>
                             <input type="text" placeholder="Ваше имя" required 
-                                   style="width: 100%; padding: 1rem; border: 2px solid var(--color-gray); border-radius: var(--border-radius); font-size: 1rem;">
+                                   style="width: 100%; padding: 1.2rem; border: 2px solid var(--color-gray); 
+                                          border-radius: var(--border-radius); font-size: 1.1rem;
+                                          transition: var(--transition);">
+                            <input:focus {
+                                border-color: var(--color-accent);
+                                outline: none;
+                                box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.1);
+                            }>
                         </div>
                         
                         <div>
                             <input type="tel" placeholder="Ваш телефон" required 
-                                   style="width: 100%; padding: 1rem; border: 2px solid var(--color-gray); border-radius: var(--border-radius); font-size: 1rem;">
+                                   style="width: 100%; padding: 1.2rem; border: 2px solid var(--color-gray); 
+                                          border-radius: var(--border-radius); font-size: 1.1rem;
+                                          transition: var(--transition);">
+                            <input:focus {
+                                border-color: var(--color-accent);
+                                outline: none;
+                                box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.1);
+                            }>
                         </div>
                         
-                        <button type="submit" class="btn" style="width: 100%;">
-                            📞 Позвоните мне
+                        <div>
+                            <input type="email" placeholder="Ваш email (необязательно)" 
+                                   style="width: 100%; padding: 1.2rem; border: 2px solid var(--color-gray); 
+                                          border-radius: var(--border-radius); font-size: 1.1rem;">
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%; font-size: 1.2rem;">
+                            📞 ЗАБРОНИРОВАТЬ УЧАСТИЕ
                         </button>
                     </form>
                     
-                    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--color-gray-dark);">
-                        Мы свяжемся с вами в течение 30 минут для уточнения деталей
+                    <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--color-gray-dark); text-align: center;">
+                        Мы перезвоним вам в течение 20 минут для подтверждения записи и уточнения деталей
                     </p>
                 </div>
             </div>
@@ -873,36 +1010,52 @@
     </section>
 
     <!-- Contact Section -->
-    <footer id="contact" style="background: var(--color-primary); color: white; padding: 4rem 2rem;">
+    <footer id="contact" style="background: var(--color-primary); color: white; padding: 5rem 2rem;">
         <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
                 <div>
                     <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-                        <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" style="height: 50px;">
-                        <span style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;">ПорулиКа</span>
+                        <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/porulika/44aad27ddd9821f71a6449503f20a08934f48bf7/images/logo.png" alt="ПорулиКа" style="height: 60px;">
+                        <span style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700;">ПорулиКа</span>
                     </div>
-                    <p>Интерактивный квест на ВАЗ-2107 в Барнауле</p>
+                    <p style="font-size: 1.1rem; line-height: 1.6;">Интерактивный квест на легендарной ВАЗ-2107 в Барнауле</p>
                 </div>
                 
                 <div>
-                    <h4 style="margin-bottom: 1.5rem; color: var(--color-accent-light);">Контакты</h4>
-                    <p style="margin-bottom: 0.5rem;">📍 Барнаул, Алтайский край</p>
-                    <p style="margin-bottom: 0.5rem;">📞 +7 (963) 575-68-49</p>
-                    <p>✉️ seduhinalena@gmail.com</p>
+                    <h4 style="margin-bottom: 1.5rem; color: var(--color-accent-light); font-size: 1.3rem;">Контакты</h4>
+                    <p style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem; font-size: 1.1rem;">
+                        <span style="font-size: 1.2rem;">📍</span> Барнаул, Алтайский край
+                    </p>
+                    <p style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem; font-size: 1.1rem;">
+                        <span style="font-size: 1.2rem;">📞</span> +7 (963) 575-68-49
+                    </p>
+                    <p style="display: flex; align-items: center; gap: 0.8rem; font-size: 1.1rem;">
+                        <span style="font-size: 1.2rem;">✉️</span> seduhinalena@gmail.com
+                    </p>
                 </div>
                 
                 <div>
-                    <h4 style="margin-bottom: 1.5rem; color: var(--color-accent-light);">Мы в соцсетях</h4>
-                    <div style="display: flex; gap: 1rem;">
-                        <a href="#" style="color: white; text-decoration: none; font-size: 1.5rem;">📷</a>
-                        <a href="#" style="color: white; text-decoration: none; font-size: 1.5rem;">📱</a>
-                        <a href="https://wa.me/79635756849" style="color: white; text-decoration: none; font-size: 1.5rem;">💬</a>
+                    <h4 style="margin-bottom: 1.5rem; color: var(--color-accent-light); font-size: 1.3rem;">Мы в соцсетях</h4>
+                    <div style="display: flex; gap: 1.2rem;">
+                        <a href="#" style="color: white; text-decoration: none; font-size: 1.8rem; transition: var(--transition);" 
+                           onmouseover="this.style.transform='translateY(-3px)'" 
+                           onmouseout="this.style.transform='translateY(0)'">📷</a>
+                        <a href="#" style="color: white; text-decoration: none; font-size: 1.8rem; transition: var(--transition);"
+                           onmouseover="this.style.transform='translateY(-3px)'" 
+                           onmouseout="this.style.transform='translateY(0)'">📱</a>
+                        <a href="https://wa.me/79635756849" style="color: white; text-decoration: none; font-size: 1.8rem; transition: var(--transition);"
+                           onmouseover="this.style.transform='translateY(-3px)'" 
+                           onmouseout="this.style.transform='translateY(0)'">💬</a>
                     </div>
+                    <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.8;">
+                        Пишите нам в любое время с 9:00 до 21:00
+                    </p>
                 </div>
             </div>
             
-            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center;">
-                <p style="font-size: 0.9rem; opacity: 0.7;">© 2025 ПорулиКа. Все права защищены.</p>
+            <div style="padding-top: 3rem; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center;">
+                <p style="font-size: 1rem; opacity: 0.7;">© 2025 ПорулиКа — интерактивный квест на ВАЗ-2107. Все права защищены.</p>
+                <p style="font-size: 0.9rem; opacity: 0.6; margin-top: 0.5rem;">Барнаул, Алтайский край</p>
             </div>
         </div>
     </footer>
@@ -910,32 +1063,45 @@
     <script>
         // Показ модального окна скидки
         function showDiscountModal() {
-            document.getElementById('discountModal').classList.add('active');
+            const modal = document.getElementById('discountModal');
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden';
             
             // Сохраняем в localStorage, что пользователь уже видел скидку
             localStorage.setItem('porulikaDiscountSeen', 'true');
             
-            // Автоматическое закрытие через 15 секунд
+            // Автоматическое закрытие через 20 секунд
             setTimeout(() => {
                 closeDiscountModal();
-            }, 15000);
+            }, 20000);
         }
 
         function closeDiscountModal() {
-            document.getElementById('discountModal').classList.remove('active');
+            const modal = document.getElementById('discountModal');
+            modal.classList.remove('active');
             document.body.style.overflow = '';
+            
+            // Небольшая анимация закрытия
+            modal.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+                modal.style.animation = '';
+            }, 300);
         }
 
         // Клик по бейджу скидки
-        document.getElementById('discountHunt').addEventListener('click', function() {
+        document.getElementById('discountHunt').addEventListener('click', function(e) {
+            e.preventDefault();
             showDiscountModal();
             
             // Анимация бейджа при клике
-            this.style.transform = 'scale(1.2)';
+            const badge = this.querySelector('.discount-badge');
+            badge.style.transform = 'scale(1.4) rotate(180deg)';
+            badge.style.filter = 'drop-shadow(0 10px 25px rgba(255, 77, 109, 0.6))';
+            
             setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 300);
+                badge.style.transform = '';
+                badge.style.filter = '';
+            }, 500);
         });
 
         // Анимация появления элементов при скролле
@@ -943,6 +1109,13 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    
+                    // Дополнительная анимация для карточек
+                    if (entry.target.classList.contains('feature-card')) {
+                        setTimeout(() => {
+                            entry.target.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                        }, 100);
+                    }
                 }
             });
         }, {
@@ -960,44 +1133,79 @@
             e.preventDefault();
             
             // Простая валидация
-            const name = this.querySelector('input[type="text"]').value;
-            const phone = this.querySelector('input[type="tel"]').value;
+            const name = this.querySelector('input[type="text"]').value.trim();
+            const phone = this.querySelector('input[type="tel"]').value.trim();
             
             if (name.length < 2) {
-                alert('Пожалуйста, введите корректное имя');
+                alert('Пожалуйста, введите корректное имя (минимум 2 символа)');
+                this.querySelector('input[type="text"]').focus();
                 return;
             }
             
-            if (phone.length < 10) {
+            if (!phone.match(/^[\d\s\-\+\(\)]+$/) || phone.replace(/\D/g, '').length < 10) {
                 alert('Пожалуйста, введите корректный номер телефона');
+                this.querySelector('input[type="tel"]').focus();
                 return;
             }
             
-            // Имитация отправки
+            // Имитация отправки с анимацией
             const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
+            const originalText = submitBtn.innerHTML;
+            const originalWidth = submitBtn.offsetWidth;
             
-            submitBtn.textContent = 'Отправляем...';
+            submitBtn.innerHTML = '🔄 Отправляем...';
             submitBtn.disabled = true;
+            submitBtn.style.width = originalWidth + 'px';
+            
+            // Анимация загрузки
+            submitBtn.style.background = 'linear-gradient(135deg, var(--color-secondary), var(--color-secondary-light))';
             
             setTimeout(() => {
-                alert('Спасибо за заявку! Мы свяжемся с вами в течение 30 минут.');
-                this.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
+                // Успешная отправка
+                submitBtn.innerHTML = '✅ Готово!';
+                submitBtn.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+                
+                setTimeout(() => {
+                    // Показываем сообщение об успехе
+                    const successMessage = document.createElement('div');
+                    successMessage.innerHTML = `
+                        <div style="background: #4CAF50; color: white; padding: 1.5rem; border-radius: var(--border-radius); 
+                                    margin-top: 1.5rem; text-align: center; animation: slideUp 0.5s ease;">
+                            <h4 style="margin-bottom: 0.5rem;">🎉 Заявка отправлена!</h4>
+                            <p>Мы свяжемся с вами в течение 20 минут для подтверждения записи.</p>
+                        </div>
+                    `;
+                    
+                    this.parentNode.appendChild(successMessage);
+                    
+                    // Сбрасываем форму через 2 секунды
+                    setTimeout(() => {
+                        this.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = '';
+                        submitBtn.style.width = '';
+                        
+                        successMessage.style.opacity = '0';
+                        successMessage.style.transform = 'translateY(-10px)';
+                        setTimeout(() => {
+                            successMessage.remove();
+                        }, 500);
+                    }, 2000);
+                }, 1000);
+            }, 2000);
         });
 
         // Плавный скролл для якорных ссылок
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    e.preventDefault();
+                    
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
@@ -1006,20 +1214,66 @@
             });
         });
 
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                const navLinks = document.querySelector('.nav-links');
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+        }
+
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
-            // Показываем скидку через 10 секунд после загрузки, если пользователь еще не видел
+            // Показываем скидку через 8 секунд после загрузки, если пользователь еще не видел
             setTimeout(() => {
                 if (!localStorage.getItem('porulikaDiscountSeen')) {
                     showDiscountModal();
                 }
-            }, 10000);
+            }, 8000);
             
-            // Добавляем hover-эффекты для карточек на мобильных
-            if ('ontouchstart' in window) {
-                document.querySelectorAll('.feature-card, .hero-feature').forEach(card => {
-                    card.style.cursor = 'pointer';
+            // Добавляем hover-эффекты для инпутов
+            document.querySelectorAll('input').forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = 'var(--color-accent)';
+                    this.style.boxShadow = '0 0 0 3px rgba(255, 77, 109, 0.1)';
                 });
+                
+                input.addEventListener('blur', function() {
+                    this.style.borderColor = 'var(--color-gray)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+            
+            // Адаптивность для мобильных
+            if (window.innerWidth <= 768) {
+                document.querySelector('.nav-links').style.display = 'none';
+                document.getElementById('mobileMenuBtn').style.display = 'block';
+            }
+        });
+
+        // Адаптация при изменении размера окна
+        window.addEventListener('resize', function() {
+            if (window.innerWidth <= 768) {
+                document.querySelector('.nav-links').style.display = 'none';
+                document.getElementById('mobileMenuBtn').style.display = 'block';
+            } else {
+                document.querySelector('.nav-links').style.display = 'flex';
+                document.getElementById('mobileMenuBtn').style.display = 'none';
+            }
+        });
+
+        // Закрытие модального окна при клике вне его
+        document.getElementById('discountModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDiscountModal();
+            }
+        });
+
+        // Закрытие модального окна по Esc
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('discountModal').classList.contains('active')) {
+                closeDiscountModal();
             }
         });
     </script>
