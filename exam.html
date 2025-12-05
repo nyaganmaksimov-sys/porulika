@@ -106,24 +106,18 @@
       flex-wrap: wrap;
     }
     
-    .logo-icon {
-      background: linear-gradient(135deg, var(--primary), var(--funny-pink));
-      color: white;
-      width: 70px;
-      height: 70px;
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
-      transform: rotate(-5deg);
-      animation: icon-bounce 2s infinite;
+    .logo-img {
+      width: 200px;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+      animation: logo-bounce 2s infinite;
     }
     
-    @keyframes icon-bounce {
-      0%, 100% { transform: rotate(-5deg) translateY(0); }
-      50% { transform: rotate(-5deg) translateY(-8px); }
+    @keyframes logo-bounce {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
     }
     
     h1 {
@@ -936,6 +930,28 @@
       text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     }
     
+    /* PDF-специфичные стили */
+    .certificate-pdf {
+      background: white !important;
+      box-shadow: none !important;
+      border: 3px solid #000 !important;
+    }
+    
+    .certificate-pdf::before {
+      display: none !important;
+    }
+    
+    .certificate-pdf .result-icon,
+    .certificate-pdf .joke-indicator,
+    .certificate-pdf .btn {
+      display: none !important;
+    }
+    
+    .certificate-pdf * {
+      animation: none !important;
+      transition: none !important;
+    }
+    
     /* Адаптация для мобильных устройств */
     @media (max-width: 768px) {
       body {
@@ -1104,10 +1120,8 @@
   <div class="container">
     <header>
       <div class="logo">
-        <div class="logo-icon">
-          <i class="fas fa-car-side"></i>
-        </div>
-        <h1>ПорулиКа-ЮМОР</h1>
+        <!-- Логотип вместо текста -->
+        <img src="images/logo.png" alt="ПорулиКа-ЮМОР" class="logo-img">
       </div>
       <p class="subtitle">Экзамен ПДД с картинками от ПорулиКа, но вопросы от стендап-комиков! 🤣🚗</p>
     </header>
@@ -1366,6 +1380,7 @@
         <!-- Сертификат -->
         <div class="certificate" id="certificate-content">
           <div class="certificate-header">
+            <img src="images/logo.png" alt="ПорулиКа-ЮМОР" style="max-width: 250px; margin: 0 auto 20px; display: block;">
             <h2 class="certificate-title">СЕРТИФИКАТ</h2>
             <p class="certificate-subtitle">Юмористического водителя ПорулиКа</p>
           </div>
@@ -1460,6 +1475,7 @@
         <!-- Сертификат для провала -->
         <div class="certificate" id="fail-certificate-content">
           <div class="certificate-header">
+            <img src="images/logo.png" alt="ПорулиКа-ЮМОР" style="max-width: 250px; margin: 0 auto 20px; display: block;">
             <h2 class="certificate-title">СЕРТИФИКАТ</h2>
             <p class="certificate-subtitle">Серьёзного участника ПорулиКа</p>
           </div>
@@ -2635,27 +2651,6 @@
         `Сертификат_ПорулиКа_${userData.name.replace(/\s+/g, '_')}_${Date.now()}.pdf` :
         `Участник_ПорулиКа_${userData.name.replace(/\s+/g, '_')}_${Date.now()}.pdf`;
       
-      const options = {
-        margin: 10,
-        filename: filename,
-        image: { 
-          type: 'jpeg', 
-          quality: 0.95
-        },
-        html2canvas: { 
-          scale: 2,
-          useCORS: true,
-          backgroundColor: '#ffffff',
-          logging: false,
-          allowTaint: true
-        },
-        jsPDF: { 
-          unit: 'mm', 
-          format: 'a4', 
-          orientation: 'portrait' 
-        }
-      };
-      
       // Показываем уведомление о начале сохранения
       const originalText = isSuccess ? savePdfBtn.innerHTML : savePdfFailBtn.innerHTML;
       if (isSuccess) {
@@ -2666,40 +2661,53 @@
         savePdfFailBtn.disabled = true;
       }
       
-      // Временно скрываем изображения для PDF (чтобы избежать CORS ошибок)
-      const images = element.querySelectorAll('img');
-      const originalDisplay = [];
-      images.forEach((img, index) => {
-        originalDisplay[index] = img.style.display;
-        img.style.display = 'none';
-      });
-      
       // Создаем клон элемента для PDF
       const elementClone = element.cloneNode(true);
       
-      // Удаляем градиенты и сложные стили для лучшей печати
-      const complexElements = elementClone.querySelectorAll('[style*="gradient"], [style*="transform"], [style*="animation"]');
-      complexElements.forEach(el => {
-        el.style.background = '#ffffff';
-        el.style.transform = 'none';
-        el.style.animation = 'none';
-      });
+      // Улучшаем клон для печати
+      prepareForPDF(elementClone);
       
       // Добавляем клон в документ (скрыто)
       elementClone.style.position = 'absolute';
       elementClone.style.left = '-9999px';
       elementClone.style.top = '0';
+      elementClone.style.width = '800px';
       document.body.appendChild(elementClone);
       
       try {
+        const options = {
+          margin: [15, 15],
+          filename: filename,
+          image: { 
+            type: 'jpeg', 
+            quality: 0.95 
+          },
+          html2canvas: { 
+            scale: 2,
+            useCORS: true,
+            backgroundColor: '#ffffff',
+            logging: false,
+            allowTaint: true,
+            onclone: function(clonedDoc) {
+              // Настраиваем клонированный документ для PDF
+              const clonedElement = isSuccess ? 
+                clonedDoc.getElementById('certificate-content') : 
+                clonedDoc.getElementById('fail-certificate-content');
+              if (clonedElement) {
+                prepareForPDF(clonedElement);
+              }
+            }
+          },
+          jsPDF: { 
+            unit: 'mm', 
+            format: 'a4', 
+            orientation: 'portrait' 
+          }
+        };
+        
         html2pdf().set(options).from(elementClone).save().then(() => {
           // Удаляем клон
           document.body.removeChild(elementClone);
-          
-          // Восстанавливаем изображения
-          images.forEach((img, index) => {
-            img.style.display = originalDisplay[index] || '';
-          });
           
           // Восстанавливаем кнопку
           if (isSuccess) {
@@ -2719,11 +2727,6 @@
             document.body.removeChild(elementClone);
           }
           
-          // Восстанавливаем изображения
-          images.forEach((img, index) => {
-            img.style.display = originalDisplay[index] || '';
-          });
-          
           // Восстанавливаем кнопку
           if (isSuccess) {
             savePdfBtn.innerHTML = originalText;
@@ -2734,7 +2737,7 @@
           }
           
           // Предлагаем альтернативу
-          alert('📄 Для сохранения сертификата:\n\n1. Нажмите Ctrl+P (Печать)\n2. В настройках принтера выберите "Сохранить как PDF"\n3. Нажмите "Сохранить"\n\nИли используйте комбинацию Ctrl+S для сохранения страницы как HTML.');
+          offerAlternativePDF();
         });
       } catch (error) {
         console.error('Ошибка при сохранении PDF:', error);
@@ -2743,11 +2746,6 @@
         if (elementClone.parentNode) {
           document.body.removeChild(elementClone);
         }
-        
-        // Восстанавливаем изображения
-        images.forEach((img, index) => {
-          img.style.display = originalDisplay[index] || '';
-        });
         
         // Восстанавливаем кнопку
         if (isSuccess) {
@@ -2760,6 +2758,79 @@
         
         alert('❌ Не удалось сохранить PDF. Попробуйте другой браузер или используйте функцию печати (Ctrl+P).');
       }
+    }
+    
+    function prepareForPDF(element) {
+      // Удаляем интерактивные элементы
+      const buttons = element.querySelectorAll('.btn, .result-icon, .joke-indicator');
+      buttons.forEach(btn => btn.style.display = 'none');
+      
+      // Удаляем анимации и переходы
+      element.style.animation = 'none';
+      element.style.transition = 'none';
+      
+      // Упрощаем градиенты для печати
+      const gradientElements = element.querySelectorAll('[style*="gradient"]');
+      gradientElements.forEach(el => {
+        if (el.style.background.includes('gradient')) {
+          // Заменяем градиенты на сплошные цвета
+          if (el.style.background.includes('primary')) {
+            el.style.background = '#FF6B35';
+          } else if (el.style.background.includes('success')) {
+            el.style.background = '#06D6A0';
+          } else if (el.style.background.includes('accent')) {
+            el.style.background = '#FFD166';
+          } else {
+            el.style.background = '#f8f9fa';
+          }
+        }
+      });
+      
+      // Упрощаем границы
+      element.style.border = '3px solid #000';
+      element.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+      
+      // Улучшаем читаемость текста
+      const textElements = element.querySelectorAll('h1, h2, h3, p, div');
+      textElements.forEach(el => {
+        el.style.color = el.style.color || '#000';
+        el.style.textShadow = 'none';
+      });
+      
+      // Устанавливаем белый фон
+      element.style.background = '#ffffff';
+      
+      // Добавляем класс для PDF
+      element.classList.add('certificate-pdf');
+    }
+    
+    function offerAlternativePDF() {
+      const score = successScore.textContent || failScore.textContent;
+      const status = userStatus.textContent || failUserStatus.textContent;
+      const userName = userData.name;
+      const date = new Date().toLocaleDateString('ru-RU');
+      
+      const pdfContent = `
+      СЕРТИФИКАТ ПорулиКа-ЮМОР
+      =========================
+      
+      Поздравляем, ${userName}!
+      
+      Ты прошёл юмористический экзамен ПДД
+      и набрал ${score}%!
+      
+      Твой статус: ${status}
+      
+      Дата: ${date}
+      
+      Авто мечты: ${userData.dreamCar}
+      Город: ${userData.city}
+      
+      Сохрани этот сертификат и покажи друзьям!
+      ПорулиКа-ЮМОР — где правила смешнее!
+      `;
+      
+      alert(`📄 Для сохранения сертификата:\n\n1. Нажмите Ctrl+P (Печать)\n2. В настройках принтера выберите "Сохранить как PDF"\n3. Нажмите "Сохранить"\n\nИли скопируйте этот текст:\n\n${pdfContent}`);
     }
 
     function resetExam() {
