@@ -9,17 +9,6 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@700&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
     
-    <!-- Шрифт Coffee Bear -->
-    <style>
-        @font-face {
-            font-family: 'Coffee Bear';
-            src: url('https://raw.githubusercontent.com/nyaganmaksimov-sys/studio-dizaina/eb4ed7052656696c51f168fa971b938603f0f857/Coffee%20Bear.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-    </style>
-    
     <style>
         /* Reset & Base */
         :root {
@@ -42,7 +31,6 @@
             --font-title: 'Montserrat', sans-serif;
             --font-body: 'Inter', sans-serif;
             --font-numbers: 'Rajdhani', sans-serif;
-            --font-coffee: 'Coffee Bear', cursive;
             
             --border-radius: 16px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -642,37 +630,41 @@
             position: relative;
         }
 
+        /* Заголовок секции */
+        .car-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--color-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .car-title::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-blue));
+            margin: 1.5rem auto;
+            border-radius: 2px;
+            animation: titleLine 3s ease-in-out infinite;
+        }
+
+        @keyframes titleLine {
+            0%, 100% { width: 150px; }
+            50% { width: 180px; }
+        }
+
         /* Основной контент машины */
         .car-content {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 3rem;
-        }
-
-        /* Надпись ПорулиКа шрифтом Coffee Bear */
-        .car-portulika {
-            font-family: var(--font-coffee);
-            font-size: 5.5rem;
-            color: var(--color-text);
-            text-align: center;
-            margin-bottom: 2rem;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            position: relative;
-        }
-
-        .car-portulika::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 3px;
-            background: var(--color-accent);
-            border-radius: 2px;
-            opacity: 0.7;
         }
 
         /* Блок с изображением машины */
@@ -689,6 +681,14 @@
             border: 1px solid rgba(0, 0, 0, 0.06);
             position: relative;
             overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .car-image-block:hover {
+            box-shadow: 
+                0 20px 45px rgba(0, 0, 0, 0.08),
+                0 8px 20px rgba(0, 0, 0, 0.05);
+            transform: translateY(-5px);
         }
 
         /* Декоративные элементы для блока */
@@ -716,7 +716,7 @@
             margin: 0 auto;
         }
 
-        /* Само изображение машины */
+        /* Само изображение машины со скругленными углами */
         .car-image-main {
             width: 100%;
             height: 100%;
@@ -746,6 +746,13 @@
             margin-left: auto;
             margin-right: auto;
             backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .car-description:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
         .car-description-text {
@@ -777,6 +784,12 @@
             border-left: 3px solid var(--color-accent);
             background: rgba(255, 255, 255, 0.5);
             border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .car-tagline:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateX(5px);
         }
 
         /* Features Grid */
@@ -1006,8 +1019,8 @@
                 font-size: 4rem;
             }
             
-            .car-portulika {
-                font-size: 4.5rem;
+            .car-title {
+                font-size: 3rem;
             }
             
             .car-image-container {
@@ -1046,8 +1059,8 @@
                 font-size: 2.5rem;
             }
             
-            .car-portulika {
-                font-size: 4rem;
+            .car-title {
+                font-size: 2.8rem;
             }
             
             .car-image-container {
@@ -1089,8 +1102,8 @@
                 font-size: 1rem;
             }
             
-            .car-portulika {
-                font-size: 3.5rem;
+            .car-title {
+                font-size: 2.5rem;
             }
             
             .car-image-container {
@@ -1167,8 +1180,8 @@
                 padding: 4rem 1rem;
             }
             
-            .car-portulika {
-                font-size: 3.5rem;
+            .car-title {
+                font-size: 2.5rem;
                 padding: 0 1rem;
             }
             
@@ -1334,8 +1347,8 @@
                 padding: 0.4rem 0.6rem;
             }
             
-            .car-portulika {
-                font-size: 3rem;
+            .car-title {
+                font-size: 2.2rem;
                 margin-bottom: 1rem;
             }
             
@@ -1387,8 +1400,8 @@
                 height: 120px;
             }
             
-            .car-portulika {
-                font-size: 2.8rem;
+            .car-title {
+                font-size: 2.2rem;
             }
             
             .car-image-container {
@@ -1419,8 +1432,8 @@
                 font-size: 1.6rem;
             }
             
-            .car-portulika {
-                font-size: 2.5rem;
+            .car-title {
+                font-size: 2rem;
             }
             
             .btn, .btn-exam {
@@ -1656,7 +1669,7 @@
     <section id="car" class="car-section">
         <div class="car-container">
             <div class="car-content">
-                <h2 class="car-portulika fade-in">ПорулиКа</h2>
+                <h2 class="car-title fade-in">ЛЕГЕНДА НА КОЛЁСАХ</h2>
                 
                 <div class="car-image-block fade-in">
                     <div class="car-image-container">
@@ -2115,23 +2128,6 @@
 
         // Запуск эффектов после загрузки
         window.addEventListener('load', () => {
-            // Проверка загрузки шрифта Coffee Bear
-            const fontCheck = document.createElement('span');
-            fontCheck.style.fontFamily = 'Coffee Bear';
-            fontCheck.style.position = 'absolute';
-            fontCheck.style.opacity = '0';
-            fontCheck.textContent = 'ПорулиКа';
-            document.body.appendChild(fontCheck);
-            
-            setTimeout(() => {
-                if (fontCheck.offsetWidth > 0) {
-                    console.log('Шрифт Coffee Bear загружен успешно');
-                } else {
-                    console.log('Шрифт Coffee Bear не загружен, используется fallback');
-                }
-                document.body.removeChild(fontCheck);
-            }, 1000);
-            
             // Анимация появления секции машины
             const carSection = document.querySelector('.car-section');
             if (carSection) {
